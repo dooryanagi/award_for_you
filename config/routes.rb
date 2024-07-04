@@ -1,5 +1,29 @@
 Rails.application.routes.draw do
 
+  namespace :public do
+    get 'waiting_events/new'
+  end
+  namespace :public do
+    get 'grand_prizes/new'
+    get 'grand_prizes/index'
+    get 'grand_prizes/show'
+    get 'grand_prizes/edit'
+  end
+  namespace :public do
+    get 'awards/new'
+    get 'awards/index'
+    get 'awards/show'
+    get 'awards/edit'
+  end
+  namespace :public do
+    get 'homes/top'
+    get 'homes/about'
+  end
+  namespace :public do
+    get 'users/show'
+    get 'users/edit'
+    get 'users/unsubscribe'
+  end
   # 会員 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   devise_for :users, skip: [:passwords], controllers: {
