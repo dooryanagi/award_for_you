@@ -1,0 +1,2 @@
+class WaitingEvent < ApplicationRecord
+end

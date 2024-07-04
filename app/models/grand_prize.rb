@@ -1,0 +1,2 @@
+class GrandPrize < ApplicationRecord
+end
