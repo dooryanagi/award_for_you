@@ -1,2 +1,12 @@
-<h1>Public::Users#edit</h1>
-<p>Find me in app/views/public/users/edit.html.erb</p>
+ユーザ名や家族情報を編集できる
+
+<%= form_with model: @user, url: update_information_path do |f| %>
+
+  <%= f.label :name, "ユーザー名" %>
+  <%= f.text_field :name %>
+
+  <%= f.submit %>
+
+<% end %>
+
+<%= link_to "卒業する", users_unsubscribe_path %>
