@@ -47,7 +47,7 @@ class Public::SessionsController < Devise::SessionsController
       return unless user.valid_password?(params[:user][:password])
       if user.is_active == true
     		create
-　    else
+      else
     		redirect_to new_user_registration_path
       end
     end
