@@ -1,32 +1,44 @@
 <% if user_signed_in? %>
 
-<%= link_to "ロゴ：award for all", root_path %>
+  <%= link_to "ロゴ：award for all", root_path %>
+  
+  <!--使い方という言い方に変えるのも手-->
+  <%= link_to "ABOUT", about_path %>
+  
+  <%= link_to "アワード一覧", awards_path %>
+  
+  <%= link_to "大賞一覧", grand_prizes_path %>
+  
+  <%= link_to "マイページ", my_page_path %>
+  
+  <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
 
-<!--使い方という言い方に変えるのも手-->
-<%= link_to "ABOUT", about_path %>
 
-<%= link_to "アワード一覧", awards_path %>
+<!--管理者分岐はフェーズ２で作成-->
+<!--% if admin_signed_in? %>-->
+<!--% end %>-->
 
-<%= link_to "大賞一覧", grand_prizes_path %>
+<% else %>
 
-<%= link_to "マイページ", my_page_path %>
+  <%= link_to "ロゴ：award for all", root_path %>
 
-<%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+  <%= link_to "新規登録", new_user_registration_path %>
+
 
 <% end %>
 
-<%= link_to "ロゴ：award for all", root_path %>
-
-<%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-
-<%= link_to "新規登録", new_user_registration_path %>
-
-<%= link_to "ログイン", new_user_session_path %>
-
-<%= link_to "マイページ", my_page_path %>
-
-<%= link_to "ABOUT", about_path %>
-
-<%= link_to "アワード一覧", awards_path %>
-
-<%= link_to "大賞一覧", grand_prizes_path %>
+  <%= link_to "ロゴ：award for all", root_path %>
+  
+  <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+  
+  <%= link_to "新規登録", new_user_registration_path %>
+  
+  <%= link_to "ログイン", new_user_session_path %>
+  
+  <%= link_to "マイページ", my_page_path %>
+  
+  <%= link_to "ABOUT", about_path %>
+  
+  <%= link_to "アワード一覧", awards_path %>
+  
+  <%= link_to "大賞一覧", grand_prizes_path %>
