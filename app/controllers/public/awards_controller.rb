@@ -12,13 +12,27 @@ class Public::AwardsController < ApplicationController
   end
 
   def index
-
+    @awards = Award.all
   end
 
   def show
+    @award = Award.find(params[:id])
   end
 
   def edit
+    @award = Award.find(params[:id])
+  end
+
+  def update
+    @award = Award.find(params[:id])
+    @award.update(award_params)
+    redirect_to award_path(@award)
+  end
+
+  def destroy
+    @award = Award.find(params[:id])
+    @award.destroy
+    redirect_to awards_path
   end
 
   private

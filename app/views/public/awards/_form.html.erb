@@ -1,0 +1,24 @@
+<%= form_with model: award, url: url, method: method do |f| %>
+
+	<%= f.label :award_image, "アワード写真" %>
+	<%= f.file_field :award_image, accept: 'image/*' %>
+
+	<%= f.label :comment, "受賞インタビュー" %>
+	<%= f.text_area :comment %>
+
+	<!--公開非公開についてはラジオボタンで選択-->
+	<%= f.radio_button :is_public, true %>
+	<%= f.label :is_public_true, "公開" %>
+
+	<%= f.radio_button :is_public, false %>
+	<%= f.label :is_public_false, "非公開" %>
+
+	<!--これじゃなきゃできなかったんだっけ？？[item.id](http://item.id/) == nil-->
+	<!--これじゃできない？？award.id == nil-->
+	<% if award.id == nil %>
+		<%= f.submit "ノミネート" %>
+	<% else %>
+		<%= f.submit "変更を保存" %>
+	<% end %>
+
+<% end %>
