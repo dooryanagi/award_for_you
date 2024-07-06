@@ -1,2 +1,12 @@
-<h1>Public::Awards#show</h1>
-<p>Find me in app/views/public/awards/show.html.erb</p>
+<p>フラッシュメッセージでおめでとう！を表示する</p>
+
+<% if @award.award_image.present? %>
+	<%= image_tag @award.get_award_image(200,200) %>
+<% end %>
+
+<% if @award.comment.present? %>
+	<%= @award.comment %>
+<% end %>
+
+<%= link_to "編集する", edit_award_path %>
+<%= link_to "削除する", award_path, method: :delete %>

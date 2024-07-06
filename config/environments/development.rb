@@ -77,4 +77,7 @@ Rails.application.configure do
   # ホストのアクセス許可
   config.hosts.clear
 
+  # 画像を扱う場合のエラー回避のため
+  config.active_job.queue_adapter = :inline
+
 end
