@@ -9,8 +9,8 @@ class Award < ApplicationRecord
 
   # バリデーション
   # コメントか画像かどちらかを必須とする
-  validates :award_image, presence: true, unless: :comment?
-  validates :comment, presence: true, unless: :award_image?
+  validates :award_image, presence: true, unless: :comment
+  validates :comment, presence: true, length: {maximum: 200}, unless: :award_image
 
   # 画像サイズの変更
   def get_award_image(width,height)

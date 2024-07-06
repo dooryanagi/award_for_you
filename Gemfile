@@ -57,3 +57,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # 認証機能を追加するため
 gem 'devise'
+
+# ActiveStrageで画像の大きさを編集するため
+gem 'image_processing', '~> 1.2'
