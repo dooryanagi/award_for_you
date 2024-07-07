@@ -8,7 +8,8 @@ gem 'rails', '~> 6.1.7', '>= 6.1.7.8'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3', '~> 1.4'
 # Use Puma as the app server
-gem 'puma', '~> 5.0'
+# 本番環境にデプロイするためにバージョンを変更5.0→3.11
+gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
 gem 'sass-rails', '>= 6'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
@@ -58,5 +59,18 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # 認証機能を追加するため
 gem 'devise'
 
-# ActiveStrageで画像の大きさを編集するため
+# ActiveStrageで画像の大きさを編集するため→デフォルトで存在する
 gem 'image_processing', '~> 1.2'
+
+# 環境変数を扱うため
+gem 'dotenv-rails'
+
+# 本番環境用のデータベースを扱うため
+group :production do
+  gem 'mysql2'
+end
+
+# デプロイ準備
+gem "net-smtp"
+gem "net-pop"
+gem "net-imap"
