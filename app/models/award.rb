@@ -9,6 +9,7 @@ class Award < ApplicationRecord
 
   # バリデーション
   # コメントか画像かどちらかを必須とする
+  # 退避：unless: :comment→ifとblankを用いる→これだとエラー、片方が画像だからうまくいかない？
   validates :award_image, presence: true, unless: :comment
   validates :comment, presence: true, length: {maximum: 200}, unless: :award_image
 
