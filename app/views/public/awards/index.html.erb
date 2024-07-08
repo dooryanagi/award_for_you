@@ -1,13 +1,44 @@
-<h2>アワード一覧</h2>
+<h2>みんなのアワード一覧</h2>
 
-<% @awards.each do |award| %>
+<div>
 
-	<!--画像はある場合のみ-->
-	<% if award.award_image.present? %>
-		<%= link_to award_path(award.id) do %>
-			<%= image_tag award.get_award_image(150,150) %>
-		<% end %>
+	<% @awards.each do |award| %>
+
+		<!--画像がある場合は上部にまとめて写真のみ＋詳細へのリンクにする-->
+			<% if award.award_image.attached? %>
+
+				<%= link_to award_path(award.id) do %>
+					<%= image_tag award.get_award_image(150,150) %>
+				<% end %>
+
+			<% end %>
+
 	<% end %>
 
-	<%= award.comment %>
-<% end %>
+</div>
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>
+				インタビューのみ
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @awards.each do |award| %>
+			<!--画像がない場合は下部にまとめてインタビューのみ＋本人のみ詳細へのリンクにする-->
+			<% unless award.award_image.attached? %>
+				<tr>
+					<td>
+						<% if award.user == current_user %>
+							<%= link_to award.comment, award_path(award.id) %>
+						<% else %>
+							<%= award.comment %>
+						<% end %>
+					</td>
+				</tr>
+			<% end %>
+		<% end %>
+	</tbody>
+</table>
