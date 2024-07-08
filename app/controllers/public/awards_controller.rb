@@ -51,7 +51,7 @@ class Public::AwardsController < ApplicationController
     if @award.destroy
       redirect_to awards_path
     else
-      redirect_to awards_path
+      redirect_to award_path(@award.id)
     end
   end
 
