@@ -8,5 +8,12 @@
 	<%= @award.comment %>
 <% end %>
 
-<%= link_to "編集する", edit_award_path %>
-<%= link_to "削除する", award_path, method: :delete %>
+<% if @award.user == current_user %>
+
+	<!--本人以外が編集・削除できないように、idを送って本人確認を行う-->
+	<%= link_to "編集する", edit_award_path %>
+	<%= link_to "削除する", award_path, method: :delete %>
+
+<% end %>
+
+<%= link_to "◀アワード一覧へ戻る", awards_path %>
