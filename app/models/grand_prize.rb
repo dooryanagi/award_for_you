@@ -1,8 +1,20 @@
 class GrandPrize < ApplicationRecord
-	
+
 	# アソシエーション
 	has_many :waiting_events, dependent: :destroy
 	has_many :events, dependent: :destroy
 	has_many :praises, dependent: :destroy
-	
+
+  # 画像を扱う
+  has_one_attached :grand_prize_image
+
+	# バリデーション
+	validates :name, presence: true, length: { minimum: 2, maximum: 50 }, uniqueness: true
+	validates :introduction, presence: true, length: {maximum: 200 }
+
+  # 画像サイズの変更
+  def get_grand_prize_image(width,height)
+    grand_prize_image.variant(resize_to_limit: [width,height]).processed
+  end
+
 end
