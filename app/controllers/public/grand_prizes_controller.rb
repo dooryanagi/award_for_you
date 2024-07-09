@@ -19,6 +19,7 @@ class Public::GrandPrizesController < ApplicationController
   end
 
   def show
+    @grand_prize = GrandPrize.find(params[:id])
   end
 
   def edit
