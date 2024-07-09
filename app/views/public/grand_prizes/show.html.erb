@@ -7,5 +7,5 @@
 <p>承認された出来事たちの写真が並ぶ、本人の場合はリンクに、そうじゃない場合はインタビューまであるもののみリンクにする</p>
 
 <% if @grand_prize.owner_id == current_user.id %>
-	<%= link_to "大賞の編集・はこちらから", edit_grand_prize_path %>
+	<%= link_to "大賞の編集・削除はこちらから", edit_grand_prize_path %>
 <% end %>
