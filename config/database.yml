@@ -20,7 +20,7 @@ test:
   <<: *default
   database: db/test.sqlite3
 
-# 元々の記述は対比で問題ない？sqlite3だし、、、
+# 元々の記述は退避で問題ない？sqlite3だし、、、
 # production:
 #   <<: *default
 #   database: db/production.sqlite3
