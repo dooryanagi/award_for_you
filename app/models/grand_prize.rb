@@ -11,6 +11,7 @@ class GrandPrize < ApplicationRecord
 	# バリデーション
 	validates :name, presence: true, length: { minimum: 2, maximum: 50 }, uniqueness: true
 	validates :introduction, presence: true, length: {maximum: 200 }
+	validates :keyword_1, presence: true
 
   # 画像サイズの変更
   def get_grand_prize_image(width,height)

@@ -1,3 +1,11 @@
+<%= image_tag @grand_prize.get_grand_prize_image(150,150) %>
+
 <h2><%= @grand_prize.name %>を受賞された出来事</h2>
 
+<%= @grand_prize.introduction %>
+
 <p>承認された出来事たちの写真が並ぶ、本人の場合はリンクに、そうじゃない場合はインタビューまであるもののみリンクにする</p>
+
+<% if @grand_prize.owner_id == current_user.id %>
+	<%= link_to "大賞の編集・はこちらから", edit_grand_prize_path %>
+<% end %>
