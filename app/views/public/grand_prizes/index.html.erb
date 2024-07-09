@@ -1,2 +1,22 @@
-<h1>Public::GrandPrizes#index</h1>
-<p>Find me in app/views/public/grand_prizes/index.html.erb</p>
+<h2>大賞一覧</h2>
+
+<%= link_to "大賞にノミネートする", new_waiting_event_path, class: "btn btn-info" %>
+
+<%= link_to "新たに大賞を立ち上げる", new_grand_prize_path, class: "btn btn-info" %>
+
+<!--写真、大賞名、説明、ノミネートボタン、詳細確認ボタン-->
+<% @grand_prizes.each do |grand_prize| %>
+	<div>
+
+		<%= image_tag grand_prize.get_grand_prize_image(100,100) %>
+		<%= grand_prize.name %>
+		<%= grand_prize.introduction %>
+
+		<!--大賞へのノミネート機能を作るまで退避-->
+		<!--%= link_to "この大賞にノミネートする", new_waiting_event_path(grand_prize.id) %>-->
+		<p>この大賞にノミネートする</p>
+
+		<%= link_to "受賞された皆さんを確認する（言葉検討）", grand_prize_path(grand_prize.id) %>
+
+	</div>
+<% end %>
