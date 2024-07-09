@@ -1,5 +1,5 @@
 class Public::AwardsController < ApplicationController
-  # 本人以外は編集、更新、削除ができない
+  # 本人以外は編集、更新、削除ができないように制限
   # 削除はここに定義せずともできない（ページがないため）
   before_action :is_matching_login_user, only: [:edit, :update, :destroy]
 
@@ -61,6 +61,7 @@ class Public::AwardsController < ApplicationController
     params.require(:award).permit(:user_id, :comment, :is_public, :award_image)
   end
 
+  # 本人を確認するメソッド
   def is_matching_login_user
     award = Award.find(params[:id])
     user_id = award.user_id
