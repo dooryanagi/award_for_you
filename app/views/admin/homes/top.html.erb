@@ -1,0 +1,17 @@
+<h2>大賞一覧（トップで承認をすぐにできるようにするため）</h2>
+
+<%= link_to "承認待ちのノミネートを確認する", admin_waiting_events_path, class: "btn btn-info" %>
+
+<%= link_to "新たに大賞を立ち上げる", new_admin_grand_prize_path, class: "btn btn-info" %>
+
+<% @grand_prizes.each do |grand_prize| %>
+	<div>
+
+		<%= image_tag grand_prize.get_grand_prize_image(100,100) %>
+		<%= grand_prize.name %>
+		<%= grand_prize.introduction %>
+
+		<%= link_to "受賞内容を確認する", admin_grand_prize_path(grand_prize.id) %>
+
+	</div>
+<% end %>
