@@ -24,7 +24,11 @@ Rails.application.routes.draw do
     resources :awards
     resource :applause, only: [:destroy, :create]
     resources :grand_prizes
-    resources :waiting_events, only: [:new, :create, :destroy]
+    resources :waiting_events, only: [:new, :create, :destroy] do
+      collection do
+        get 'congratulations'
+      end
+    end
     resources :event, only: [:create]
     resources :praise, only: [:destroy, :create]
 
