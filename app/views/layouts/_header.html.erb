@@ -6,34 +6,35 @@
   <%= link_to "ABOUT", about_path %>
 
   <%= link_to "アワード一覧", awards_path %>
-
   <%= link_to "大賞一覧", grand_prizes_path %>
 
   <!--トロフィーマークとかで表示したい-->
   <%= link_to "アワードを受賞する", new_award_path %>
 
   <%= link_to "マイページ", my_page_path %>
-
   <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
 
+<% elsif admin_signed_in? %>
 
-<!--管理者分岐はフェーズ２で作成-->
-<!--% if admin_signed_in? %>-->
+  <%= link_to "ロゴ：award for all", admin_path %>
+  <%= link_to "アワード一覧", admin_awards_path %>
+  <%= link_to "大賞一覧", admin_grand_prizes_path %>
+  <%= link_to "会員一覧", admin_users_path %>
+
+  <p>(!)管理者としてログイン中(!)</p>
+
+  <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
 
 <% else %>
 
   <%= link_to "ロゴ：award for all", root_path %>
-
   <%= link_to "ABOUT", about_path %>
-
   <%= link_to "アワード一覧", awards_path %>
-
   <%= link_to "大賞一覧", grand_prizes_path %>
 
   <p>ゲストログイン</p>
 
   <%= link_to "ログイン", new_user_session_path %>
-
   <%= link_to "新規登録", new_user_registration_path %>
 
 <% end %>

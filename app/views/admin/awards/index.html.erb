@@ -1,0 +1,35 @@
+<h2>アワード一覧</h2>
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>
+				アワード写真
+			</th>
+			<th>
+				インタビューコメント
+			</th>
+			<th>
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @awards.each do |award| %>
+		<tr>
+			<td>
+				<% if award.award_image.attached? %>
+					<%= image_tag award.get_award_image(100,100) %>
+				<% end %>
+			</td>
+			<td>
+				<% unless award.comment == nil? %>
+					<%= award.comment %>
+				<% end %>
+			</td>
+			<td>
+				<%= link_to "削除", admin_award_path(award.id), method: :delete, class: "btn btn-danger" %>
+			</td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>

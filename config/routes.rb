@@ -22,7 +22,7 @@ Rails.application.routes.draw do
     patch 'users/withdraw' => 'users#withdraw'
 
     resources :awards
-    resources :applauses, only: [:destroy, :create]
+    resource :applause, only: [:destroy, :create]
     resources :grand_prizes
     resources :waiting_events, only: [:new, :create, :destroy]
     resources :event, only: [:create]
@@ -49,8 +49,9 @@ Rails.application.routes.draw do
 	      post 'permit_all'
 	    end
 	  end
-    resources :event, only: [:index, :show, :destroy]
-    resources :praise, only: [:destroy, :create, :edit, :update]
+	  resources :waiting_events, only: [:index]
+    resources :events, only: [:index, :show, :destroy]
+    resources :praises, only: [:destroy, :create, :edit, :update]
   end
 
 end
