@@ -7,4 +7,9 @@ class WaitingEvent < ApplicationRecord
 	# 画像を扱う
   has_one_attached :image
 
+  # 画像サイズの変更
+  def get_image(width,height)
+    image.variant(resize_to_limit: [width,height]).processed
+  end
+
 end
