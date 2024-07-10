@@ -1,2 +1,16 @@
-<h1>Public::WaitingEvents#new</h1>
-<p>Find me in app/views/public/waiting_events/new.html.erb</p>
+<h2>大賞に新規ノミネートする</h2>
+
+<%= form_with model: @waiting_event do |f| %>
+
+	<%= f.select :grand_prize_id, options_from_collection_for_select(GrandPrize.all, :id, :name) %>
+	<%= f.label :grand_prize_id, "ノミネートする大賞" %>
+
+	<%= f.label :image, "ノミネート写真" %>
+	<%= f.file_field :image, accept: 'image/*' %>
+
+	<%= f.label :comment, "ノミネートコメント" %>
+	<%= f.text_area :comment %>
+
+	<%= f.submit "ノミネート" %>
+
+<% end %>
