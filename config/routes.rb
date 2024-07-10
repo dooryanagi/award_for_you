@@ -21,6 +21,9 @@ Rails.application.routes.draw do
     get 'users/unsubscribe' => 'users#unsubscribe'
     patch 'users/withdraw' => 'users#withdraw'
 
+    # ゲストログイン
+    post 'users/guest_sign_in' => 'users/sessions#guest_sign_in'
+
     resources :awards
     resource :applause, only: [:destroy, :create]
     resources :grand_prizes
@@ -54,7 +57,7 @@ Rails.application.routes.draw do
 	    end
 	  end
 	  resources :waiting_events, only: [:index]
-    resources :events, only: [:index, :show, :destroy]
+    resources :events, only: [:index, :show, :destroy, :create]
     resources :praises, only: [:destroy, :create, :edit, :update]
   end
 
