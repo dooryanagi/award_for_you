@@ -18,4 +18,9 @@ class GrandPrize < ApplicationRecord
     grand_prize_image.variant(resize_to_limit: [width,height]).processed
   end
 
+	# 検索機能
+  def self.search_for(content)
+      GrandPrize.where('name LIKE ?', '%' + content + '%')
+  end
+
 end

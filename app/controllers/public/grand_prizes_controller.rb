@@ -24,6 +24,7 @@ class Public::GrandPrizesController < ApplicationController
 
   def show
     @grand_prize = GrandPrize.find(params[:id])
+    @praise = Praise.new
   end
 
   def edit

@@ -2,7 +2,11 @@
 
 <div>
   <h3>基本情報</h3>
-  <%= link_to "編集する", edit_information_path %>
+
+  <!--ゲストユーザーはプロフィール編集ができない-->
+  <% unless current_user.guest_user? %>
+    <%= link_to "編集する", edit_information_path %>
+  <% end %>
 
   <table>
     <tr>

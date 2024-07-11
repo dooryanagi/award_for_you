@@ -8,11 +8,17 @@ Rails.application.routes.draw do
     sessions: 'public/sessions'
   }
 
+  # ゲストログイン
+  devise_scope :user do
+    post 'users/guest_sign_in' => 'public/sessions#guest_sign_in'
+  end
+
   scope module: :public do
 
     root :to =>'homes#top'
     get '/about' => 'homes#about'
-    # 見本でどのように定義しているか確認（resourcesがないのでは？？）
+    # 検索機能
+    get 'searchs/search'
 
     get 'users/my_page' => 'users#show', as: 'my_page'
     get 'users/information/edit' => 'users#edit', as: 'edit_information'
@@ -21,19 +27,17 @@ Rails.application.routes.draw do
     get 'users/unsubscribe' => 'users#unsubscribe'
     patch 'users/withdraw' => 'users#withdraw'
 
-    # ゲストログイン
-    post 'users/guest_sign_in' => 'users/sessions#guest_sign_in'
-
     resources :awards
     resource :applause, only: [:destroy, :create]
-    resources :grand_prizes
+    resources :grand_prizes do
+      resources :praises, only: [:destroy, :create]
+    end
     resources :waiting_events, only: [:new, :create, :destroy] do
       collection do
         get 'congratulations'
       end
     end
     resources :event, only: [:create]
-    resources :praise, only: [:destroy, :create]
 
   end
 
@@ -55,10 +59,10 @@ Rails.application.routes.draw do
 	      post 'permit'
 	      post 'permit_all'
 	    end
+	    resources :praises, only: [:destroy, :create, :edit, :update]
 	  end
 	  resources :waiting_events, only: [:index]
     resources :events, only: [:index, :show, :destroy, :create]
-    resources :praises, only: [:destroy, :create, :edit, :update]
   end
 
 end
