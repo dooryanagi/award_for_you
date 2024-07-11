@@ -6,6 +6,17 @@
 
 <p>承認された出来事たちの写真が並ぶ、本人の場合はリンクに、そうじゃない場合はインタビューまであるもののみリンクにする</p>
 
+<%= form_with model: [@grand_prize, @praise] do |f| %>
+	<%= f.text_field :comment, rows: '5', placeholder: '賞賛の声をお寄せください！' %>
+	<%= f.submit "賞賛の声を届ける" %>
+<% end %>
+
+<% @grand_prize.praises.each do |praise| %>
+	<%= praise.comment %>
+	<%= link_to "取り消し", grand_prize_praise_path(praise.grand_prize, praise), method: :delete %>
+<% end %>
+
+
 <% if @grand_prize.owner_id == current_user.id %>
 	<%= link_to "大賞の編集・削除はこちらから", edit_grand_prize_path %>
 <% end %>

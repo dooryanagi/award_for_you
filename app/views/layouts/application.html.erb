@@ -6,6 +6,9 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <!--fontawsome導入-->
+    <script src="https://kit.fontawesome.com/7ae0cf8aaf.js" crossorigin="anonymous"></script>
+
     <!--bootstrapのため書き換え　link→pack-->
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -13,6 +16,7 @@
 
   <body>
     <%= render 'layouts/header' %>
+    <p id="notice"><%= notice %></p>
     <%= yield %>
   </body>
 </html>

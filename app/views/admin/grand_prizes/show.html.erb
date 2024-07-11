@@ -1,2 +1,12 @@
-<h1>Admin::GrandPrizes#show</h1>
-<p>Find me in app/views/admin/grand_prizes/show.html.erb</p>
+<%= image_tag @grand_prize.get_grand_prize_image(150,150) %>
+
+<h2><%= @grand_prize.name %>を受賞された出来事</h2>
+
+<%= @grand_prize.introduction %>
+
+<% @grand_prize.praises.each do |praise| %>
+	<%= praise.comment %>
+	<%= link_to "取り消し", admin_grand_prize_praise_path(praise.grand_prize, praise), method: :delete %>
+<% end %>
+
+	<%= link_to "大賞の編集・削除はこちらから", edit_grand_prize_path %>
