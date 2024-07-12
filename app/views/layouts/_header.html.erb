@@ -20,6 +20,9 @@
           <p>(!)ゲストユーザーとしてログイン中(!)</p>
         <% end %>
 
+        <!--引数で(current_user)が必要？なくても行けるときもあったのに-->
+        <!--長野ケーキの見本ではアクセスできていた?-->
+        <!--あっても行けない、users_controllerを参照してくれない-->
         <%= link_to "マイページ", my_page_path %>
         <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
 

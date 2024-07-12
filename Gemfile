@@ -74,3 +74,6 @@ end
 gem "net-smtp"
 gem "net-pop"
 gem "net-imap"
+
+# enumの使用
+gem 'enum_help'

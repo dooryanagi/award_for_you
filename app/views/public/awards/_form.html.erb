@@ -1,24 +1,45 @@
 <%= form_with model: award, url: url, method: method do |f| %>
+<div class="row d-flex justify-content-center">
+  <div class="colspan-2 col-8">
+		<table class="table">
+			<tr>
+				<th>
+					<%= f.label :award_image, "アワード写真" %>
+				</th>
+				<td>
+					<%= f.file_field :award_image, accept: 'image/*' %>
+				</td>
+			</tr>
+			<tr>
+				<th>
+					<%= f.label :comment, "受賞インタビュー" %>
+				</th>
+				<td>
+					<%= f.text_area :comment %>
+				</td>
+			</tr>
+			<tr>
+				<th>
+					公開の選択
+				</th>
+				<td>
+					<%= f.radio_button :is_public, true %>
+					<%= f.label :is_public_true, "公開" %>
 
-	<%= f.label :award_image, "アワード写真" %>
-	<%= f.file_field :award_image, accept: 'image/*' %>
-
-	<%= f.label :comment, "受賞インタビュー" %>
-	<%= f.text_area :comment %>
-
-	<!--公開非公開についてはラジオボタンで選択-->
-	<%= f.radio_button :is_public, true %>
-	<%= f.label :is_public_true, "公開" %>
-
-	<%= f.radio_button :is_public, false %>
-	<%= f.label :is_public_false, "非公開" %>
-
-	<!--これじゃなきゃできなかったんだっけ？？[item.id](http://item.id/) == nil-->
-	<!--これじゃできない？？award.id == nil-->
-	<% if award.id == nil %>
-		<%= f.submit "ノミネート" %>
-	<% else %>
-		<%= f.submit "変更を保存" %>
-	<% end %>
-
+					<%= f.radio_button :is_public, false %>
+					<%= f.label :is_public_false, "非公開" %>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<% if award.id == nil %>
+						<%= f.submit "ノミネート", class: "btn btn-outline-dark btn-block" %>
+					<% else %>
+						<%= f.submit "変更を保存", class: "btn btn-outline-dark btn-block" %>
+					<% end %>
+				</td>
+			</tr>
+		</table>
+	</div>
+</div>
 <% end %>

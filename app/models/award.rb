@@ -13,6 +13,9 @@ class Award < ApplicationRecord
   validates :award_image, presence: true, unless: :comment
   validates :comment, presence: true, length: {maximum: 200}, unless: :award_image
 
+  # 会員>top>新着の表示
+  scope :latest, -> {order(created_at: :desc)}
+
   # 画像サイズの変更
   def get_award_image(width,height)
     award_image.variant(resize_to_limit: [width,height]).processed

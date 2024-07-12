@@ -20,11 +20,12 @@ class Public::AwardsController < ApplicationController
   end
 
   def index
-    # 写真がある場合とない場合表示を上部と下部で分ける
-    # whereでそれぞれの場合毎の変数を定義
-    # ビューで分岐をする方がシンプル
-    # @awards_with_images = Award.joins(:award_image_attachment).distinct
-    @awards = Award.all
+    # if params[:user_id]
+    #   @user = User.find(params[:user_id])
+    #   @awards = @user.awards.all
+    # else
+      @awards = Award.all
+    # end
   end
 
   def show

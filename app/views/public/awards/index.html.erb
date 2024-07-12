@@ -1,7 +1,13 @@
-<h2>みんなのアワード一覧</h2>
+<!--% if params[:user_id] %>-->
+	<!--<h2>%= @user.name %>さんのアワード一覧</h2>-->
+<!--% else %>-->
+<h2><i class="fa-solid fa-trophy"></i>みんなのアワード一覧</h2>
+<!--% end %>-->
+
+アワードの受賞は
+<%= link_to "こちら", new_award_path %>
 
 <div>
-
 	<% @awards.each do |award| %>
 
 		<!--画像がある場合は上部にまとめて写真のみ＋詳細へのリンクにする-->
@@ -12,10 +18,10 @@
 				<% end %>
 
 			<% end %>
-
 	<% end %>
-
 </div>
+
+
 
 <table class="table">
 	<thead>

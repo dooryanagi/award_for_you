@@ -17,8 +17,6 @@ Rails.application.routes.draw do
 
     root :to =>'homes#top'
     get '/about' => 'homes#about'
-    # 検索機能
-    get 'searchs/search'
 
     get 'users/my_page' => 'users#show', as: 'my_page'
     get 'users/information/edit' => 'users#edit', as: 'edit_information'
@@ -26,6 +24,9 @@ Rails.application.routes.draw do
     put 'users/information' => 'users#update'
     get 'users/unsubscribe' => 'users#unsubscribe'
     patch 'users/withdraw' => 'users#withdraw'
+
+    # 検索機能
+    get 'searchs/search'
 
     resources :awards do
       # 拍手は１アワードに対して一つ→id不要
