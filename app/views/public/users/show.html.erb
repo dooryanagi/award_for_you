@@ -28,12 +28,21 @@
 
   <table>
     <tr>
-      <th>受賞</th>
-      <td><ログインユーザの受賞したアワードへのリンク>件</td>
+      <th>受賞数</th>
+      <td>
+        <%= link_to awards_path(current_user) do %>
+          <%= current_user.awards.count %>件
+        <% end %>
+      </td>
     </tr>
     <tr>
-      <th>送られた拍手</th>
-      <td>ユーザの拍手の数を数える</td>
+      <th>送った拍手数</th>
+      <td>
+        <!--引数がわからない-->
+        <!--%= link_to awards_path(current_user, applause) do %>-->
+          <%= current_user.applauses.count %>
+        <% end %>
+      </td>
     </tr>
   </table>
 

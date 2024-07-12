@@ -5,4 +5,6 @@ class Public::SearchsController < ApplicationController
     @records = GrandPrize.search_for(@content)
   end
 
+  
+
 end

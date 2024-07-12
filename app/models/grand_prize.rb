@@ -13,6 +13,12 @@ class GrandPrize < ApplicationRecord
 	validates :introduction, presence: true, length: {maximum: 200 }
 	validates :keyword_1, presence: true
 
+	# enum
+	enum keyword_1: { daily: 0, first_time: 1}
+
+  # 会員>top>新着の表示
+  scope :latest, -> {order(created_at: :desc)}
+
   # 画像サイズの変更
   def get_grand_prize_image(width,height)
     grand_prize_image.variant(resize_to_limit: [width,height]).processed
@@ -20,7 +26,7 @@ class GrandPrize < ApplicationRecord
 
 	# 検索機能
   def self.search_for(content)
-      GrandPrize.where('name LIKE ?', '%' + content + '%')
+     GrandPrize.where('name LIKE ?', '%' + content + '%')
   end
 
 end
