@@ -37,7 +37,18 @@
 							<%= award.comment %>
 						<% end %>
 					</td>
-				</tr>
+					<td>
+						<% if award.applaused_by?(current_user) %>
+							<%= link_to award_applause_path(award), method: :delete do %>
+								<i class="fa-solid fa-hands-clapping"><%= award.applauses.count %></i>
+							<% end %>
+						<% else %>
+							<%= link_to award_applause_path(award), method: :post do %>
+								<i class="fa-solid fa-hands-clapping" style="color:gray;"><%= award.applauses.count %></i>
+							<% end %>
+						<% end %>
+					</td>
+				</tr>rails
 			<% end %>
 		<% end %>
 	</tbody>

@@ -14,9 +14,10 @@ class User < ApplicationRecord
   # バリデーション
   validates :name, presence: true, length: {in: 2..20}
 
-  # ゲストユーザー
+  # ゲストユーザー用メールアドレス
   GUEST_USER_EMAIL = "guest@example.com"
 
+  # ゲストユーザーログイン用にnameとpasswordを定義
   def self.guest
     find_or_create_by!(email: GUEST_USER_EMAIL) do |user|
       user.password = SecureRandom.urlsafe_base64
@@ -24,9 +25,11 @@ class User < ApplicationRecord
     end
   end
 
+  # ゲストユーザーか確認
   def guest_user?
     email == GUEST_USER_EMAIL
   end
+
 
 
 end

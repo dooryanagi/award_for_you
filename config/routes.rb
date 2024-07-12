@@ -27,8 +27,10 @@ Rails.application.routes.draw do
     get 'users/unsubscribe' => 'users#unsubscribe'
     patch 'users/withdraw' => 'users#withdraw'
 
-    resources :awards
-    resource :applause, only: [:destroy, :create]
+    resources :awards do
+      # 拍手は１アワードに対して一つ→id不要
+      resource :applause, only: [:destroy, :create]
+    end
     resources :grand_prizes do
       resources :praises, only: [:destroy, :create]
     end
