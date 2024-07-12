@@ -18,4 +18,9 @@ class Award < ApplicationRecord
     award_image.variant(resize_to_limit: [width,height]).processed
   end
 
+  # アワードにたいして拍手済みか確認
+  def applaused_by?(user)
+    applauses.exists?(user_id: user.id)
+  end
+
 end
