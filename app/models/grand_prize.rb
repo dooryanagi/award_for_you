@@ -2,8 +2,9 @@ class GrandPrize < ApplicationRecord
 
 	# アソシエーション
 	has_many :waiting_events, dependent: :destroy
-	has_many :events, dependent: :destroy
-	has_many :praises, dependent: :destroy
+	has_many :events, 				dependent: :destroy
+	has_many :praises,				dependent: :destroy
+	has_many :users,															through: :events
 
   # 画像を扱う
   has_one_attached :grand_prize_image

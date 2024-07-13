@@ -7,8 +7,9 @@ class Admin::GrandPrizesController < ApplicationController
   end
 
   def create
+    @admin = current_admin
     @admin_grand_prize = GrandPrize.new(grand_prize_params)
-    @admin_grand_prize.owner_id = admin.id
+    @admin_grand_prize.owner_id = @admin.id
     if @admin_grand_prize.save
       redirect_to admin_path
     else
@@ -18,6 +19,8 @@ class Admin::GrandPrizesController < ApplicationController
 
   def show
     @grand_prize = GrandPrize.find(params[:id])
+    # @events = @grand_prize.events.all
+    # @waiting_events = @grand_prize.waiting_events.all
   end
 
   def edit

@@ -1,8 +1,10 @@
-<!--% if params[:user_id] %>-->
-	<!--<h2>%= @user.name %>さんのアワード一覧</h2>-->
-<!--% else %>-->
-<h2><i class="fa-solid fa-trophy"></i>みんなのアワード一覧</h2>
-<!--% end %>-->
+<% if params[:user_id] %>
+	<h2><i class="fa-solid fa-trophy"></i><%= @user.name %>さんのアワード一覧</h2>
+<% elsif params[:applauses] %>
+	<h2><i class="fa-solid fa-trophy"></i><%= @user.name %>さんが拍手を贈ったアワード一覧</h2>
+<% else %>
+	<h2><i class="fa-solid fa-trophy"></i>みんなのアワード一覧</h2>
+<% end %>
 
 アワードの受賞は
 <%= link_to "こちら", new_award_path %>
@@ -11,17 +13,23 @@
 	<% @awards.each do |award| %>
 
 		<!--画像がある場合は上部にまとめて写真のみ＋詳細へのリンクにする-->
-			<% if award.award_image.attached? %>
+		<% if award.award_image.attached? %>
 
-				<%= link_to award_path(award.id) do %>
-					<%= image_tag award.get_award_image(150,150) %>
-				<% end %>
-
+			<%= link_to award_path(award.id) do %>
+				<%= image_tag award.get_award_image(150,150) %>
 			<% end %>
+			<% if award.applaused_by?(current_user) %>
+				<%= link_to award_applause_path(award), method: :delete do %>
+					<i class="fa-solid fa-hands-clapping"><%= award.applauses.count %></i>
+				<% end %>
+			<% else %>
+				<%= link_to award_applause_path(award), method: :post do %>
+					<i class="fa-solid fa-hands-clapping" style="color:gray;"><%= award.applauses.count %></i>
+				<% end %>
+			<% end %>
+		<% end %>
 	<% end %>
 </div>
-
-
 
 <table class="table">
 	<thead>
@@ -54,7 +62,7 @@
 							<% end %>
 						<% end %>
 					</td>
-				</tr>rails
+				</tr>
 			<% end %>
 		<% end %>
 	</tbody>

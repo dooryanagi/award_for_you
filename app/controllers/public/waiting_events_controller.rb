@@ -2,6 +2,7 @@ class Public::WaitingEventsController < ApplicationController
 
   def new
     @waiting_event = WaitingEvent.new
+    @grand_prize = GrandPrize.find(params[:grand_prize_id])
   end
 
   def create
@@ -9,7 +10,7 @@ class Public::WaitingEventsController < ApplicationController
     @waiting_event.user_id = current_user.id
     @waiting_event.grand_prize_id = params[:waiting_event][:grand_prize_id]
     if @waiting_event.save
-      redirect_to congratulations_waiting_events_path
+      redirect_to congratulations_grand_prize_waiting_events_path, notice: "大賞へのノミネートが完了しました"
     else
       render :new
     end

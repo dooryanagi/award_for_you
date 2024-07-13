@@ -77,3 +77,8 @@ gem "net-imap"
 
 # enumの使用
 gem 'enum_help'
+
+# ページネーション
+gem 'kaminari','~> 1.2.1'
+# kaminariへのbootstrapの適用
+gem 'bootstrap5-kaminari-views', '~> 0.0.1'

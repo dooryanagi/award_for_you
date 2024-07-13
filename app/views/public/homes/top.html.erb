@@ -20,7 +20,7 @@
     <%= link_to "アワード受賞", new_award_path, class: "btn btn-outline-dark mx-1" %>
   </div>
   <div class="col-3  d-flex justify-content-start">
-    <%= link_to "大賞ノミネート", new_waiting_event_path, class: "btn btn-outline-dark mx-1"%>
+    <%= link_to "大賞ノミネート", grand_prizes_path, class: "btn btn-outline-dark mx-1"%>
   </div>
 </div>
 
@@ -31,7 +31,9 @@
 
     <div class="row d-flex justify-content-around">
       <% @awards.first(4).each do |award| %>
-        <%= image_tag award.get_award_image(100,100) %>
+        <% if award.award_image.attached? %>
+          <%= image_tag award.get_award_image(100,100) %>
+        <% end %>
       <% end %>
     </div>
   </div>

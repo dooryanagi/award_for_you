@@ -34,14 +34,13 @@ Rails.application.routes.draw do
     end
     resources :grand_prizes do
       resources :praises, only: [:destroy, :create]
-    end
-    resources :waiting_events, only: [:new, :create, :destroy] do
-      collection do
-        get 'congratulations'
+      resources :waiting_events, only: [:new, :create, :destroy] do
+        collection do
+          get 'congratulations'
+        end
       end
+      resources :event, only: [:create]
     end
-    resources :event, only: [:create]
-
   end
 
   # 管理者
@@ -63,9 +62,9 @@ Rails.application.routes.draw do
 	      post 'permit_all'
 	    end
 	    resources :praises, only: [:destroy, :create, :edit, :update]
+	    resources :waiting_events, only: [:index]
+      resources :events, only: [:index, :show, :destroy, :create]
 	  end
-	  resources :waiting_events, only: [:index]
-    resources :events, only: [:index, :show, :destroy, :create]
   end
 
 end
