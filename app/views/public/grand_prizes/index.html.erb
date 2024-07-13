@@ -8,9 +8,6 @@
 
 <%= render 'public/searchs/form' %>
 
-<!--ルーティングの関係から、各大賞からノミネートすることにする-->
-<!--%= link_to "大賞にノミネートする", new_waiting_event_path, class: "btn btn-info" %>-->
-
 <%= link_to "新たに大賞を立ち上げる", new_grand_prize_path, class: "btn btn-info" %>
 
 <%= render 'index', grand_prizes: @grand_prizes %>

@@ -11,7 +11,7 @@
 <div class="border mb-3">
 	<% @grand_prize.events.each do |event| %>
 		<%= image_tag event.get_image(120,120) %>
-		<%= event.comment %>
+		<%= event.comment %><br>
 	<% end %>
 </div>
 
@@ -30,5 +30,12 @@
 
 
 <% if @grand_prize.owner_id == current_user.id %>
+	<% @grand_prize.waiting_events.each do |waiting_event| %>
+		<%= image_tag waiting_event.get_image(80,80) %>
+		<%= waiting_event.comment %>
+		<%= link_to "設立者として大賞を授与する", grand_prize_events_path(@grand_prize, waiting_event_id: waiting_event.id), method: :post %>
+	<% end %>
+
 	<%= link_to "大賞の編集・削除はこちらから", edit_grand_prize_path, class: "btn btn-outline-dark" %>
+
 <% end %>

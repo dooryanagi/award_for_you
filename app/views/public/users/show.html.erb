@@ -75,9 +75,9 @@
         <% if @grand_prizes.present? %>
           <% @grand_prizes.each do |grand_prize| %>
             <% if grand_prize.waiting_events.present? %>
-              <%= link_to "大賞の授与をお願いします", grand_prize_path(grand_prize.id), class: "btn btn-outline-danger" %>
+              <%= grand_prize.name %>大賞<%= link_to "大賞の授与をお願いします", grand_prize_path(grand_prize.id), class: "btn btn-outline-danger" %><br>
             <% else %>
-              <%= link_to "授与待ちはありません", grand_prize_path(grand_prize.id), class: "btn btn-outline-success" %>
+              <%= grand_prize.name %>大賞<%= link_to "授与待ちはありません", grand_prize_path(grand_prize.id), class: "btn btn-outline-success" %><br>
             <% end %>
           <% end %>
         <% else %>
