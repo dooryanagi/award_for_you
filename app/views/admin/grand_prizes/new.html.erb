@@ -7,7 +7,9 @@
 <!--これでもpublicのコントろらが呼び出されるのはなぜ？？-->
 <!--%= render 'form', grand_prize: @admin_grand_prize %>-->
 
-<%= form_with model: @admin_grand_prize do |f| %>
+<!--namespaceで分けている場合は指定する-->
+<!--urlを指定する方法でも良い-->
+<%= form_with model: [:admin, @admin_grand_prize] do |f| %>
 
 	<%= f.label :grand_prize_image, "大賞のイメージ画像" %>
 	<%= f.file_field :grand_prize_image, accept: 'image/*' %>

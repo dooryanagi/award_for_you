@@ -8,6 +8,6 @@
 	<%= waiting_event.comment %>
 
 	<P>承認ボタンを押すとParameterMissingのエラー発生</P>
-	<%= link_to "承認", admin_events_path(waiting_event_id: waiting_event.id), method: :post %>
+	<%= link_to "承認", admin_events_path(waiting_event.grand_prize, waiting_event_id: waiting_event.id), method: :post %>
 
 <% end %>

@@ -20,12 +20,21 @@ class Public::AwardsController < ApplicationController
   end
 
   def index
-    # if params[:user_id]
-    #   @user = User.find(params[:user_id])
-    #   @awards = @user.awards.all
-    # else
-      @awards = Award.all
-    # end
+    # 本人受賞のアワード（非公開選択でも表示する）
+    if params[:user_id]
+      @user = User.find(params[:user_id])
+      @awards = @user.awards
+
+    # 拍手したアワード一覧
+    elsif params[:applauses]
+      @user = current_user
+      applauses = Applause.where(user_id: @user.id).pluck(:award_id)
+      @awards = Award.find(applauses)
+
+    # アワード一覧（非公開は表示しない）
+    else
+      @awards = Award.where(is_public: true)
+    end
   end
 
   def show

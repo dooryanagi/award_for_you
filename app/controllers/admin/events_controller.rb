@@ -3,18 +3,24 @@ class Admin::EventsController < ApplicationController
 
   # waiting_eventの情報をもとにデータを保存する
   def create
-    @waiting_event = WaitingEvent.find(params[:waiting_event_id])
-    @event = Event.new(event_params)
-    @event.user_id = @waiting_event.user_id
-    @event.grand_prize_id = @waiting_event.grand_prize_id
-    @event.image = @waiting_event.image
-    @event.comment = @waiting_event.comment
-    if @event.save
-      @waiting_event.destroy
-      redirect_to admin_waiting_events
-    else
-      render :index
-    end
+  	@grand_prize = GrandPrize.find(params[:grand_prize_id])
+  	@waiting_event = WaitingEvent.find(params[:waiting_event_id])
+    # @event = Event.new(event_params)：パラメータを受け取らないので（）は不要
+  	@event = Event.new
+  	@event.user_id = @waiting_event.user_id
+  	@event.grand_prize_id = @grand_prize.id
+    # そのままコピーは出来ないため、複製する
+  	@event.image.attach(@waiting_event.image.blob)
+  	@event.comment = @waiting_event.comment
+  	if @event.save
+  	  @waiting_event.destroy
+  		redirect_back fallback_location: admin_grand_prize_path(@grand_prize)
+  	else
+  		render :index
+  	end
+  end
+
+  def permit_all
   end
 
   def index
@@ -28,6 +34,8 @@ class Admin::EventsController < ApplicationController
 
   private
 
+  # 受け取るパラメータに対して許可をしている
+  # すでに保存しているところから持ってくるから不要
   def event_params
     params.require(:event).permit(:user_id, :grand_prize_id, :image, :comment)
   end

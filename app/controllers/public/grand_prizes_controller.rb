@@ -19,7 +19,17 @@ class Public::GrandPrizesController < ApplicationController
   end
 
   def index
-    @grand_prizes = GrandPrize.all
+    # 本人が受賞した大賞
+    if params[:event]
+      @user = current_user
+      events = Event.where(user_id: @user.id).pluck(:grand_prize_id)
+      @grand_prizes = GrandPrize.find(events)
+    elsif params[:grand_prize]
+      @user = current_user
+      @grand_prizes = GrandPrize.where(owner_id: @user.id)
+    else
+      @grand_prizes = GrandPrize.page(params[:page])
+    end
   end
 
   def show

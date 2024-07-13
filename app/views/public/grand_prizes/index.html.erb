@@ -1,10 +1,18 @@
-<h2><i class="fa-solid fa-trophy"></i>大賞一覧</h2>
-
+<% if params[:event] %>
+	<h2><i class="fa-solid fa-trophy"></i><%= @user.name %>さんが受賞した大賞一覧</h2>
+<% elsif params[:grand_prize] %>
+	<h2><i class="fa-solid fa-trophy"></i><%= @user.name %>さんが設立した大賞一覧</h2>
+<% else %>
+	<h2><i class="fa-solid fa-trophy"></i>大賞一覧</h2>
+<% end %>
 
 <%= render 'public/searchs/form' %>
 
-<%= link_to "大賞にノミネートする", new_waiting_event_path, class: "btn btn-info" %>
+<!--ルーティングの関係から、各大賞からノミネートすることにする-->
+<!--%= link_to "大賞にノミネートする", new_waiting_event_path, class: "btn btn-info" %>-->
 
 <%= link_to "新たに大賞を立ち上げる", new_grand_prize_path, class: "btn btn-info" %>
 
 <%= render 'index', grand_prizes: @grand_prizes %>
+
+<!--%= paginate @grand_prizes, theme: 'bootstrap-5' %>-->
