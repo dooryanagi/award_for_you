@@ -13,6 +13,7 @@ class GrandPrize < ApplicationRecord
 	validates :name, presence: true, length: { minimum: 2, maximum: 50 }, uniqueness: true
 	validates :introduction, presence: true, length: {maximum: 200 }
 	validates :keyword_1, presence: true
+	validates :grand_prize_image, presence: true, blob: { content_type: :image }
 
 	# enum
 	enum keyword_1: { daily: 0, first_time: 1}
@@ -29,5 +30,8 @@ class GrandPrize < ApplicationRecord
   def self.search_for(content)
      GrandPrize.where('name LIKE ?', '%' + content + '%')
   end
+	def self.search_by_keyword_for(keyword_1, keyword)
+    GrandPrize.where(keyword_1: keyword_1).merge(GrandPrize.where('keyword_2 LIKE ?','%' + keyword + '%').or(GrandPrize.where('keyword_3 LIKE ?','%' + keyword + '%')))
+	end
 
 end

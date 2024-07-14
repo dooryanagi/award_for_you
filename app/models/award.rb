@@ -8,11 +8,8 @@ class Award < ApplicationRecord
   has_one_attached :award_image
 
   # バリデーション
-  # コメントか画像かどちらかを必須とする
-  # 退避：unless: :comment→ifとblankを用いる→これだとエラー、片方が画像だからうまくいかない？
-  validates :award_image, presence: true, unless: :comment
-  validates :comment, presence: true, length: {maximum: 200}, unless: :award_image
-
+	validates :award_image, presence: true, blob: { content_type: :image }
+  
   # 会員>top>新着の表示
   scope :latest, -> {order(created_at: :desc)}
 

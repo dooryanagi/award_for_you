@@ -30,8 +30,12 @@
       <th>受賞数</th>
       <td>
         <!--アワード一覧＞ユーザが受賞したアワードを表示-->
-        <%= link_to awards_path(user_id: current_user.id) do %>
-          <%= current_user.awards.count %>件
+        <% if current_user.awards.present? %>
+          <%= link_to awards_path(user_id: current_user.id) do %>
+            <%= current_user.awards.count %>件
+          <% end %>
+        <% else %>
+          0件
         <% end %>
       </td>
     </tr>
@@ -39,8 +43,12 @@
       <th>送った拍手数</th>
       <td>
         <!--アワード一覧＞ユーザが拍手を送ったアワードを表示-->
-        <%= link_to awards_path(applauses: true) do %>
-          <%= current_user.applauses.count %>件
+        <% if current_user.applauses.present? %>
+          <%= link_to awards_path(applauses: true) do %>
+            <%= current_user.applauses.count %>件
+          <% end %>
+        <% else %>
+          0件
         <% end %>
       </td>
     </tr>
@@ -56,16 +64,24 @@
     <tr>
       <th>受賞</th>
       <td>
-        <%= link_to grand_prizes_path(event: true) do %>
-          <%= current_user.events.count %>件
+        <% if current_user.events.present? %>
+          <%= link_to grand_prizes_path(event: true) do %>
+            <%= current_user.events.count %>件
+          <% end %>
+        <% else %>
+          0件
         <% end %>
       </td>
     </tr>
     <tr>
       <th>作った大賞</th>
       <td>
-        <%= link_to grand_prizes_path(grand_prize: true) do %>
-          <%= @grand_prizes.count %>件
+        <% if @grand_prizes.present? %>
+          <%= link_to grand_prizes_path(grand_prize: true) do %>
+            <%= @grand_prizes.count %>件
+          <% end %>
+        <% else %>
+          0件
         <% end %>
       </td>
     </tr>
