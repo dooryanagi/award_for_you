@@ -82,3 +82,6 @@ gem 'enum_help'
 gem 'kaminari','~> 1.2.1'
 # kaminariへのbootstrapの適用
 gem 'bootstrap5-kaminari-views', '~> 0.0.1'
+
+# 画像へのバリデーションを設ける
+gem 'activestorage-validator'

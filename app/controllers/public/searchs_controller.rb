@@ -7,7 +7,10 @@ class Public::SearchsController < ApplicationController
   end
 
   # キーワード検索
-  def search_keyword
+  def search_by_keyword
+    @keyword_1 = params[:keyword_1]
+    @keyword = params[:keyword]
+    @records = GrandPrize.search_by_keyword_for(@keyword_1, @keyword)
   end
 
 end

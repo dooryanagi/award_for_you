@@ -23,10 +23,10 @@ class Public::GrandPrizesController < ApplicationController
     if params[:event]
       @user = current_user
       events = Event.where(user_id: @user.id).pluck(:grand_prize_id)
-      @grand_prizes = GrandPrize.find(events)
+      @grand_prizes = Kaminari.paginate_array(GrandPrize.find(events)).page(params[:page])
     elsif params[:grand_prize]
       @user = current_user
-      @grand_prizes = GrandPrize.where(owner_id: @user.id)
+      @grand_prizes = GrandPrize.where(owner_id: @user.id).page(params[:page])
     else
       @grand_prizes = GrandPrize.page(params[:page])
     end
