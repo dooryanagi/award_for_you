@@ -33,7 +33,15 @@ class Public::AwardsController < ApplicationController
 
     # アワード一覧（非公開は表示しない）
     else
-      @awards = Award.where(is_public: true)
+      if params[:sort_by] == 'latest'
+        @awards = Award.where(is_public: true).latest
+      elsif params[:sort_by] == 'old'
+        @awards = Award.where(is_public: true).old
+      elsif params[:sort_by] == 'applause_count'
+        @awards = Award.where(is_public: true).applause_count
+      else
+        @awards = Award.where(is_public: true)
+      end
     end
   end
 

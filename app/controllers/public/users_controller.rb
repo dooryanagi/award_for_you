@@ -4,7 +4,7 @@ class Public::UsersController < ApplicationController
 
   def show
     @user = current_user
-    @grand_prizes = @user.grand_prizes
+    @grand_prizes = GrandPrize.where(owner_id: @user.id)
   end
 
   def edit
