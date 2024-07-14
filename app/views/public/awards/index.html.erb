@@ -9,61 +9,24 @@
 アワードの受賞は
 <%= link_to "こちら", new_award_path %>
 
+<%= form_tag(awards_path, method: :get) do %>
+	<%= select_tag :sort_by, options_for_select({'新しい順'=>'latest','古い順'=>'old','拍手の多い順'=>'applause_count'}, params[:sort_by]) %>
+	<%= submit_tag '表示する' %>
+<% end %>
+
 <div>
 	<% @awards.each do |award| %>
-
-		<!--画像がある場合は上部にまとめて写真のみ＋詳細へのリンクにする-->
-		<% if award.award_image.attached? %>
-
-			<%= link_to award_path(award.id) do %>
-				<%= image_tag award.get_award_image(150,150) %>
+		<%= link_to award_path(award.id) do %>
+			<%= image_tag award.get_award_image(150,150) %>
+		<% end %>
+		<% if award.applaused_by?(current_user) %>
+			<%= link_to award_applause_path(award), method: :delete do %>
+				<i class="fa-solid fa-hands-clapping"><%= award.applauses.count %></i>
 			<% end %>
-			<% if award.applaused_by?(current_user) %>
-				<%= link_to award_applause_path(award), method: :delete do %>
-					<i class="fa-solid fa-hands-clapping"><%= award.applauses.count %></i>
-				<% end %>
-			<% else %>
-				<%= link_to award_applause_path(award), method: :post do %>
-					<i class="fa-solid fa-hands-clapping" style="color:gray;"><%= award.applauses.count %></i>
-				<% end %>
+		<% else %>
+			<%= link_to award_applause_path(award), method: :post do %>
+				<i class="fa-solid fa-hands-clapping" style="color:gray;"><%= award.applauses.count %></i>
 			<% end %>
 		<% end %>
 	<% end %>
 </div>
-
-<table class="table">
-	<thead>
-		<tr>
-			<th>
-				インタビューのみ
-			</th>
-		</tr>
-	</thead>
-	<tbody>
-		<% @awards.each do |award| %>
-			<!--画像がない場合は下部にまとめてインタビューのみ＋本人のみ詳細へのリンクにする-->
-			<% unless award.award_image.attached? %>
-				<tr>
-					<td>
-						<% if award.user == current_user %>
-							<%= link_to award.comment, award_path(award.id) %>
-						<% else %>
-							<%= award.comment %>
-						<% end %>
-					</td>
-					<td>
-						<% if award.applaused_by?(current_user) %>
-							<%= link_to award_applause_path(award), method: :delete do %>
-								<i class="fa-solid fa-hands-clapping"><%= award.applauses.count %></i>
-							<% end %>
-						<% else %>
-							<%= link_to award_applause_path(award), method: :post do %>
-								<i class="fa-solid fa-hands-clapping" style="color:gray;"><%= award.applauses.count %></i>
-							<% end %>
-						<% end %>
-					</td>
-				</tr>
-			<% end %>
-		<% end %>
-	</tbody>
-</table>

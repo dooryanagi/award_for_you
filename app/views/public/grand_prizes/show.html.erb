@@ -33,7 +33,11 @@
 	<% @grand_prize.waiting_events.each do |waiting_event| %>
 		<%= image_tag waiting_event.get_image(80,80) %>
 		<%= waiting_event.comment %>
-		<%= link_to "設立者として大賞を授与する", grand_prize_events_path(@grand_prize, waiting_event_id: waiting_event.id), method: :post %>
+		<%= link_to "設立者として大賞を授与する", grand_prize_events_path(@grand_prize, waiting_event_id: waiting_event.id), method: :post, class: "btn btn-outline-success" %><br>
+	<% end %>
+
+	<% if @grand_prize.waiting_events.present? %>
+		<%= link_to "設立者としてみんなに大賞を授与する", create_all_grand_prize_events_path(@grand_prize), method: :post, class: "btn btn-outline-danger" %>
 	<% end %>
 
 	<%= link_to "大賞の編集・削除はこちらから", edit_grand_prize_path, class: "btn btn-outline-dark" %>
