@@ -31,7 +31,7 @@ class Public::AwardsController < ApplicationController
       applauses = Applause.where(user_id: @user.id).pluck(:award_id)
       @awards = Award.find(applauses)
 
-    # アワード一覧（非公開は表示しない）
+    # アワード一覧（非公開は表示しない）（並び替えに対応）
     else
       if params[:sort_by] == 'latest'
         @awards = Award.where(is_public: true).latest
