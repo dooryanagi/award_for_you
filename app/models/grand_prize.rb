@@ -18,8 +18,12 @@ class GrandPrize < ApplicationRecord
 	# enum
 	enum keyword_1: { daily: 0, first_time: 1}
 
-  # 会員>top>新着の表示
+  # 会員>top>新着の表示、会員＞index＞並び替え
   scope :latest, -> {order(created_at: :desc)}
+  scope :old, -> {order(created_at: :asc)}
+  scope :event_count, -> {left_outer_joins(:events).group(:id).order('count(events.id) desc')}
+  scope :waiting_event_count, -> {left_outer_joins(:waiting_events).group(:id).order('count(waiting_events.id) desc')}
+  scope :praise_count, -> {left_outer_joins(:praises).group(:id).order('count(praises.id) desc')}
 
   # 画像サイズの変更
   def get_grand_prize_image(width,height)

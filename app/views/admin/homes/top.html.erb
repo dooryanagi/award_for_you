@@ -5,6 +5,10 @@
 <% @grand_prizes.each do |grand_prize| %>
   <div>
 
+    <% if grand_prize.waiting_events.present? %>
+      <i class="fa-solid fa-eye"></i>
+    <% end %>
+
     <%= image_tag grand_prize.get_grand_prize_image(100,100) %>
     <%= grand_prize.name %>
     <%= grand_prize.introduction %>
