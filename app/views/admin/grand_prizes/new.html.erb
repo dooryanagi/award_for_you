@@ -1,39 +1,4 @@
 <h2>管理者として新たに大賞を立ち上げる</h2>
 
-<!--ここでadmin側のコントローラの使用を指定できないか？-->
-<!--メンター質問できるまで退避-->
-<!--%= render 'public/grand_prizes/form', grand_prize: @admin_grand_prize %>-->
+<%= render 'public/grand_prizes/form', grand_prize: @grand_prize, url: admin_grand_prizes_path %>
 
-<!--これでもpublicのコントろらが呼び出されるのはなぜ？？-->
-<!--%= render 'form', grand_prize: @admin_grand_prize %>-->
-
-<!--namespaceで分けている場合は指定する-->
-<!--urlを指定する方法でも良い-->
-<%= form_with model: [:admin, @admin_grand_prize] do |f| %>
-
-	<%= f.label :grand_prize_image, "大賞のイメージ画像" %>
-	<%= f.file_field :grand_prize_image, accept: 'image/*' %>
-
-	<%= f.label :name, "大賞の名称" %>
-	<%= f.text_field :name %>
-
-	<%= f.label :introduction, "大賞の説明" %>
-	<%= f.text_area :introduction %>
-
-	<!--キーワード1のみデイリーかファースト〇〇かセレクトボックスで選ぶ（今後の拡張性を考慮）-->
-	<%= f.label :keyword_1, "キーワード１" %>
-	<%= f.text_field :keyword_1 %>
-
-	<%= f.label :keyword_2, "キーワード２" %>
-	<%= f.text_field :keyword_2 %>
-
-	<%= f.label :keyword_3, "キーワード３" %>
-	<%= f.text_field :keyword_3 %>
-
-	<% if @admin_grand_prize.id == nil %>
-		<%= f.submit "大賞を設立する" %>
-	<% else %>
-		<%= f.submit "変更を保存" %>
-	<% end %>
-
-<% end %>

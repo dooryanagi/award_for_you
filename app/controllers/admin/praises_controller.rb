@@ -1,5 +1,4 @@
 class Admin::PraisesController < ApplicationController
-  # 管理者機能はすべてログイン認証あり
   before_action :authenticate_admin!
 
 	def destroy

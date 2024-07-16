@@ -27,7 +27,6 @@ class Public::EventsController < ApplicationController
   	  @event = Event.new
   	  @event.user_id = waiting_event.user_id
   	  @event.grand_prize_id = @grand_prize.id
-      # そのままコピーは出来ないため、複製する
   	  @event.image.attach(waiting_event.image.blob)
   	  @event.comment = waiting_event.comment
   	  @event.save

@@ -12,8 +12,10 @@ class Public::GrandPrizesController < ApplicationController
     @grand_prize = GrandPrize.new(grand_prize_params)
     @grand_prize.owner_id = current_user.id
     if @grand_prize.save
+      flash[:notice] = "大賞が無事設立されました。ありがとうございます！！"
       redirect_to grand_prizes_path
     else
+      flash.now[:alert] = "大賞が設立できませんでした。必須項目を確認してください"
       render :new
     end
   end

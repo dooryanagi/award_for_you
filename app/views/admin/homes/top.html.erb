@@ -2,18 +2,62 @@
 
 <%= link_to "新たに大賞を立ち上げる", new_admin_grand_prize_path, class: "btn btn-info" %>
 
-<% @grand_prizes.each do |grand_prize| %>
-  <div>
-
-    <% if grand_prize.waiting_events.present? %>
-      <i class="fa-solid fa-eye"></i>
-    <% end %>
-
-    <%= image_tag grand_prize.get_grand_prize_image(100,100) %>
-    <%= grand_prize.name %>
-    <%= grand_prize.introduction %>
-
-    <%= link_to "受賞内容を確認する", admin_grand_prize_path(grand_prize.id) %>
-
-  </div>
+<%= form_tag(admin_path, method: :get) do %>
+	<%= select_tag :sort_by, options_for_select({'受賞待ちが多い順'=>'waiting_event_count','新しい順'=>'latest','古い順'=>'old','受賞数が多い順'=>'event_count','賞賛の声が多い順'=>'praise_count'}, params[:sort_by]) %>
+	<%= submit_tag '表示する' %>
 <% end %>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>
+        大賞写真
+      </th>
+      <th>
+        大賞名
+      </th>
+      <th>
+        大賞の説明
+      </th>
+      <th>
+        受賞数
+      </th>
+      <th>
+        コメント数
+      </th>
+      <th>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @grand_prizes.each do |grand_prize| %>
+    <tr>
+      <td>
+        <%= image_tag grand_prize.get_grand_prize_image(50,50) %>
+      </td>
+      <td>
+        <%= grand_prize.name %>
+      </td>
+      <td>
+        <%= grand_prize.introduction %>
+      </td>
+      <td>
+        <%= grand_prize.events.count %>件
+      </td>
+      <td>
+        <%= grand_prize.praises.count %>件
+      </td>
+      <td>
+        <% if grand_prize.waiting_events.present? %>
+          <%= link_to "授与", admin_grand_prize_path(grand_prize.id), class: "btn btn-danger" %>
+        <% else %>
+          <%= link_to "確認", admin_grand_prize_path(grand_prize.id), class: "btn btn-dark" %>
+        <% end %>
+
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= paginate @grand_prizes, theme: 'bootstrap-5' %>

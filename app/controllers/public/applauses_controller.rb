@@ -1,4 +1,5 @@
 class Public::ApplausesController < ApplicationController
+	before_action :authenticate_user!
 
 	def create
 		award = Award.find(params[:award_id])

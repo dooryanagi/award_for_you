@@ -13,6 +13,10 @@
 
 <div class="border mb-3">
 	承認待ちの表示<br>
+	<% if @grand_prize.waiting_events.present? %>
+		<%= link_to "全員に授与する", create_all_admin_grand_prize_events_path(@grand_prize), method: :post, class: "btn btn-outline-danger" %>
+	<% end %>
+
 	<% @grand_prize.waiting_events.each do |waiting_event| %>
 		<%= image_tag waiting_event.get_image(80,80) %>
 		<%= waiting_event.comment %>
@@ -30,5 +34,5 @@
 
 <div class="border mb-3">
 	管理者権限による大賞の編集と削除
-	<%= link_to "大賞の編集・削除はこちらから", edit_grand_prize_path %>
+	<%= link_to "大賞の編集・削除はこちらから", edit_admin_grand_prize_path(@grand_prize) %>
 </div>

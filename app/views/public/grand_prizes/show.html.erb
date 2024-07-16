@@ -1,3 +1,5 @@
+<%= render 'layouts/errors', obj: @praise %>
+
 <div class="border mb-3">
 	<%= image_tag @grand_prize.get_grand_prize_image(150,150) %>
 	<h2><%= @grand_prize.name %>を受賞された出来事</h2>

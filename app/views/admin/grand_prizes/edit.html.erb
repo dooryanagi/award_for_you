@@ -1,2 +1,3 @@
-<h1>Admin::GrandPrizes#edit</h1>
-<p>Find me in app/views/admin/grand_prizes/edit.html.erb</p>
+<h2>管理者として大賞を編集する</h2>
+
+<%= render 'public/grand_prizes/form', grand_prize: @grand_prize, url: admin_grand_prize_path %>
