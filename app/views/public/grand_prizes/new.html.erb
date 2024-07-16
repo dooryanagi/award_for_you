@@ -1,3 +1,7 @@
 <h2><i class="fa-solid fa-trophy"></i>新たに大賞を立ち上げる</h2>
 
-<%= render 'form', grand_prize: @grand_prize %>
+<div class='row'>
+  <%= render 'layouts/errors', obj: @grand_prize %>
+</div>
+
+<%= render 'form', grand_prize: @grand_prize, url: grand_prizes_path %>

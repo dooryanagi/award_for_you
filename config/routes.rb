@@ -68,7 +68,11 @@ Rails.application.routes.draw do
 	    end
 	    resources :praises, only: [:destroy, :create, :edit, :update]
 	    resources :waiting_events, only: [:index]
-      resources :events, only: [:index, :show, :destroy, :create]
+      resources :events, only: [:index, :show, :destroy, :create] do
+        collection do
+          post 'create_all'
+        end
+      end
 	  end
   end
 

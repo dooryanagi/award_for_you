@@ -1,6 +1,5 @@
 class Public::PraisesController < ApplicationController
 
-
 	def create
 		grand_prize = GrandPrize.find(params[:grand_prize_id])
 		praise = current_user.praises.new(praise_params)

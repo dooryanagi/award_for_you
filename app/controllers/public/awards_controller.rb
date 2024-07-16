@@ -13,8 +13,10 @@ class Public::AwardsController < ApplicationController
     @award.user_id = current_user.id
     # save出来れば詳細ページへ、できなければrenderでnewのまま
     if @award.save
+      flash[:notice] = "アワードを受賞されました！おめでとうございます！"
       redirect_to award_path(@award)
     else
+      flash.now[:alert] = "受賞できませんでした。必須項目を確認してください。"
       render :new
     end
   end

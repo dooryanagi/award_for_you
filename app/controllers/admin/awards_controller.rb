@@ -5,13 +5,13 @@ class Admin::AwardsController < ApplicationController
     @awards = Award.all
 
     if params[:sort_by] == 'latest'
-      @awards = Award..latest
+      @awards = Award.page(params[:page]).latest
     elsif params[:sort_by] == 'old'
-      @awards = Award.old
+      @awards = Award.page(params[:page]).old
     elsif params[:sort_by] == 'applause_count'
-      @awards = Award.applause_count
+      @awards = Award.page(params[:page]).applause_count
     else
-      @awards = Award.all
+      @awards = Award.page(params[:page])
     end
   end
 

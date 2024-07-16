@@ -1,4 +1,4 @@
-<%= form_with model: grand_prize do |f| %>
+<%= form_with model: [:admin, admin_grand_prize] do |f| %>
 
 	<%= f.label :grand_prize_image, "大賞のイメージ画像" %>
 	<%= f.file_field :grand_prize_image, accept: 'image/*' %>
@@ -19,7 +19,7 @@
 	<%= f.label :keyword_3, "キーワード３" %>
 	<%= f.text_field :keyword_3 %>
 
-	<% if grand_prize.id == nil %>
+	<% if @admin_grand_prize.id == nil %>
 		<%= f.submit "大賞を設立する" %>
 	<% else %>
 		<%= f.submit "変更を保存" %>

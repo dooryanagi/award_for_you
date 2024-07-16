@@ -189,6 +189,7 @@ ja:
           has_one: "%{record}が存在しているので削除できません"
           has_many: "%{record}が存在しているので削除できません"
         taken: "このEメールはすでに使われています"
+        blank: "必須です"
     attributes:
       user:
         confirmation_sent_at: パスワード確認送信時刻
@@ -214,8 +215,15 @@ ja:
         unconfirmed_email: 未確認Eメール
         unlock_token: ロック解除用トークン
         updated_at: 更新日
+      award:
+        award_image: アワード写真
+      grand_prize:
+        name: 大賞名
+        introduction: 大賞の説明
+        grand_prize_image: 大賞のイメージ画像
     models:
       user: ユーザー
+      award: アワード
   devise:
     confirmations:
       confirmed: メールアドレスが確認できました。

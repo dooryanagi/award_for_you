@@ -13,3 +13,15 @@
  *= require_tree .
  *= require_self
  */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.main-visual {
+  width: 100%;
+  height: 600px;
+  background-image: image-url('top_pic.jpg');
+}

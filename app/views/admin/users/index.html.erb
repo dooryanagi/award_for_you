@@ -10,9 +10,22 @@
 				登録アドレス
 			</th>
 			<th>
-				会員ステータス
+				アワード数
 			</th>
 			<th>
+				送った拍手数
+			</th>
+			<th>
+				大賞数（受賞）
+			</th>
+			<th>
+				大賞数（設立）
+			</th>
+			<th>
+				コメント数
+			</th>
+			<th colspan="2">
+				会員ステータス
 			</th>
 		</tr>
 	</thead>
@@ -24,6 +37,21 @@
 			</td>
 			<td>
 				<%= user.email %>
+			</td>
+			<td>
+				<%= user.awards.count %>
+			</td>
+			<td>
+				<%= user.applauses.count %>
+			</td>
+			<td>
+				<%= user.events.count %>
+			</td>
+			<td>
+				<%= user.grand_prizes.count %>
+			</td>
+			<td>
+				<%= user.praises.count %>
 			</td>
 			<td class="<%= user.is_active ? 'text-success' : 'text-secondary' %>">
 				<%= user.is_active ? '有効' : '退会' %>
@@ -37,3 +65,5 @@
 		<% end %>
 	</tbody>
 </table>
+
+<%= paginate @users, theme: 'bootstrap-5' %>

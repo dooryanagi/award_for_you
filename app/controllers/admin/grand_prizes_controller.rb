@@ -1,16 +1,15 @@
 class Admin::GrandPrizesController < ApplicationController
-  # 管理者機能はすべてログイン認証あり
   before_action :authenticate_admin!
 
   def new
-    @admin_grand_prize = GrandPrize.new
+    @grand_prize = GrandPrize.new
   end
 
   def create
     @admin = current_admin
-    @admin_grand_prize = GrandPrize.new(grand_prize_params)
-    @admin_grand_prize.owner_id = @admin.id
-    if @admin_grand_prize.save
+    @grand_prize = GrandPrize.new(grand_prize_params)
+    @grand_prize.owner_id = @admin.id
+    if @grand_prize.save
       redirect_to admin_path
     else
       render :new
@@ -30,7 +29,7 @@ class Admin::GrandPrizesController < ApplicationController
   def update
     @grand_prize = GrandPrize.find(params[:id])
     if @grand_prize.update(grand_prize_params)
-      redirect_to grand_prize_path(@grand_prize)
+      redirect_to admin_grand_prize_path(@grand_prize)
     else
       render :edit
     end

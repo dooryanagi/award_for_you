@@ -28,7 +28,11 @@
 
 登録がお済でない方は
 <%= link_to "こちら", new_user_registration_path %>
-から新規登録
+から新規登録<br>
 
+管理者※最終版の提出で削除※
+<%= link_to admin_session_path do %>
+  <i class="fa-solid fa-gear"></i>
+<% end %>
 <!--デフォルトのSignUpは退避-->
 <!--%= render "public/shared/links" %>-->

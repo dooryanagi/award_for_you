@@ -10,7 +10,7 @@ class GrandPrize < ApplicationRecord
   has_one_attached :grand_prize_image
 
 	# バリデーション
-	validates :name, presence: true, length: { minimum: 2, maximum: 50 }, uniqueness: true
+	validates :name, presence: true, length: { maximum: 50 }, uniqueness: true
 	validates :introduction, presence: true, length: {maximum: 200 }
 	validates :keyword_1, presence: true
 	validates :grand_prize_image, presence: true, blob: { content_type: :image }
