@@ -1,2 +1,5 @@
-<h1>Public::GrandPrizes#edit</h1>
-<p>Find me in app/views/public/grand_prizes/edit.html.erb</p>
+<h2>大賞を編集する</h2>
+
+<%= render 'form', grand_prize: @grand_prize %>
+
+<%= link_to "大賞を削除", grand_prize_path, method: :delete %>
