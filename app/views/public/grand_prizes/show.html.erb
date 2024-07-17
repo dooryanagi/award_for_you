@@ -26,12 +26,14 @@
 
 <% @grand_prize.praises.each do |praise| %>
 	<%= praise.comment %>
-	<%= link_to "取り消し", grand_prize_praise_path(praise.grand_prize, praise), method: :delete, class: "btn btn-outline-danger" %><br>
+	<% if user_signed_in? && praise.user_id == current_user.id %>
+		<%= link_to "取り消し", grand_prize_praise_path(praise.grand_prize, praise), method: :delete, class: "btn btn-outline-danger" %><br>
+	<% end %>
 <% end %>
 </div>
 
 
-<% if @grand_prize.owner_id == current_user.id %>
+<% if user_signed_in? && @grand_prize.owner_id == current_user.id %>
 	<% @grand_prize.waiting_events.each do |waiting_event| %>
 		<%= image_tag waiting_event.get_image(80,80) %>
 		<%= waiting_event.comment %>

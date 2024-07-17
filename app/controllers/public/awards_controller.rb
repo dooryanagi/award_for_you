@@ -1,6 +1,5 @@
 class Public::AwardsController < ApplicationController
-  # 本人以外は編集、更新、削除ができないように制限
-  # 削除はここに定義せずともできない（ページがないため）
+  before_action :authenticate_user!, except: [:index, :show, :new]
   before_action :is_matching_login_user, only: [:edit, :update, :destroy]
 
   def new

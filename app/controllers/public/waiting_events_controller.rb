@@ -1,4 +1,5 @@
 class Public::WaitingEventsController < ApplicationController
+  before_action :authenticate_user!, except: [:new]
 
   def new
     @waiting_event = WaitingEvent.new

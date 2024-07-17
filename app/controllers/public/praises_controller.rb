@@ -1,4 +1,5 @@
 class Public::PraisesController < ApplicationController
+  before_action :authenticate_user!
 
 	def create
 		grand_prize = GrandPrize.find(params[:grand_prize_id])
