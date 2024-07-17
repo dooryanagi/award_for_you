@@ -1,22 +1,20 @@
-<h2>大賞一覧</h2>
-
-<%= link_to "大賞にノミネートする", new_waiting_event_path, class: "btn btn-info" %>
-
-<%= link_to "新たに大賞を立ち上げる", new_grand_prize_path, class: "btn btn-info" %>
-
-<!--写真、大賞名、説明、ノミネートボタン、詳細確認ボタン-->
-<% @grand_prizes.each do |grand_prize| %>
-	<div>
-
-		<%= image_tag grand_prize.get_grand_prize_image(100,100) %>
-		<%= grand_prize.name %>
-		<%= grand_prize.introduction %>
-
-		<!--大賞へのノミネート機能を作るまで退避-->
-		<!--%= link_to "この大賞にノミネートする", new_waiting_event_path(grand_prize.id) %>-->
-		<p>この大賞にノミネートする</p>
-
-		<%= link_to "受賞された皆さんを確認する（言葉検討）", grand_prize_path(grand_prize.id) %>
-
-	</div>
+<% if params[:event] %>
+	<h2><i class="fa-solid fa-trophy"></i><%= @user.name %>さんが受賞した大賞一覧</h2>
+<% elsif params[:grand_prize] %>
+	<h2><i class="fa-solid fa-trophy"></i><%= @user.name %>さんが設立した大賞一覧</h2>
+<% else %>
+	<h2><i class="fa-solid fa-trophy"></i>大賞一覧</h2>
 <% end %>
+
+<%= render 'public/searchs/form' %>
+
+<%= link_to "新たに大賞を立ち上げる", new_grand_prize_path, class: "btn btn-info mb-3" %>
+
+<%= form_tag(grand_prizes_path, method: :get) do %>
+	<%= select_tag :sort_by, options_for_select({'新しい順'=>'latest','古い順'=>'old','受賞数が多い順'=>'event_count','賞賛の声が多い順'=>'praise_count'}, params[:sort_by]) %>
+	<%= submit_tag '表示する' %>
+<% end %>
+
+<%= render 'index', grand_prizes: @grand_prizes %>
+
+<%= paginate @grand_prizes, theme: 'bootstrap-5' %>

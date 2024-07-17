@@ -1,6 +1,5 @@
 class Public::AwardsController < ApplicationController
-  # 本人以外は編集、更新、削除ができない
-  # 削除はここに定義せずともできない（ページがないため）
+  before_action :authenticate_user!, except: [:index, :show, :new]
   before_action :is_matching_login_user, only: [:edit, :update, :destroy]
 
   def new
@@ -13,18 +12,38 @@ class Public::AwardsController < ApplicationController
     @award.user_id = current_user.id
     # save出来れば詳細ページへ、できなければrenderでnewのまま
     if @award.save
+      flash[:notice] = "アワードを受賞されました！おめでとうございます！"
       redirect_to award_path(@award)
     else
+      flash.now[:alert] = "受賞できませんでした。必須項目を確認してください。"
       render :new
     end
   end
 
   def index
-    # 写真がある場合とない場合表示を上部と下部で分ける
-    # whereでそれぞれの場合毎の変数を定義
-    # ビューで分岐をする方がシンプル
-    # @awards_with_images = Award.joins(:award_image_attachment).distinct
-    @awards = Award.all
+    # 本人受賞のアワード（非公開選択でも表示する）
+    if params[:user_id]
+      @user = User.find(params[:user_id])
+      @awards = @user.awards
+
+    # 拍手したアワード一覧
+    elsif params[:applauses]
+      @user = current_user
+      applauses = Applause.where(user_id: @user.id).pluck(:award_id)
+      @awards = Award.find(applauses)
+
+    # アワード一覧（非公開は表示しない）（並び替えに対応）
+    else
+      if params[:sort_by] == 'latest'
+        @awards = Award.where(is_public: true).latest
+      elsif params[:sort_by] == 'old'
+        @awards = Award.where(is_public: true).old
+      elsif params[:sort_by] == 'applause_count'
+        @awards = Award.where(is_public: true).applause_count
+      else
+        @awards = Award.where(is_public: true)
+      end
+    end
   end
 
   def show
@@ -61,6 +80,7 @@ class Public::AwardsController < ApplicationController
     params.require(:award).permit(:user_id, :comment, :is_public, :award_image)
   end
 
+  # 本人を確認するメソッド
   def is_matching_login_user
     award = Award.find(params[:id])
     user_id = award.user_id

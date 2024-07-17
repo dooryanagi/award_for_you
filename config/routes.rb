@@ -8,11 +8,15 @@ Rails.application.routes.draw do
     sessions: 'public/sessions'
   }
 
+  # ゲストログイン
+  devise_scope :user do
+    post 'users/guest_sign_in' => 'public/sessions#guest_sign_in'
+  end
+
   scope module: :public do
 
     root :to =>'homes#top'
     get '/about' => 'homes#about'
-    # 見本でどのように定義しているか確認（resourcesがないのでは？？）
 
     get 'users/my_page' => 'users#show', as: 'my_page'
     get 'users/information/edit' => 'users#edit', as: 'edit_information'
@@ -21,13 +25,27 @@ Rails.application.routes.draw do
     get 'users/unsubscribe' => 'users#unsubscribe'
     patch 'users/withdraw' => 'users#withdraw'
 
-    resources :awards
-    resources :applauses, only: [:destroy, :create]
-    resources :grand_prizes
-    resources :waiting_events, only: [:new, :create, :destroy]
-    resources :event, only: [:create]
-    resources :praise, only: [:destroy, :create]
+    # 検索機能
+    get 'searchs/search'
+    get 'searchs/search_by_keyword'
 
+    resources :awards do
+      # 拍手は１アワードに対して一つ→id不要
+      resource :applause, only: [:destroy, :create]
+    end
+    resources :grand_prizes do
+      resources :praises, only: [:destroy, :create]
+      resources :waiting_events, only: [:new, :create, :destroy] do
+        collection do
+          get 'congratulations'
+        end
+      end
+      resources :events, only: [:create] do
+        collection do
+          post 'create_all'
+        end
+      end
+    end
   end
 
   # 管理者
@@ -48,9 +66,14 @@ Rails.application.routes.draw do
 	      post 'permit'
 	      post 'permit_all'
 	    end
+	    resources :praises, only: [:destroy, :create, :edit, :update]
+	    resources :waiting_events, only: [:index]
+      resources :events, only: [:index, :show, :destroy, :create] do
+        collection do
+          post 'create_all'
+        end
+      end
 	  end
-    resources :event, only: [:index, :show, :destroy]
-    resources :praise, only: [:destroy, :create, :edit, :update]
   end
 
 end

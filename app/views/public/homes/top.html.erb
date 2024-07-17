@@ -1,32 +1,44 @@
-<h1>AWARD FOR YOU</h1>
-
-<!--象徴的な写真を表示→スライドショーとかにしたい-->
-<!--%= image_tag("画像ファイル名.拡張子")%>-->
-
-<p class="row justify-content-center text-center">
-  毎日頑張るわたしに、<br>
-  ぐんぐん成長するわが子に、<br>
-  アワードを！
-</p>
-
-<div>
-  <%= link_to "アワード受賞・大賞ノミネート方法", about_path %>
+<div class="main-visual text-light d-flex justify-content-center mt-5"></div>
+<div class="row d-flex justify-content-center mb-5">
+  <h3>毎日頑張るわたしに、 ぐんぐん成長するわが子に、 アワードを！ AWARD FOR YOU</h3>
 </div>
 
-<div>
-  <%= link_to "アワードを受賞される方はこちら", new_award_path %>
+<div class="row d-flex justify-content-center mb-3">
+  <div class="col-3 justify-content-end">
+    <%= link_to "受賞・ノミネート方法", about_path, class: "btn btn-outline-dark mx-1" %>
+  </div>
+  <div class="col-3 d-flex justify-content-center">
+    <%= link_to "アワード受賞", new_award_path, class: "btn btn-outline-dark mx-1" %>
+  </div>
+  <div class="col-3  d-flex justify-content-start">
+    <%= link_to "大賞ノミネート", grand_prizes_path, class: "btn btn-outline-dark mx-1"%>
+  </div>
 </div>
 
-<div>
-  <!--大賞を作成してから表示-->
-  <!--%= link_to "大賞にノミネートされる方はこちら", new_waiting_event_path %>-->
+<div class="row d-flex justify-content-center">
+  <div class="colspan-2 col-8">
+    <h2>NEW AWARDS</h2>
+    <p>新しいアワード</p>
+
+    <div class="row d-flex justify-content-around">
+      <% @awards.first(4).each do |award| %>
+        <% if award.award_image.attached? %>
+          <%= image_tag award.get_award_image(100,100) %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
 </div>
 
-<h2>NEW AWARDS</h2>
-<p>新しいアワード</p>
+<div class="row d-flex justify-content-center">
+  <div class="colspan-2 col-8">
+    <h2>NEW GRAND PRIZE</h2>
+    <p>新しい大賞</p>
 
-<h2>NEW AWARD'S COMMENT</h2>
-<p>新しいアワードコメント</p>
-
-<h2>NEW GRAND PRIZES</h2>
-<p>新しい大賞</p>
+    <div class="row d-flex justify-content-around mb-5">
+      <% @grand_prizes.first(4).each do |grand_prize| %>
+        <%= image_tag grand_prize.get_grand_prize_image(100,100) %>
+      <% end %>
+    </div>
+  </div>
+</div>
