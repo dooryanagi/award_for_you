@@ -1,0 +1,38 @@
+<div class="border mb-3">
+	<%= image_tag @grand_prize.get_grand_prize_image(150,150) %>
+	<h2><%= @grand_prize.name %>を受賞された出来事</h2>
+	<%= @grand_prize.introduction %>
+</div>
+
+<div class="border mb-3">
+	<% @grand_prize.events.each do |event| %>
+		<%= image_tag event.get_image(120,120) %>
+		<%= event.comment %>
+	<% end %>
+</div>
+
+<div class="border mb-3">
+	承認待ちの表示<br>
+	<% if @grand_prize.waiting_events.present? %>
+		<%= link_to "全員に授与する", create_all_admin_grand_prize_events_path(@grand_prize), method: :post, class: "btn btn-outline-danger" %>
+	<% end %>
+
+	<% @grand_prize.waiting_events.each do |waiting_event| %>
+		<%= image_tag waiting_event.get_image(80,80) %>
+		<%= waiting_event.comment %>
+		<%= link_to "承認（大賞の授与）", admin_grand_prize_events_path(@grand_prize, waiting_event_id: waiting_event.id), method: :post %>
+	<% end %>
+</div>
+
+<div class="border mb-3">
+	管理者権限によるコメントの削除<br>
+	<% @grand_prize.praises.each do |praise| %>
+		<%= praise.comment %>
+		<%= link_to "取り消し", admin_grand_prize_praise_path(praise.grand_prize, praise), method: :delete, class: "btn btn-outline-danger" %><br>
+	<% end %>
+</div>
+
+<div class="border mb-3">
+	管理者権限による大賞の編集と削除
+	<%= link_to "大賞の編集・削除はこちらから", edit_admin_grand_prize_path(@grand_prize) %>
+</div>

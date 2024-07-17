@@ -1,18 +1,32 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>AwardForAll</title>
+    <title>AwardForYou</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <!--fontawsome導入-->
+    <script src="https://kit.fontawesome.com/7ae0cf8aaf.js" crossorigin="anonymous"></script>
+
     <!--bootstrapのため書き換え　link→pack-->
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <!--背景読み込みのため-->
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+
   </head>
 
   <body>
     <%= render 'layouts/header' %>
-    <%= yield %>
+
+    <div class="container">
+      <% flash.each do |message_type, message| %>
+        <div class="flash-message <%= message_type %>"><%= message %></div>
+      <% end %>
+
+      <%= yield %>
+    </div>
+
   </body>
 </html>

@@ -1,19 +1,27 @@
-<p>フラッシュメッセージでおめでとう！を表示する</p>
-
-<% if @award.award_image.present? %>
-	<%= image_tag @award.get_award_image(200,200) %>
-<% end %>
-
-<% if @award.comment.present? %>
-	<%= @award.comment %>
-<% end %>
+<div class="row justify-content-center">
+	<% if @award.award_image.present? %>
+		<div>
+			<%= image_tag @award.get_award_image(200,200) %>
+		</div>
+	<% end %>
+</div>
+<div class="row justify-content-center">
+	<% if @award.comment.present? %>
+		<div>
+			<%= @award.comment %>
+		</div>
+	<% end %>
+</div>
 
 <% if @award.user == current_user %>
-
+	<div class="row justify-content-center">
 	<!--本人以外が編集・削除できないように、idを送って本人確認を行う-->
-	<%= link_to "編集する", edit_award_path %>
-	<%= link_to "削除する", award_path, method: :delete %>
+		<%= link_to "編集する", edit_award_path, class: "btn btn-outline-success" %>
+		<%= link_to "削除する", award_path, method: :delete, class: "btn btn-outline-danger" %>
+	</div>
 
 <% end %>
 
-<%= link_to "◀アワード一覧へ戻る", awards_path %>
+<div class="row justify-content-start">
+	<%= link_to "◀アワード一覧へ戻る", awards_path, class: "btn btn-outline-dark" %>
+</div>

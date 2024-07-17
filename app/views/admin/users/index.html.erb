@@ -1,0 +1,69 @@
+<h2>会員一覧</h2>
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>
+				ユーザー名
+			</th>
+			<th>
+				登録アドレス
+			</th>
+			<th>
+				アワード数
+			</th>
+			<th>
+				送った拍手数
+			</th>
+			<th>
+				大賞数（受賞）
+			</th>
+			<th>
+				大賞数（設立）
+			</th>
+			<th>
+				コメント数
+			</th>
+			<th colspan="2">
+				会員ステータス
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @users.each do |user| %>
+		<tr>
+			<td>
+				<%= user.name %>
+			</td>
+			<td>
+				<%= user.email %>
+			</td>
+			<td>
+				<%= user.awards.count %>
+			</td>
+			<td>
+				<%= user.applauses.count %>
+			</td>
+			<td>
+				<%= user.events.count %>
+			</td>
+			<td>
+				<%= user.grand_prizes.count %>
+			</td>
+			<td>
+				<%= user.praises.count %>
+			</td>
+			<td class="<%= user.is_active ? 'text-success' : 'text-secondary' %>">
+				<%= user.is_active ? '有効' : '退会' %>
+			</td>
+			<td>
+				<% if user.is_active == true %>
+					<%= link_to "退会", withdraw_admin_users_path(user_id: user.id), method: :patch, class: "btn btn-danger" %>
+				<% end %>
+			</td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+
+<%= paginate @users, theme: 'bootstrap-5' %>

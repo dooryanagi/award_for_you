@@ -1,0 +1,2 @@
+module Admin::WaitingEventsHelper
+end
