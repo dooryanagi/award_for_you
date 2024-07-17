@@ -37,6 +37,13 @@ class Public::SessionsController < Devise::SessionsController
 	  new_user_session_path
   end
 
+  # ゲストログイン
+  def guest_sign_in
+    user = User.guest
+    sign_in user
+    redirect_to root_path, notice: "ゲストとしてログインしました"
+  end
+
   private
 
     # 会員のログインに関わる情報を確認する

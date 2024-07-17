@@ -1,2 +1,49 @@
-<h2></h2>
-<p>Find me in app/views/public/grand_prizes/show.html.erb</p>
+<%= render 'layouts/errors', obj: @praise %>
+
+<div class="border mb-3">
+	<%= image_tag @grand_prize.get_grand_prize_image(150,150) %>
+	<h2><%= @grand_prize.name %>を受賞された出来事</h2>
+	<%= @grand_prize.introduction %>
+</div>
+
+<div class="border mb-3">
+	<%= link_to "この大賞を受賞する", new_grand_prize_waiting_event_path(grand_prize_id: @grand_prize.id) %>
+</div>
+
+<div class="border mb-3">
+	<% @grand_prize.events.each do |event| %>
+		<%= image_tag event.get_image(120,120) %>
+		<%= event.comment %><br>
+	<% end %>
+</div>
+
+<div class="border mb-3">
+大賞全体に対する賞賛の声<br>
+<%= form_with model: [@grand_prize, @praise] do |f| %>
+	<%= f.text_field :comment, rows: '5', placeholder: '賞賛の声をお寄せください！' %>
+	<%= f.submit "賞賛の声を届ける" %>
+<% end %>
+
+<% @grand_prize.praises.each do |praise| %>
+	<%= praise.comment %>
+	<% if user_signed_in? && praise.user_id == current_user.id %>
+		<%= link_to "取り消し", grand_prize_praise_path(praise.grand_prize, praise), method: :delete, class: "btn btn-outline-danger" %><br>
+	<% end %>
+<% end %>
+</div>
+
+
+<% if user_signed_in? && @grand_prize.owner_id == current_user.id %>
+	<% @grand_prize.waiting_events.each do |waiting_event| %>
+		<%= image_tag waiting_event.get_image(80,80) %>
+		<%= waiting_event.comment %>
+		<%= link_to "設立者として大賞を授与する", grand_prize_events_path(@grand_prize, waiting_event_id: waiting_event.id), method: :post, class: "btn btn-outline-success" %><br>
+	<% end %>
+
+	<% if @grand_prize.waiting_events.present? %>
+		<%= link_to "設立者としてみんなに大賞を授与する", create_all_grand_prize_events_path(@grand_prize), method: :post, class: "btn btn-outline-danger" %>
+	<% end %>
+
+	<%= link_to "大賞の編集・削除はこちらから", edit_grand_prize_path, class: "btn btn-outline-dark" %>
+
+<% end %>
