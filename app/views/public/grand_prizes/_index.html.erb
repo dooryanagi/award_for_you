@@ -1,51 +1,38 @@
-<table class="table">
-	<tbody>
-		<% grand_prizes.each do |grand_prize| %>
-		<tr>
-			<td rowspan="2">
-				<%= image_tag grand_prize.get_grand_prize_image(100,100) %>
-			</td>
-			<td>
-				<%= grand_prize.name %>大賞
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<%= grand_prize.introduction %>
-			</td>
-		</tr>
-		<tr>
-			<th>
-				キーワード
-			</th>
-			<td>
-				<%= "#"+ grand_prize.keyword_1_i18n %>
-				<%= grand_prize.keyword_2.present? ? "#" + grand_prize.keyword_2 : "" %>
-				<%= grand_prize.keyword_3.present? ? "#" + grand_prize.keyword_3 : "" %>
-			</td>
-		</tr>
-		<tr>
-			<th>
-				賞賛の声
-			</th>
-			<td>
-				<%= grand_prize.praises.count %>
-			</td>
-		</tr>
-		<tr>
-			<th>
-				受賞数
-			</th>
-			<td>
-				<%= grand_prize.events.count %>
-			</td>
-		</tr>
+<div class="row mb-3">
+	<%= form_tag(grand_prizes_path, method: :get) do %>
+		<%= select_tag :sort_by, options_for_select({'新しい順'=>'latest','古い順'=>'old','受賞数が多い順'=>'event_count','賞賛の声が多い順'=>'praise_count'}, params[:sort_by]) %>
+		<%= submit_tag '表示する' %>
+	<% end %>
+</div>
 
-		<tr>
-			<td>
-				<%= link_to "受賞された皆さんを見る", grand_prize_path(grand_prize.id) %>
-			</td>
-		</tr>
-		<% end %>
-	</tbody>
-</table>
+<div class="row row-cols-3">
+	<% grand_prizes.each do |grand_prize| %>
+		<div class="col">
+			<div class="text-center">
+				<%= grand_prize.name %>大賞
+			</div>
+			<div class="gp-img d-flex justify-content-center">
+				<%= image_tag grand_prize.get_grand_prize_image(200,200) %>
+			</div>
+			<div class="comment">
+				<%= grand_prize.introduction %>
+			</div>
+			<div class="row">
+				<div class="col-4"><%= "#"+ grand_prize.keyword_1_i18n %></div>
+				<div class="col-4"><%= grand_prize.keyword_2.present? ? "#" + grand_prize.keyword_2 : "" %></div>
+				<div class="col-4"><%= grand_prize.keyword_3.present? ? "#" + grand_prize.keyword_3 : "" %></div>
+			</div>
+			<div class="row">
+				<div class="col-6"><i class="fa-regular fa-comment"></i><%= grand_prize.praises.count %></div>
+				<div class="col-6"><i class="fa-solid fa-trophy"></i><%= grand_prize.events.count %></div>
+			</div>
+			<div class="row d-flex justify-content-center">
+				<%= link_to "この大賞を受賞する / 詳細を見る", grand_prize_path(grand_prize.id), class: "btn btn-outline-dark mb-3" %>
+			</div>
+		</div>
+	<% end %>
+</div>
+
+<div class="row d-flex justify-content-center">
+	<%= paginate grand_prizes, theme: 'bootstrap-5' %>
+</div>
