@@ -1,7 +1,6 @@
 <h2>ログイン</h2>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-<!--ログインに関するエラーメッセージ-->
   <%= render "public/shared/error_messages", resource: resource %>
 
   <div class="field">
@@ -29,6 +28,8 @@
 登録がお済でない方は
 <%= link_to "こちら", new_user_registration_path %>
 から新規登録<br>
+
+ゲストユーザーとしてのお試しは<%= link_to "こちら", users_guest_sign_in_path, method: :post %><br>
 
 管理者※最終版の提出で削除※
 <%= link_to admin_session_path do %>

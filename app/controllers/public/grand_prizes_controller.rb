@@ -41,7 +41,7 @@ class Public::GrandPrizesController < ApplicationController
       elsif params[:sort_by] == 'praise_count'
         @grand_prizes = GrandPrize.page(params[:page]).praise_count
       else
-        @grand_prizes = GrandPrize.page(params[:page])
+        @grand_prizes = GrandPrize.page(params[:page]).latest.per(6)
       end
     end
   end

@@ -24,24 +24,24 @@ class Public::AwardsController < ApplicationController
     # 本人受賞のアワード（非公開選択でも表示する）
     if params[:user_id]
       @user = User.find(params[:user_id])
-      @awards = @user.awards
+      @awards = @user.awards.page(params[:page])
 
     # 拍手したアワード一覧
     elsif params[:applauses]
       @user = current_user
       applauses = Applause.where(user_id: @user.id).pluck(:award_id)
-      @awards = Award.find(applauses)
+      @awards = Award.find(applauses).page(params[:page])
 
     # アワード一覧（非公開は表示しない）（並び替えに対応）
     else
       if params[:sort_by] == 'latest'
-        @awards = Award.where(is_public: true).latest
+        @awards = Award.where(is_public: true).latest.page(params[:page])
       elsif params[:sort_by] == 'old'
-        @awards = Award.where(is_public: true).old
+        @awards = Award.where(is_public: true).old.page(params[:page])
       elsif params[:sort_by] == 'applause_count'
-        @awards = Award.where(is_public: true).applause_count
+        @awards = Award.where(is_public: true).applause_count.page(params[:page])
       else
-        @awards = Award.where(is_public: true)
+        @awards = Award.where(is_public: true).page(params[:page]).per(8)
       end
     end
   end
@@ -58,8 +58,10 @@ class Public::AwardsController < ApplicationController
     @award = Award.find(params[:id])
     # update出来れば詳細ページへ、できなければrenderでeditのまま
     if @award.update(award_params)
+      flash[:notice] = "アワードの編集が完了しました"
       redirect_to award_path(@award)
     else
+      flash.now[:alert] = "編集できませんでした。必須項目を確認してください。"
       render :edit
     end
   end

@@ -4,8 +4,13 @@
       <!--会員ログイン時-->
       <% if user_signed_in? %>
         <a class="navbar-brand" href="/"><span><%= image_tag "logo.png" %></span></a>
+        <% if current_user.guest_user? %>
+          <p>ゲストユーザーとしてログイン中</p>
+        <% end %>
       <% elsif admin_signed_in? %>
         <a class="navbar-brand" href="/admin"><span><%= image_tag "logo.png" %></span></a>
+        <p>管理者としてログイン中</p>
+
       <% else %>
         <a class="navbar-brand" href="/"><span><%= image_tag "logo.png" %></span></a>
       <% end %>
@@ -18,68 +23,83 @@
         <ul class="navbar-nav ml-auto">
           <% if user_signed_in? %>
             <li>
-              <%= link_to "ABOUT", about_path, class: 'nav-link text-dark mx-1' %>
-            </li>
-            <li>
-              <%= link_to  awards_path, class: 'nav-link text-dark mx-1' do %>
-                <i class="fa-solid fa-trophy"></i>アワード一覧
+              <%= link_to about_path, class: 'nav-link text-dark mx-1' do %>
+                <i class="fa-solid fa-circle-info">使い方</i>
               <% end %>
             </li>
             <li>
-              <%= link_to "大賞一覧", grand_prizes_path, class: 'nav-link text-dark mx-1' %>
+              <%= link_to  awards_path, class: 'nav-link text-dark mx-1' do %>
+                <i class="fa-solid fa-medal">アワード一覧</i>
+              <% end %>
             </li>
             <li>
-              <%= link_to "アワードを受賞する", new_award_path, class: 'nav-link text-dark mx-1' %>
-            </li>
-            <% if current_user.guest_user? %>
-              <p>(!)ゲストユーザーとしてログイン中(!)</p>
-            <% end %>
-            <li>
-              <%= link_to "マイページ", my_page_path, class: 'nav-link text-dark' %>
+              <%= link_to grand_prizes_path, class: 'nav-link text-dark mx-1' do %>
+                <i class="fa-solid fa-trophy">大賞一覧</i>
+              <% end %>
             </li>
             <li>
-              <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-dark' %>
+              <%= link_to my_page_path, class: 'nav-link text-dark' do %>
+                <i class="fa-solid fa-user">マイページ</i>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link text-dark' do %>
+                <i class="fa-solid fa-right-from-bracket">ログアウト</i>
+              <% end %>
             </li>
 
           <!--管理者ログイン時-->
           <% elsif admin_signed_in? %>
             <li>
-              <%= link_to "アワード一覧", admin_awards_path, class: 'nav-link text-dark mx-1' %>
+              <%= link_to admin_awards_path, class: 'nav-link text-dark mx-1' do %>
+                <i class="fa-solid fa-medal">アワード一覧</i>
+              <% end %>
             </li>
             <li>
-              <%= link_to "大賞一覧", admin_path, class: 'nav-link text-dark mx-1' %>
+              <%= link_to admin_path, class: 'nav-link text-dark mx-1' do %>
+                <i class="fa-solid fa-trophy">大賞一覧</i>
+              <% end %>
             </li>
             <li>
-              <%= link_to "会員一覧", admin_users_path, class: 'nav-link text-dark mx-1' %>
+              <%= link_to admin_users_path, class: 'nav-link text-dark mx-1' do %>
+                <i class="fa-solid fa-users">会員一覧</i>
+              <% end %>
             </li>
 
-            <p>(!)管理者としてログイン中(!)</p>
 
             <li>
-              <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'nav-link text-dark mx-1' %>
+              <%= link_to destroy_admin_session_path, method: :delete, class: 'nav-link text-dark mx-1' do %>
+                <i class="fa-solid fa-right-from-bracket">ログアウト</i>
+              <% end %>
             </li>
 
           <!--未ログイン-->
           <% else %>
             <li>
-              <%= link_to "ABOUT", about_path, class: 'nav-link text-dark mx-1' %>
-            </li>
-            <li>
-              <%= link_to awards_path, class: 'nav-link text-dark mx-1' do %>
-                <i class="fa-solid fa-trophy"></i>アワード一覧
+              <%= link_to about_path, class: 'nav-link text-dark mx-1' do %>
+                <i class="fa-solid fa-circle-info">ABOUT</i>
               <% end %>
             </li>
             <li>
-              <%= link_to "大賞一覧", grand_prizes_path, class: 'nav-link text-dark mx-1' %>
+              <%= link_to awards_path, class: 'nav-link text-dark mx-1' do %>
+                <i class="fa-solid fa-medal">アワード一覧</i>
+              <% end %>
             </li>
             <li>
-              <%= link_to "ゲストログイン", users_guest_sign_in_path, method: :post, class: 'nav-link text-dark mx-1' %>
+              <%= link_to grand_prizes_path, class: 'nav-link text-dark mx-1' do %>
+                <i class="fa-solid fa-trophy">大賞一覧</i>
+              <% end %>
+            </li>
+
+            <li>
+              <%= link_to new_user_session_path, class: 'nav-link text-dark mx-1' do %>
+                <i class="fa-solid fa-right-to-bracket">ログイン</i>
+              <% end %>
             </li>
             <li>
-              <%= link_to "ログイン", new_user_session_path, class: 'nav-link text-dark mx-1' %>
-            </li>
-            <li>
-              <%= link_to "新規登録", new_user_registration_path, class: 'nav-link text-dark mx-1' %>
+              <%= link_to new_user_registration_path, class: 'nav-link text-dark mx-1' do %>
+                <i class="fa-solid fa-user-plus">新規登録</i>
+              <% end %>
             </li>
 
           <% end %>

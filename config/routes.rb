@@ -40,7 +40,7 @@ Rails.application.routes.draw do
           get 'congratulations'
         end
       end
-      resources :events, only: [:create] do
+      resources :events, only: [:create, :show] do
         collection do
           post 'create_all'
         end

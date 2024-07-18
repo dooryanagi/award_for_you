@@ -1,5 +1,10 @@
 class Public::EventsController < ApplicationController
 
+  def show
+    @grand_prize = GrandPrize.find(params[:grand_prize_id])
+    @event = @grand_prize.events.find(params[:id])
+  end
+
 	# waiting_eventの情報をもとにデータを保存する
   def create
   	@grand_prize = GrandPrize.find(params[:grand_prize_id])

@@ -1,23 +1,19 @@
-<div class="row justify-content-center">
-	<% if @award.award_image.present? %>
-		<div>
-			<%= image_tag @award.get_award_image(200,200) %>
-		</div>
-	<% end %>
+<div class="row justify-content-center my-5">
+	<div class="award-frame mb-2">
+		<%= image_tag @award.get_award_image(500,500) %>
+	</div>
 </div>
 <div class="row justify-content-center">
-	<% if @award.comment.present? %>
-		<div>
-			<%= @award.comment %>
-		</div>
-	<% end %>
+	<div class="award-comment text-dark">
+		<%= @award.comment %>
+	</div>
 </div>
 
 <% if @award.user == current_user %>
-	<div class="row justify-content-center">
+	<div class="row justify-content-center mt-2">
 	<!--本人以外が編集・削除できないように、idを送って本人確認を行う-->
-		<%= link_to "編集する", edit_award_path, class: "btn btn-outline-success" %>
-		<%= link_to "削除する", award_path, method: :delete, class: "btn btn-outline-danger" %>
+		<%= link_to "編集する", edit_award_path, class: "btn btn-outline-success mx-2" %>
+		<%= link_to "削除する", award_path(@award), method: :delete, "data-confirm" => "一覧からもマイページからも閲覧できなくなります。削除しますか？", class: "btn btn-outline-danger" %>
 	</div>
 
 <% end %>
