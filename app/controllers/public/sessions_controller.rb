@@ -30,6 +30,7 @@ class Public::SessionsController < Devise::SessionsController
 
   # ログイン後、ログアウト後の行き先を指定
   def after_sign_in_path_for(resource)
+    flash[:notice] = "おかえりなさい、#{current_user.name}さん！今日もお疲れ様です。"
 	  root_path
   end
 

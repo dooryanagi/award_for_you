@@ -15,7 +15,7 @@ class Public::GrandPrizesController < ApplicationController
       flash[:notice] = "大賞が無事設立されました。ありがとうございます！！"
       redirect_to grand_prizes_path
     else
-      flash.now[:alert] = "大賞が設立できませんでした。必須項目を確認してください"
+      flash.now[:alert] = "大賞が設立できませんでした。必須項目を確認してください。"
       render :new
     end
   end
@@ -25,21 +25,21 @@ class Public::GrandPrizesController < ApplicationController
     if params[:event]
       @user = current_user
       events = Event.where(user_id: @user.id).pluck(:grand_prize_id)
-      @grand_prizes = Kaminari.paginate_array(GrandPrize.find(events)).page(params[:page])
+      @grand_prizes = Kaminari.paginate_array(GrandPrize.find(events)).page(params[:page]).per(6)
     # 本人が設立した大賞
     elsif params[:grand_prize]
       @user = current_user
-      @grand_prizes = GrandPrize.where(owner_id: @user.id).page(params[:page])
+      @grand_prizes = GrandPrize.where(owner_id: @user.id).page(params[:page]).per(6)
     else
       # 大賞一覧（並び替えに対応）
       if params[:sort_by] == 'latest'
-        @grand_prizes = GrandPrize.page(params[:page]).latest
+        @grand_prizes = GrandPrize.page(params[:page]).latest.per(6)
       elsif params[:sort_by] == 'old'
-        @grand_prizes = GrandPrize.page(params[:page]).old
+        @grand_prizes = GrandPrize.page(params[:page]).old.per(6)
       elsif params[:sort_by] == 'event_count'
-        @grand_prizes = GrandPrize.page(params[:page]).event_count
+        @grand_prizes = GrandPrize.page(params[:page]).event_count.per(6)
       elsif params[:sort_by] == 'praise_count'
-        @grand_prizes = GrandPrize.page(params[:page]).praise_count
+        @grand_prizes = GrandPrize.page(params[:page]).praise_count.per(6)
       else
         @grand_prizes = GrandPrize.page(params[:page]).latest.per(6)
       end
@@ -58,8 +58,10 @@ class Public::GrandPrizesController < ApplicationController
   def update
     @grand_prize = GrandPrize.find(params[:id])
     if @grand_prize.update(grand_prize_params)
+      flash[:notice] = "大賞が編集できました。"
       redirect_to grand_prize_path(@grand_prize)
     else
+      flash.now[:alert] = "大賞が編集できませんでした。必須項目を確認してください。"
       render :edit
     end
   end

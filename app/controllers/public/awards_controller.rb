@@ -24,24 +24,24 @@ class Public::AwardsController < ApplicationController
     # 本人受賞のアワード（非公開選択でも表示する）
     if params[:user_id]
       @user = User.find(params[:user_id])
-      @awards = @user.awards.page(params[:page])
+      @awards = @user.awards.page(params[:page]).per(8)
 
     # 拍手したアワード一覧
     elsif params[:applauses]
       @user = current_user
       applauses = Applause.where(user_id: @user.id).pluck(:award_id)
-      @awards = Award.find(applauses).page(params[:page])
+      @awards = Award.where(id: applauses).page(params[:page]).per(8)
 
     # アワード一覧（非公開は表示しない）（並び替えに対応）
     else
       if params[:sort_by] == 'latest'
-        @awards = Award.where(is_public: true).latest.page(params[:page])
+        @awards = Award.where(is_public: true).latest.page(params[:page]).per(8)
       elsif params[:sort_by] == 'old'
-        @awards = Award.where(is_public: true).old.page(params[:page])
+        @awards = Award.where(is_public: true).old.page(params[:page]).per(8)
       elsif params[:sort_by] == 'applause_count'
-        @awards = Award.where(is_public: true).applause_count.page(params[:page])
+        @awards = Award.where(is_public: true).applause_count.page(params[:page]).per(8)
       else
-        @awards = Award.where(is_public: true).page(params[:page]).per(8)
+        @awards = Award.where(is_public: true).page(params[:page]).latest.per(8)
       end
     end
   end

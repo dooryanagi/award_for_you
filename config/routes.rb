@@ -62,12 +62,8 @@ Rails.application.routes.draw do
     end
     resources :awards, only: [:index, :show, :destroy]
     resources :grand_prizes, except: [:index] do
-	    collection do
-	      post 'permit'
-	      post 'permit_all'
-	    end
 	    resources :praises, only: [:destroy, :create, :edit, :update]
-	    resources :waiting_events, only: [:index]
+	    resources :waiting_events, only: [:index, :destroy]
       resources :events, only: [:index, :show, :destroy, :create] do
         collection do
           post 'create_all'
@@ -75,5 +71,8 @@ Rails.application.routes.draw do
       end
 	  end
   end
+
+  # 通知
+  resources :notifications, only: [:update]
 
 end
