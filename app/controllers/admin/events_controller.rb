@@ -14,6 +14,7 @@ class Admin::EventsController < ApplicationController
   	@event.comment = @waiting_event.comment
   	if @event.save
   	  @waiting_event.destroy
+  	  flash[:notice] = "大賞を授与しました。"
   		redirect_back fallback_location: admin_grand_prize_path(@grand_prize)
   	else
   		render :index
@@ -36,9 +37,6 @@ class Admin::EventsController < ApplicationController
   	redirect_back fallback_location: admin_grand_prize_path(@grand_prize)
   end
 
-  def permit_all
-  end
-
   def index
   end
 
@@ -46,6 +44,8 @@ class Admin::EventsController < ApplicationController
   end
 
   def destroy
+		Event.find(params[:id]).destroy
+		redirect_to admin_grand_prize_path(params[:grand_prize_id])
   end
 
   private

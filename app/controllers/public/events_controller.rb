@@ -18,6 +18,7 @@ class Public::EventsController < ApplicationController
   	@event.comment = @waiting_event.comment
   	if @event.save
   	  @waiting_event.destroy
+  	  flash[:notice] = "大賞を授与しました。ご協力ありがとうございます！"
   		redirect_back fallback_location: grand_prize_path(@grand_prize)
   	else
   		render :index

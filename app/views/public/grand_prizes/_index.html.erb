@@ -7,12 +7,12 @@
 
 <div class="row row-cols-3">
 	<% grand_prizes.each do |grand_prize| %>
-		<div class="col">
+		<div class="col gp-container">
 			<div class="text-center">
 				<%= grand_prize.name %>大賞
 			</div>
-			<div class="gp-img d-flex justify-content-center">
-				<%= image_tag grand_prize.get_grand_prize_image(200,200) %>
+			<div class="d-flex justify-content-center">
+				<%= image_tag grand_prize.get_grand_prize_image(200,160) %>
 			</div>
 			<div class="comment">
 				<%= grand_prize.introduction %>
