@@ -1,0 +1,14 @@
+<div class="row justify-content-center my-5">
+	<div class="award-frame mb-2">
+		<%= image_tag @event.get_image(500,500) %>
+	</div>
+</div>
+<div class="row justify-content-center">
+	<div class="award-comment text-dark">
+		<%= @event.comment %>
+	</div>
+</div>
+
+<div class="row justify-content-start">
+	<%= link_to "◀ 大賞へ戻る", grand_prize_path(@grand_prize), class: "btn btn-outline-dark" %>
+</div>

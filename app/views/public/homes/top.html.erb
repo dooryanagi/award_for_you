@@ -4,27 +4,22 @@
 </div>
 
 <div class="row d-flex justify-content-center mb-3">
-  <div class="col-3 justify-content-end">
-    <%= link_to "受賞・ノミネート方法", about_path, class: "btn btn-outline-dark mx-1" %>
-  </div>
-  <div class="col-3 d-flex justify-content-center">
-    <%= link_to "アワード受賞", new_award_path, class: "btn btn-outline-dark mx-1" %>
-  </div>
-  <div class="col-3  d-flex justify-content-start">
-    <%= link_to "大賞ノミネート", grand_prizes_path, class: "btn btn-outline-dark mx-1"%>
-  </div>
-</div>
-
-<div class="row d-flex justify-content-center">
   <div class="colspan-2 col-8">
-    <h2>NEW AWARDS</h2>
-    <p>新しいアワード</p>
+    <div class="row d-flex justify-content-start">
+      <h2>NEW AWARDS</h2>
+    </div>
+    <div class="row d-flex justify-content-between">
+      <p>新しいアワード</p>
+      <%= link_to "アワードを受賞する", new_award_path, class: "btn btn-outline-dark mb-2" %>
+    </div>
 
     <div class="row d-flex justify-content-around">
       <% @awards.first(4).each do |award| %>
-        <% if award.award_image.attached? %>
-          <%= image_tag award.get_award_image(100,100) %>
-        <% end %>
+        <div class="img-trim">
+          <%= link_to award_path(award.id) do %>
+            <%= image_tag award.get_award_image(100,100) %>
+          <% end %>
+        </div>
       <% end %>
     </div>
   </div>
@@ -32,12 +27,22 @@
 
 <div class="row d-flex justify-content-center">
   <div class="colspan-2 col-8">
-    <h2>NEW GRAND PRIZE</h2>
-    <p>新しい大賞</p>
+    <div class="row d-flex justify-content-start">
+      <h2>NEW GRAND PRIZE</h2>
+    </div>
 
-    <div class="row d-flex justify-content-around mb-5">
+    <div class="row d-flex justify-content-between ">
+      <p>新しい大賞</p>
+      <%= link_to "大賞一覧から受賞する大賞を選ぶ", grand_prizes_path, class: "btn btn-outline-dark mb-2"%>
+    </div>
+
+    <div class="row d-flex justify-content-around mb-5 top-container">
       <% @grand_prizes.first(4).each do |grand_prize| %>
-        <%= image_tag grand_prize.get_grand_prize_image(100,100) %>
+        <div class="img-trim">
+          <%= link_to grand_prize_path(grand_prize.id) do %>
+            <%= image_tag grand_prize.get_grand_prize_image(100,100) %>
+          <% end %>
+        </div>
       <% end %>
     </div>
   </div>
