@@ -96,7 +96,7 @@
     <h5>大賞へのノミネート状況</h5>
     <% if @user.waiting_events.present? %>
       <% @user.waiting_events.each do |waiting_event| %>
-        <%= waiting_event.grand_prize.name %>大賞<%= link_to "辞退", grand_prize_waiting_event_path(waiting_event.grand_prize, waiting_event), method: :delete, class: "btn btn-outline-danger" %>
+        <%= waiting_event.grand_prize.name %>大賞<%= link_to "辞退", grand_prize_waiting_event_path(waiting_event.grand_prize, waiting_event), method: :delete, class: "btn btn-outline-danger" %><br>
       <% end %>
     <% else %>
       <p>ノミネート中の大賞はありません</p>

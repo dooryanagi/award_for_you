@@ -1,5 +1,4 @@
 module NotificationsHelper
-
 	def notification_message(notification)
     case notification.notifiable_type
     when "Applause"
@@ -10,5 +9,4 @@ module NotificationsHelper
      	"ノミネートしていた#{notification.notifiable.grand_prize.name}大賞を受賞しました！"
     end
 	end
-
 end
