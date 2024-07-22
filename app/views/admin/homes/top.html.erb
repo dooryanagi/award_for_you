@@ -1,31 +1,34 @@
 <h2>大賞一覧</h2>
 
-<%= link_to "新たに大賞を立ち上げる", new_admin_grand_prize_path, class: "btn btn-info" %>
+<%= link_to "新たに大賞を立ち上げる", new_admin_grand_prize_path, class: "btn btn-outline-info btn-block mb-3" %>
 
 <%= form_tag(admin_path, method: :get) do %>
 	<%= select_tag :sort_by, options_for_select({'受賞待ちが多い順'=>'waiting_event_count','新しい順'=>'latest','古い順'=>'old','受賞数が多い順'=>'event_count','賞賛の声が多い順'=>'praise_count'}, params[:sort_by]) %>
 	<%= submit_tag '表示する' %>
 <% end %>
 
-<table class="table table-bordered">
+<table class="table table-bordered mt-3">
   <thead>
     <tr>
       <th>
-        大賞写真
+        写真
       </th>
       <th>
-        大賞名
+        名称
       </th>
       <th>
-        大賞の説明
+        説明
       </th>
-      <th>
-        受賞数
+      <th style="width: 7%">
+        受賞<br>待ち
       </th>
-      <th>
-        コメント数
+      <th style="width: 7%">
+        受賞
       </th>
-      <th>
+      <th style="width: 7%">
+        賞賛<br>の声
+      </th>
+      <th style="width: 7%">
       </th>
     </tr>
   </thead>
@@ -42,6 +45,9 @@
         <%= grand_prize.introduction %>
       </td>
       <td>
+        <%= grand_prize.waiting_events.count %>件
+      </td>
+      <td>
         <%= grand_prize.events.count %>件
       </td>
       <td>
@@ -49,9 +55,9 @@
       </td>
       <td>
         <% if grand_prize.waiting_events.present? %>
-          <%= link_to "授与", admin_grand_prize_path(grand_prize.id), class: "btn btn-danger" %>
+          <%= link_to "授与", admin_grand_prize_path(grand_prize.id), class: "btn btn-danger btn-sm" %>
         <% else %>
-          <%= link_to "確認", admin_grand_prize_path(grand_prize.id), class: "btn btn-dark" %>
+          <%= link_to "確認", admin_grand_prize_path(grand_prize.id), class: "btn btn-dark btn-sm" %>
         <% end %>
 
       </td>
@@ -60,4 +66,6 @@
   </tbody>
 </table>
 
-<%= paginate @grand_prizes, theme: 'bootstrap-5' %>
+<div class="row d-flex justify-content-center">
+  <%= paginate @grand_prizes, theme: 'bootstrap-5' %>
+</div>

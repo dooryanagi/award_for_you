@@ -11,6 +11,7 @@ class Admin::UsersController < ApplicationController
   def withdraw
     @user = User.find_by(id: params[:user_id])
     @user.update(is_active: false)
+    
     redirect_to admin_users_path
   end
 
