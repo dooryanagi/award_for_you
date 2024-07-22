@@ -10,8 +10,10 @@ class Admin::GrandPrizesController < ApplicationController
     @grand_prize = GrandPrize.new(grand_prize_params)
     @grand_prize.owner_id = @admin.id
     if @grand_prize.save
+      flash[:notice] = "大賞が設立できました。"
       redirect_to admin_path
     else
+      flash.now[:alert] = "大賞が設立できませんでした。必須項目を確認してください。"
       render :new
     end
   end
@@ -29,30 +31,22 @@ class Admin::GrandPrizesController < ApplicationController
   def update
     @grand_prize = GrandPrize.find(params[:id])
     if @grand_prize.update(grand_prize_params)
+      flash[:notice] = "大賞が編集できました。"
       redirect_to admin_grand_prize_path(@grand_prize)
     else
+      flash.now[:alert] = "大賞が編集できませんでした。必須項目を確認してください。"
       render :edit
     end
   end
 
   def destroy
     @grand_prize = GrandPrize.find(params[:id])
-    # destroy出来れば一覧ページへ、できなければrenderでshowのまま、は可能？
     if @grand_prize.destroy
-      redirect_to grand_prizes_path
+      redirect_to admin_path
     else
       render :show
     end
   end
-
-  # 大賞へのノミネートを承認する（1件）
-  def permit
-  end
-
-  # 大賞へのノミネートを承認する（全件）
-  def permit_all
-  end
-
 
   private
 

@@ -30,6 +30,7 @@ class Public::SessionsController < Devise::SessionsController
 
   # ログイン後、ログアウト後の行き先を指定
   def after_sign_in_path_for(resource)
+    flash[:notice] = "おかえりなさい、#{current_user.name}さん！今日もお疲れ様です。"
 	  root_path
   end
 
@@ -55,6 +56,7 @@ class Public::SessionsController < Devise::SessionsController
       if user.is_active == true
     		create
       else
+        flash[:alert] = "退会済みのアドレスです。新しいアドレスでの登録をお願いします。"
     		redirect_to new_user_registration_path
       end
     end

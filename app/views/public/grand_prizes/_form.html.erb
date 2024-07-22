@@ -4,7 +4,7 @@
 			<table class="table">
 				<tr>
 					<th>
-						<%= f.label :grand_prize_image, "大賞のイメージ画像" %>
+						<%= f.label :grand_prize_image, "大賞のイメージ画像*" %>
 					</th>
 					<td>
 						<%= f.file_field :grand_prize_image, accept: 'image/*' %>
@@ -12,7 +12,7 @@
 				</tr>
 				<tr>
 					<th>
-						<%= f.label :name, "大賞の名称" %>
+						<%= f.label :name, "大賞の名称*" %>
 					</th>
 					<td>
 						<%= f.text_field :name %>大賞
@@ -20,7 +20,7 @@
 				</tr>
 				<tr>
 					<th>
-						<%= f.label :introduction, "大賞の説明" %>
+						<%= f.label :introduction, "大賞の説明*" %>
 					</th>
 					<td>
 						<%= f.text_area :introduction %>
@@ -28,7 +28,7 @@
 				</tr>
 				<tr>
 					<th>
-						<%= f.label :keyword_1, "キーワード１" %>
+						<%= f.label :keyword_1, "キーワード１*" %>
 					</th>
 					<td>
 						<%= f.select :keyword_1, GrandPrize.keyword_1s.keys.map {|k| [I18n.t("enums.grand_prize.keyword_1.#{k}"), k]} %>
@@ -48,6 +48,11 @@
 					</th>
 					<td>
 						<%= f.text_field :keyword_3 %>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						*は必須項目です。
 					</td>
 				</tr>
 				<tr>

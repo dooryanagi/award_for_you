@@ -1,38 +1,126 @@
-<div class="border mb-3">
-	<%= image_tag @grand_prize.get_grand_prize_image(150,150) %>
-	<h2><%= @grand_prize.name %>を受賞された出来事</h2>
-	<%= @grand_prize.introduction %>
+<div class="">
+	<h2><%= @grand_prize.name %>大賞</h2>
 </div>
 
-<div class="border mb-3">
-	<% @grand_prize.events.each do |event| %>
-		<%= image_tag event.get_image(120,120) %>
-		<%= event.comment %>
-	<% end %>
+<table class="table mb-3">
+	<thead>
+		<tr>
+			<th>写真</th>
+			<th>説明</th>
+			<th>授与済み</th>
+			<th>授与待ち</th>
+			<th>コメント</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>
+				<%= image_tag @grand_prize.get_grand_prize_image(100,100) %>
+			</td>
+			<td>
+				<%= @grand_prize.introduction %>
+			</td>
+			<td>
+				<%= @grand_prize.events.count %>件
+			</td>
+			<td>
+				<%= @grand_prize.waiting_events.count %>件
+			</td>
+			<td>
+				<%= @grand_prize.praises.count %>件
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<h5>授与済み</h5>
+<table class="table mb-3">
+	<thead>
+		<tr>
+			<th>写真</th>
+			<th>コメント</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @grand_prize.events.each do |event| %>
+		<tr>
+			<td>
+				<%= image_tag event.get_image(80,80) %>
+			</td>
+			<td>
+				<%= event.comment %>
+			</td>
+			<td>
+				<%= link_to "削除", admin_grand_prize_event_path(event.grand_prize, event), method: :delete, class: "btn btn-outline-danger" %>
+			</td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+
+<div class="row d-flex justify-content-between">
+	<h5>授与待ち</h5>
+	<div>
+		<% if @grand_prize.waiting_events.present? %>
+			<%= link_to "全員に授与する", create_all_admin_grand_prize_events_path(@grand_prize), method: :post, class: "btn btn-success" %>
+		<% end %>
+	</div>
 </div>
 
-<div class="border mb-3">
-	承認待ちの表示<br>
-	<% if @grand_prize.waiting_events.present? %>
-		<%= link_to "全員に授与する", create_all_admin_grand_prize_events_path(@grand_prize), method: :post, class: "btn btn-outline-danger" %>
-	<% end %>
+<table class="table mb-3">
+	<thead>
+		<tr>
+			<th>写真</th>
+			<th>コメント</th>
+			<th></th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @grand_prize.waiting_events.each do |waiting_event| %>
+		<tr>
+			<td>
+				<%= image_tag waiting_event.get_image(80,80) %>
+			</td>
+			<td>
+				<%= waiting_event.comment %>
+			</td>
+			<td>
+				<%= link_to "承認", admin_grand_prize_events_path(@grand_prize, waiting_event_id: waiting_event.id), method: :post, class: "btn btn-outline-success"  %>
+			</td>
+			<td>
+				<%= link_to "削除", admin_grand_prize_waiting_event_path(waiting_event.grand_prize, waiting_event), method: :delete, class: "btn btn-outline-danger" %>
+			</td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
 
-	<% @grand_prize.waiting_events.each do |waiting_event| %>
-		<%= image_tag waiting_event.get_image(80,80) %>
-		<%= waiting_event.comment %>
-		<%= link_to "承認（大賞の授与）", admin_grand_prize_events_path(@grand_prize, waiting_event_id: waiting_event.id), method: :post %>
-	<% end %>
-</div>
+<h5>コメント</h5>
 
-<div class="border mb-3">
-	管理者権限によるコメントの削除<br>
-	<% @grand_prize.praises.each do |praise| %>
-		<%= praise.comment %>
-		<%= link_to "取り消し", admin_grand_prize_praise_path(praise.grand_prize, praise), method: :delete, class: "btn btn-outline-danger" %><br>
-	<% end %>
-</div>
+<table class="table mb-3">
+	<thead>
+		<tr>
+			<th>コメント</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @grand_prize.praises.each do |praise| %>
+		<tr>
+			<td>
+				<%= praise.comment %>
+			</td>
+			<td>
+				<%= link_to "取り消し", admin_grand_prize_praise_path(praise.grand_prize, praise), method: :delete, class: "btn btn-outline-danger" %>
+			</td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
 
-<div class="border mb-3">
-	管理者権限による大賞の編集と削除
-	<%= link_to "大賞の編集・削除はこちらから", edit_admin_grand_prize_path(@grand_prize) %>
+<div class="row d-flex justify-content-center">
+	<%= link_to "大賞の編集", edit_admin_grand_prize_path(@grand_prize),class: "btn btn-outline-dark mx-3" %>
+	<%= link_to "大賞の削除", admin_grand_prize_path(@grand_prize),method: :delete, class: "btn btn-outline-danger" %>
 </div>

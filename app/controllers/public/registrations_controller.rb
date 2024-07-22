@@ -41,6 +41,7 @@ class Public::RegistrationsController < Devise::RegistrationsController
 
   # 新規登録後はトップに移動
   def after_sign_up_path_for(resource)
+    flash[:notice] = "ようこそAward for Youへ！頑張るあなたを称えます！"
 	  root_path
   end
 

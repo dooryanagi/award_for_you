@@ -6,15 +6,17 @@
 	<h2><i class="fa-solid fa-trophy"></i>大賞一覧</h2>
 <% end %>
 
-<%= render 'public/searchs/form' %>
+<div class="row mb-3">
+	<div class="col-9 d-flex justify-content-center mb-3">
+		<%= render 'public/searchs/form' %>
+	</div>
+	<div class="col-3">
+		<%= link_to "新たに大賞を立ち上げる", new_grand_prize_path, class: "btn btn-outline-dark mb-3 btn-block" %>
+	</div>
+</div>
 
-<%= link_to "新たに大賞を立ち上げる", new_grand_prize_path, class: "btn btn-info mb-3" %>
-
-<%= form_tag(grand_prizes_path, method: :get) do %>
-	<%= select_tag :sort_by, options_for_select({'新しい順'=>'latest','古い順'=>'old','受賞数が多い順'=>'event_count','賞賛の声が多い順'=>'praise_count'}, params[:sort_by]) %>
-	<%= submit_tag '表示する' %>
+<% unless params[:event] || params[:grand_prize] %>
+	<%= render 'sort', grand_prizes: @grand_prizes %>
 <% end %>
 
 <%= render 'index', grand_prizes: @grand_prizes %>
-
-<%= paginate @grand_prizes, theme: 'bootstrap-5' %>

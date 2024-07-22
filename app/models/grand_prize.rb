@@ -10,10 +10,10 @@ class GrandPrize < ApplicationRecord
   has_one_attached :grand_prize_image
 
 	# バリデーション
+	validates :grand_prize_image, presence: true, blob: { content_type: :image }
 	validates :name, presence: true, length: { maximum: 50 }, uniqueness: true
 	validates :introduction, presence: true, length: {maximum: 200 }
 	validates :keyword_1, presence: true
-	validates :grand_prize_image, presence: true, blob: { content_type: :image }
 
 	# enum
 	enum keyword_1: { daily: 0, first_time: 1}

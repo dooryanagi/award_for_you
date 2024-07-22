@@ -11,6 +11,7 @@ class User < ApplicationRecord
   has_many :events,         dependent: :destroy
   has_many :praises,        dependent: :destroy
   has_many :grand_prizes,                         through: :events
+  has_many :notifications, dependent: :destroy
 
   # バリデーション
   validates :name, presence: true, length: {in: 2..20}

@@ -1,10 +1,12 @@
-<div>
-	<b>退会すると、登録情報や</b><br>
-	<b>〇〇ができなくなります。</b><br>
-	<b>退会する場合は、「退会する」をクリックしてください。</b>
+<div class="row d-flex justify-content-center mb-3">
+	<b>
+		退会すると、マイページの使用や編集ができなくなります。<br>
+		退会する場合は、「退会する」をクリックしてください。
+	</b>
 </div>
 
-<%= link_to "卒業しない", my_page_path(current_user) %>
+<div class="row d-flex justify-content-center">
+	<%= link_to "退会しない", my_page_path(current_user),class: "btn btn-outline-dark mx-5" %>
 
-<!--data: { confirm: "退会してもよろしいですか？" }=退会するボタン押した後確認メッセージ表示させる-->
-<%= link_to "卒業する", users_withdraw_path, method: :patch, data: { confirm: "退会してもよろしいですか？" } %>
+	<%= link_to "退会する", users_withdraw_path, method: :patch, data: { confirm: "退会してもよろしいですか？" } ,class: "btn btn-outline-danger mx-5" %>
+</div>

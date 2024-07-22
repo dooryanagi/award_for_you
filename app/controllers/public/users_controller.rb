@@ -24,6 +24,7 @@ class Public::UsersController < ApplicationController
     @customer = current_user
     @customer.update(is_active: false)
     reset_session
+    flash[:notice] = "今までありがとうございました！閲覧のみは引き続き可能です。"
     redirect_to root_path
   end
 

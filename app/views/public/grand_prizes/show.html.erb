@@ -1,49 +1,102 @@
+<!--このエラー不要では？確認ののち消す-->
 <%= render 'layouts/errors', obj: @praise %>
 
-<div class="border mb-3">
-	<%= image_tag @grand_prize.get_grand_prize_image(150,150) %>
-	<h2><%= @grand_prize.name %>を受賞された出来事</h2>
-	<%= @grand_prize.introduction %>
+<div class="row d-flex justify-content-center">
+
+  <div class="col-8">
+  	<div class="gp mb-3 text-center">
+			<h1><i class="fa-solid fa-trophy"></i><%= @grand_prize.name %>大賞<i class="fa-solid fa-trophy"></i></h1>
+			<div class="gp-frame mb-3">
+				<%= image_tag @grand_prize.get_grand_prize_image(500,500) %>
+			</div>
+			<div class="row d-flex justify-content-center">
+				<div class="gp-comment text-dark">
+					<%= @grand_prize.introduction %>
+				</div>
+			</div>
+		</div>
+		<div class="mb-5">
+			<%= link_to "この大賞を受賞する", new_grand_prize_waiting_event_path(grand_prize_id: @grand_prize.id), class: "btn btn-outline-dark btn-block"%>
+		</div>
+  </div>
+
+  <div class="col-4">
+  	<div class="row">
+			<h5>大賞を受賞した皆さん　<i class="fa-solid fa-user"></i> <%= @grand_prize.events.count %></h5>
+		</div>
+
+		<div class="row row-cols-3 mb-3">
+			<% @grand_prize.events.each do |event| %>
+			<div class="col">
+				<%= link_to grand_prize_event_path(event.grand_prize, event) do %>
+					<%= image_tag event.get_image(120,120) %><br>
+				<% end %>
+				<div class="event-comment">
+					<%= event.comment %>
+				</div>
+			</div>
+			<% end %>
+		</div>
+
+		<div class="mb-3">
+			<h5>賞賛の声 <i class="fa-regular fa-comment"></i><%= @grand_prize.praises.count %></h5>
+			<%= form_with model: [@grand_prize, @praise] do |f| %>
+				<%= f.text_field :comment %>
+				<%= button_tag type: "submit",  class: "btn  btn-sm btn-info" do %>
+					<i class="fa-regular fa-paper-plane"></i>
+				<% end %>
+			<% end %>
+
+		<% @grand_prize.praises.order(created_at: :desc).limit(5).each do |praise| %>
+			<div class="mt-3">
+				『<%= praise.comment %>』
+				<% if user_signed_in? && praise.user_id == current_user.id %>
+					<%= link_to "取り消し", grand_prize_praise_path(praise.grand_prize, praise), method: :delete, class: "btn btn-outline-danger btn-sm" %>
+				<% end %>
+			</div>
+		<% end %>
+		</div>
+  </div>
 </div>
-
-<div class="border mb-3">
-	<%= link_to "この大賞を受賞する", new_grand_prize_waiting_event_path(grand_prize_id: @grand_prize.id) %>
-</div>
-
-<div class="border mb-3">
-	<% @grand_prize.events.each do |event| %>
-		<%= image_tag event.get_image(120,120) %>
-		<%= event.comment %><br>
-	<% end %>
-</div>
-
-<div class="border mb-3">
-大賞全体に対する賞賛の声<br>
-<%= form_with model: [@grand_prize, @praise] do |f| %>
-	<%= f.text_field :comment, rows: '5', placeholder: '賞賛の声をお寄せください！' %>
-	<%= f.submit "賞賛の声を届ける" %>
-<% end %>
-
-<% @grand_prize.praises.each do |praise| %>
-	<%= praise.comment %>
-	<% if user_signed_in? && praise.user_id == current_user.id %>
-		<%= link_to "取り消し", grand_prize_praise_path(praise.grand_prize, praise), method: :delete, class: "btn btn-outline-danger" %><br>
-	<% end %>
-<% end %>
-</div>
-
 
 <% if user_signed_in? && @grand_prize.owner_id == current_user.id %>
-	<% @grand_prize.waiting_events.each do |waiting_event| %>
-		<%= image_tag waiting_event.get_image(80,80) %>
-		<%= waiting_event.comment %>
-		<%= link_to "設立者として大賞を授与する", grand_prize_events_path(@grand_prize, waiting_event_id: waiting_event.id), method: :post, class: "btn btn-outline-success" %><br>
-	<% end %>
-
+	<h5><%= current_user.name %>さんはこの大賞の設立者です。</h5>
 	<% if @grand_prize.waiting_events.present? %>
-		<%= link_to "設立者としてみんなに大賞を授与する", create_all_grand_prize_events_path(@grand_prize), method: :post, class: "btn btn-outline-danger" %>
+		<div class="row">
+			<h5>受賞待ちが<%= @grand_prize.waiting_events.count %>件あります。大賞の授与をお願いします！</h5>
+			<%= link_to "みんなに大賞を授与する", create_all_grand_prize_events_path(@grand_prize), method: :post, class: "btn btn-outline-danger" %>
+		</div>
+
+		<div class="row">
+			<table class="table">
+				<tbody>
+					<% @grand_prize.waiting_events.each do |waiting_event| %>
+					<tr>
+						<td>
+							<%= image_tag waiting_event.get_image(80,80) %>
+						</td>
+						<td>
+							<%= waiting_event.comment %>
+						</td>
+						<td>
+							<%= link_to "大賞授与", grand_prize_events_path(@grand_prize, waiting_event_id: waiting_event.id), method: :post, class: "btn btn-outline-success" %>
+						</td>
+					</tr>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+
+	<% else %>
+		<div class="row">
+			<h5>受賞待ちはありません。</h5>
+		</div>
 	<% end %>
 
-	<%= link_to "大賞の編集・削除はこちらから", edit_grand_prize_path, class: "btn btn-outline-dark" %>
+	<%= link_to "大賞の編集・削除", edit_grand_prize_path, class: "btn btn-outline-dark mb-3" %>
 
 <% end %>
+
+<div class="row justify-content-start">
+	<%= link_to "◀ 一覧へ戻る", grand_prizes_path, class: "btn btn-outline-dark" %>
+</div>

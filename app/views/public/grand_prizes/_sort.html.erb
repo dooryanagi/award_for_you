@@ -1,0 +1,8 @@
+<div class="row mb-3">
+	<%= form_tag(grand_prizes_path, method: :get) do %>
+		<%= select_tag :sort_by, options_for_select({'新しい順'=>'latest','古い順'=>'old','受賞数が多い順'=>'event_count','賞賛の声が多い順'=>'praise_count'}, params[:sort_by]) %>
+		<%= button_tag type: "submit",  class: "btn  btn-sm btn-info" do %>
+			<i class="fa-solid fa-arrow-down-wide-short"></i>
+		<% end %>
+	<% end %>
+</div>
