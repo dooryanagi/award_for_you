@@ -5,13 +5,11 @@
     <h3>基本情報</h3>
     <table class="table w-100">
       <tr>
-        <th>ユーザ名</th>
+        <th>ユーザ名　</th>
         <td>
           <%= current_user.name %>
           <% unless current_user.guest_user? %>
-            <%= link_to edit_information_path do %>
-              <i class="fa-solid fa-gear"></i>
-            <% end %>
+            <%= link_to "変更・退会", edit_information_path %>
           <% end %>
         </td>
       </tr>
@@ -39,9 +37,9 @@
           </td>
         </tr>
         <tr>
-          <th>送った拍手数</th>
+          <th>贈った拍手数</th>
           <td>
-            <!--アワード一覧＞ユーザが拍手を送ったアワードを表示-->
+            <!--アワード一覧＞ユーザが拍手を贈ったアワードを表示-->
             <% if current_user.applauses.present? %>
               <%= link_to awards_path(applauses: true) do %>
                 <%= current_user.applauses.count %>件
@@ -93,6 +91,15 @@
       <% end %>
     <% else %>
       <p>未設立</p>
+    <% end %>
+
+    <h5>大賞へのノミネート状況</h5>
+    <% if @user.waiting_events.present? %>
+      <% @user.waiting_events.each do |waiting_event| %>
+        <%= waiting_event.grand_prize.name %>大賞<%= link_to "辞退", grand_prize_waiting_event_path(waiting_event.grand_prize, waiting_event), method: :delete, class: "btn btn-outline-danger" %>
+      <% end %>
+    <% else %>
+      <p>ノミネート中の大賞はありません</p>
     <% end %>
   </div>
 </div>
