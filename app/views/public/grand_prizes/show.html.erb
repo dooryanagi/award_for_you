@@ -22,7 +22,7 @@
 
   <div class="col-4">
   	<div class="row">
-			<h5><%= @grand_prize.name %>大賞を受賞した皆さん　<i class="fa-solid fa-trophy"></i><%= @grand_prize.events.count %></h5>
+			<h5>大賞を受賞した皆さん　<i class="fa-solid fa-user"></i> <%= @grand_prize.events.count %></h5>
 		</div>
 
 		<div class="row row-cols-3 mb-3">
@@ -39,13 +39,15 @@
 		</div>
 
 		<div class="mb-3">
-			<h5>大賞全体に対する賞賛の声 <i class="fa-regular fa-comment"></i><%= @grand_prize.praises.count %></h5>
+			<h5>賞賛の声 <i class="fa-regular fa-comment"></i><%= @grand_prize.praises.count %></h5>
 			<%= form_with model: [@grand_prize, @praise] do |f| %>
 				<%= f.text_field :comment %>
-				<%= f.submit "届ける" %>
+				<%= button_tag type: "submit",  class: "btn  btn-sm btn-info" do %>
+					<i class="fa-regular fa-paper-plane"></i>
+				<% end %>
 			<% end %>
 
-		<% @grand_prize.praises.each do |praise| %>
+		<% @grand_prize.praises.order(created_at: :desc).limit(5).each do |praise| %>
 			<div class="mt-3">
 				『<%= praise.comment %>』
 				<% if user_signed_in? && praise.user_id == current_user.id %>
@@ -91,10 +93,10 @@
 		</div>
 	<% end %>
 
-	<%= link_to "大賞の編集・削除はこちらから", edit_grand_prize_path, class: "btn btn-outline-dark mb-3" %>
+	<%= link_to "大賞の編集・削除", edit_grand_prize_path, class: "btn btn-outline-dark mb-3" %>
 
 <% end %>
 
 <div class="row justify-content-start">
-	<%= link_to "◀ 大賞一覧へ戻る", grand_prizes_path, class: "btn btn-outline-dark" %>
+	<%= link_to "◀ 一覧へ戻る", grand_prizes_path, class: "btn btn-outline-dark" %>
 </div>

@@ -1,14 +1,7 @@
-<div class="row mb-3">
-	<%= form_tag(grand_prizes_path, method: :get) do %>
-		<%= select_tag :sort_by, options_for_select({'新しい順'=>'latest','古い順'=>'old','受賞数が多い順'=>'event_count','賞賛の声が多い順'=>'praise_count'}, params[:sort_by]) %>
-		<%= submit_tag '表示する' %>
-	<% end %>
-</div>
-
 <div class="row row-cols-3">
 	<% grand_prizes.each do |grand_prize| %>
-		<div class="col gp-container">
-			<div class="text-center">
+		<div class="col gp-container mb-5">
+			<div class="text-center fw-bold">
 				<%= grand_prize.name %>大賞
 			</div>
 			<div class="d-flex justify-content-center">
@@ -27,7 +20,7 @@
 				<div class="col-6"><i class="fa-solid fa-trophy"></i><%= grand_prize.events.count %></div>
 			</div>
 			<div class="row d-flex justify-content-center">
-				<%= link_to "この大賞を受賞する / 詳細を見る", grand_prize_path(grand_prize.id), class: "btn btn-outline-dark mb-3" %>
+				<%= link_to "この大賞を受賞 / 詳細", grand_prize_path(grand_prize.id), class: "btn btn-outline-dark mb-3" %>
 			</div>
 		</div>
 	<% end %>

@@ -23,7 +23,7 @@
         <ul class="navbar-nav ml-auto">
           <% if user_signed_in? %>
             <li>
-              <%= link_to about_path, class: 'nav-link text-dark mx-1' do %>
+              <%= link_to about_path(anchor: 'how_to_use'), class: 'nav-link text-dark mx-1' do %>
                 <i class="fa-solid fa-circle-info">使い方</i>
               <% end %>
             </li>

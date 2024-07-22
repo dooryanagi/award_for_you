@@ -11,24 +11,24 @@
   <thead>
     <tr>
       <th>
-        大賞写真
+        写真
       </th>
       <th>
-        大賞名
+        名称
       </th>
       <th>
-        大賞の説明
+        説明
       </th>
-      <th>
-        承認待ち数
+      <th style="width: 7%">
+        受賞<br>待ち
       </th>
-      <th>
-        受賞数
+      <th style="width: 7%">
+        受賞
       </th>
-      <th>
-        コメント数
+      <th style="width: 7%">
+        賞賛<br>の声
       </th>
-      <th>
+      <th style="width: 7%">
       </th>
     </tr>
   </thead>
@@ -55,9 +55,9 @@
       </td>
       <td>
         <% if grand_prize.waiting_events.present? %>
-          <%= link_to "授与", admin_grand_prize_path(grand_prize.id), class: "btn btn-danger" %>
+          <%= link_to "授与", admin_grand_prize_path(grand_prize.id), class: "btn btn-danger btn-sm" %>
         <% else %>
-          <%= link_to "確認", admin_grand_prize_path(grand_prize.id), class: "btn btn-dark" %>
+          <%= link_to "確認", admin_grand_prize_path(grand_prize.id), class: "btn btn-dark btn-sm" %>
         <% end %>
 
       </td>

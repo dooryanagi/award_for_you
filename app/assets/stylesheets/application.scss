@@ -42,19 +42,18 @@ footer {
   padding: 15px 0;
   font-size: 14px;
   text-align: center;
-  // background-color: #ccc;
 }
 
 .pagination>li>a {
-  color: #747474;   /*文字の色を変える*/
+  color: #747474;
 }
 
 .pagination>.active>a {
-  background-color: #747474;     /*背景の色を変える*/
+  background-color: #747474;
   text-color: #000000;
   border-color: #747474;
 }
 
 .pagination>li>a:hover {        
-  text-color: #000000;    /*角を丸くする*/
+  text-color: #000000;
 }

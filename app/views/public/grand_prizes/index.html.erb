@@ -15,4 +15,8 @@
 	</div>
 </div>
 
+<% unless params[:event] || params[:grand_prize] %>
+	<%= render 'sort', grand_prizes: @grand_prizes %>
+<% end %>
+
 <%= render 'index', grand_prizes: @grand_prizes %>

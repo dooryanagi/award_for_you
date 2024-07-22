@@ -56,6 +56,7 @@ class Public::SessionsController < Devise::SessionsController
       if user.is_active == true
     		create
       else
+        flash[:alert] = "退会済みのアドレスです。新しいアドレスでの登録をお願いします。"
     		redirect_to new_user_registration_path
       end
     end
