@@ -10,11 +10,11 @@
 				<td><%= f.select :grand_prize_id, options_from_collection_for_select(GrandPrize.all, :id, :name, selected: @grand_prize.id) %></td>
 			</tr>
 				<tr>
-				<th><%= f.label :image, "ノミネート写真" %></th>
+				<th><%= f.label :image, "大賞写真" %></th>
 				<td><%= f.file_field :image, accept: 'image/*' %></td>
 			</tr>
 				<tr>
-				<th><%= f.label :comment, "ノミネートコメント" %></th>
+				<th><%= f.label :comment, "大賞インタビュー" %></th>
 				<td><%= f.text_area :comment %></td>
 			</tr>
 				<tr>
