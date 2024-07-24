@@ -1,0 +1,9 @@
+<% if user_signed_in? && award.applaused_by?(current_user) %>
+	<%= link_to award_applause_path(award), method: :delete do %>
+		<i class="fa-solid fa-hands-clapping" style="color:black;"><%= award.applauses.count %></i>
+	<% end %>
+<% else %>
+	<%= link_to award_applause_path(award), method: :post do %>
+		<i class="fa-solid fa-hands-clapping" style="color:gray;"><%= award.applauses.count %></i>
+	<% end %>
+<% end %>

@@ -1,7 +1,9 @@
-<h2>管理者として大賞を編集する</h2>
+<div class="container my-3">
+	<h2>管理者として大賞を編集する</h2>
 
-<div class='row d-flex justify-content-center'>
-  <%= render 'layouts/errors', obj: @grand_prize %>
+	<div class='row d-flex justify-content-center'>
+	  <%= render 'layouts/errors', obj: @grand_prize %>
+	</div>
+
+	<%= render 'public/grand_prizes/form', grand_prize: @grand_prize, url: admin_grand_prize_path %>
 </div>
-
-<%= render 'public/grand_prizes/form', grand_prize: @grand_prize, url: admin_grand_prize_path %>

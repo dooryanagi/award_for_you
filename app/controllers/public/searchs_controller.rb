@@ -17,4 +17,9 @@ class Public::SearchsController < ApplicationController
     @records = @all_records.page(params[:page]).per(6)
   end
 
+  def keyword_index
+    @daily_grand_prizes = GrandPrize.where(keyword_1: 0)
+    @first_time_grand_prizes = GrandPrize.where(keyword_1: 1)
+  end
+
 end

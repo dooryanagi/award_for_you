@@ -1,24 +1,33 @@
-<div class="container">
-	<% if params[:event] %>
-		<h2><i class="fa-solid fa-trophy"></i><%= @user.name %>さんが受賞した大賞一覧</h2>
-	<% elsif params[:grand_prize] %>
-		<h2><i class="fa-solid fa-trophy"></i><%= @user.name %>さんが設立した大賞一覧</h2>
-	<% else %>
-		<h2><i class="fa-solid fa-trophy"></i>大賞一覧</h2>
-	<% end %>
+<div class="container my-3 p-3">
+	<div class="row mx-2">
+		<% if params[:event] %>
+			<h2><i class="fa-solid fa-trophy"></i><%= @user.name %>さんが受賞した大賞一覧</h2>
+		<% elsif params[:grand_prize] %>
+			<h2><i class="fa-solid fa-trophy"></i><%= @user.name %>さんが設立した大賞一覧</h2>
+		<% else %>
+			<h2><i class="fa-solid fa-trophy"></i>大賞一覧</h2>
+		<% end %>
+	</div>
 
-	<div class="row mb-3">
-		<div class="col-9 d-flex justify-content-center mb-3">
+	<div class="row my-4 p-3 search">
+		<div class="col-9 d-flex justify-content-center">
 			<%= render 'public/searchs/form' %>
 		</div>
 		<div class="col-3">
-			<%= link_to "新たに大賞を立ち上げる", new_grand_prize_path, class: "btn btn-outline-dark mb-3 btn-block" %>
+			<%= link_to "キーワード一覧", searchs_keyword_index_path, class: "btn btn-outline-dark btn-block" %>
 		</div>
 	</div>
 
-	<% unless params[:event] || params[:grand_prize] %>
-		<%= render 'sort', grand_prizes: @grand_prizes %>
-	<% end %>
+	<div class="row d-flex justify-content-between px-5 mt-5">
+		<div>
+			<% unless params[:event] || params[:grand_prize] %>
+				<%= render 'sort', grand_prizes: @grand_prizes %>
+			<% end %>
+		</div>
+		<div>
+			<%= link_to "新たに大賞を立ち上げる", new_grand_prize_path, class: "btn btn-outline-dark btn-block" %>
+		</div>
+	</div>
 
 	<%= render 'index', grand_prizes: @grand_prizes %>
 </div>

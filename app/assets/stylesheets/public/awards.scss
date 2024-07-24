@@ -59,3 +59,15 @@
   height: 100%;
   object-fit: cover;
 }
+
+.table-comment {
+    width: 100%;
+  }
+
+table {
+  width: 100%; /* テーブル自体の幅を指定する */
+}
+
+textarea {
+  width: 100%; /* テキストエリアの幅を親要素の幅に合わせて広げる */
+}

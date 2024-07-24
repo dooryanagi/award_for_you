@@ -67,3 +67,32 @@
 .afy {
   font-size: 80px;
 }
+
+h3 {
+  position: relative;
+  overflow: hidden;
+  padding: 1.5rem 2rem 1.5rem 80px;
+  border: 3px solid #000;
+  border-radius: 100vh;
+  color: #000;
+}
+
+h3 span {
+  font-size: 30px;
+  font-size: 3rem;
+  line-height: 50px;
+  position: absolute;
+  top: calc(50% - 25px);
+  left: 10px;
+  display: block;
+  width: 50px;
+  height: 50px;
+  color: #fff;
+  border-radius: 50%;
+  background: #000;
+}
+
+.first {
+  width: 60%;
+}
+

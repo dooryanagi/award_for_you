@@ -6,9 +6,15 @@
 </div>
 
 <div class="container my-3">
-
   <div class="row d-flex justify-content-center my-3">
     <div class="colspan-2 col-8">
+      <div class="first mx-auto my-5">
+        <% unless user_signed_in? %>
+          <%= link_to about_path do %>
+            <h3 class="text-center"><span><i class="fa-solid fa-hand-point-right"></i></span>はじめての方</h3>
+          <% end %>
+        <% end %>
+      </div>
       <h2 class="text-center title">NEW AWARDS</h2>
       <p class="text-center">新しいアワード</p>
       <div class="row d-flex justify-content-around about-box">
@@ -31,7 +37,7 @@
       <h2 class="text-center title">NEW GRAND PRIZES</h2>
       <p class="text-center">新しい大賞</p>
 
-      <div class="row d-flex justify-content-around mb-5 top-container about-box">
+      <div class="row d-flex justify-content-around top-container about-box">
         <% @grand_prizes.first(4).each do |grand_prize| %>
           <div class="img-trim">
             <%= link_to grand_prize_path(grand_prize.id) do %>

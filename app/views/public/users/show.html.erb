@@ -1,35 +1,67 @@
-<h2><%= current_user.name %>さんのページ</h2>
+<div class="container mt-5">
+  <h2><%= current_user.name %>さんのページ</h2>
 
-<div class="row">
-  <div class="col-4">
-    <h3>基本情報</h3>
-    <table class="table w-100">
-      <tr>
-        <th>ユーザ名　</th>
-        <td>
-          <%= current_user.name %>
-          <% unless current_user.guest_user? %>
-            <%= link_to "変更・退会", edit_information_path %>
-          <% end %>
-        </td>
-      </tr>
-      <tr>
-        <th>登録日</th>
-        <td><%= current_user.created_at.strftime("%Y/%m/%d") %></td>
-      </tr>
-    </table>
-  </div>
-
-  <div class="col-4">
-     <h3>アワード情報</h3>
-       <table class="table w-100">
+  <div class="row my-5">
+    <div class="col-4">
+      <h4>基本情報</h4>
+      <table class="table w-100">
         <tr>
-          <th>受賞数</th>
+          <th>ユーザ名　</th>
           <td>
-            <!--アワード一覧＞ユーザが受賞したアワードを表示-->
-            <% if current_user.awards.present? %>
-              <%= link_to awards_path(user_id: current_user.id) do %>
-                <%= current_user.awards.count %>件
+            <%= current_user.name %>
+            <% unless current_user.guest_user? %>
+              <%= link_to "変更・退会", edit_information_path %>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <th>登録日</th>
+          <td><%= current_user.created_at.strftime("%Y/%m/%d") %></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="col-4">
+       <h4>アワード情報</h4>
+         <table class="table w-100">
+          <tr>
+            <th>受賞数</th>
+            <td>
+              <!--アワード一覧＞ユーザが受賞したアワードを表示-->
+              <% if current_user.awards.present? %>
+                <%= link_to awards_path(user_id: current_user.id) do %>
+                  <%= current_user.awards.count %>件
+                <% end %>
+              <% else %>
+                0件
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <th>贈った拍手数</th>
+            <td>
+              <!--アワード一覧＞ユーザが拍手を贈ったアワードを表示-->
+              <% if current_user.applauses.present? %>
+                <%= link_to awards_path(applauses: true) do %>
+                  <%= current_user.applauses.count %>件
+                <% end %>
+              <% else %>
+                0件
+              <% end %>
+            </td>
+          </tr>
+        </table>
+    </div>
+
+    <div class="col-4">
+      <h4>大賞受賞情報</h4>
+      <table class="table w-100">
+        <tr>
+          <th>受賞</th>
+          <td>
+            <% if current_user.events.present? %>
+              <%= link_to grand_prizes_path(event: true) do %>
+                <%= current_user.events.count %>件
               <% end %>
             <% else %>
               0件
@@ -37,12 +69,11 @@
           </td>
         </tr>
         <tr>
-          <th>贈った拍手数</th>
+          <th>作った大賞</th>
           <td>
-            <!--アワード一覧＞ユーザが拍手を贈ったアワードを表示-->
-            <% if current_user.applauses.present? %>
-              <%= link_to awards_path(applauses: true) do %>
-                <%= current_user.applauses.count %>件
+            <% if @grand_prizes.present? %>
+              <%= link_to grand_prizes_path(grand_prize: true) do %>
+                <%= @grand_prizes.count %>件
               <% end %>
             <% else %>
               0件
@@ -50,56 +81,27 @@
           </td>
         </tr>
       </table>
-  </div>
-
-  <div class="col-4">
-    <h3>大賞受賞情報</h3>
-    <table class="table w-100">
-      <tr>
-        <th>受賞</th>
-        <td>
-          <% if current_user.events.present? %>
-            <%= link_to grand_prizes_path(event: true) do %>
-              <%= current_user.events.count %>件
-            <% end %>
+      <h5>作った大賞へのノミネート状況</h5>
+      <% if @grand_prizes.present? %>
+        <% @grand_prizes.each do |grand_prize| %>
+          <% if grand_prize.waiting_events.present? %>
+            <%= grand_prize.name %>大賞<%= link_to "大賞の授与をお願いします", grand_prize_path(grand_prize.id), class: "btn btn-outline-danger" %><br>
           <% else %>
-            0件
+            <p>授与待ちはありません</p>
           <% end %>
-        </td>
-      </tr>
-      <tr>
-        <th>作った大賞</th>
-        <td>
-          <% if @grand_prizes.present? %>
-            <%= link_to grand_prizes_path(grand_prize: true) do %>
-              <%= @grand_prizes.count %>件
-            <% end %>
-          <% else %>
-            0件
-          <% end %>
-        </td>
-      </tr>
-    </table>
-    <h5>作った大賞へのノミネート状況</h5>
-    <% if @grand_prizes.present? %>
-      <% @grand_prizes.each do |grand_prize| %>
-        <% if grand_prize.waiting_events.present? %>
-          <%= grand_prize.name %>大賞<%= link_to "大賞の授与をお願いします", grand_prize_path(grand_prize.id), class: "btn btn-outline-danger" %><br>
-        <% else %>
-          <p>授与待ちはありません</p>
         <% end %>
+      <% else %>
+        <p>未設立</p>
       <% end %>
-    <% else %>
-      <p>未設立</p>
-    <% end %>
 
-    <h5>大賞へのノミネート状況</h5>
-    <% if @user.waiting_events.present? %>
-      <% @user.waiting_events.each do |waiting_event| %>
-        <%= waiting_event.grand_prize.name %>大賞<%= link_to "辞退", grand_prize_waiting_event_path(waiting_event.grand_prize, waiting_event), method: :delete, class: "btn btn-outline-danger" %><br>
+      <h5>大賞へのノミネート状況</h5>
+      <% if @user.waiting_events.present? %>
+        <% @user.waiting_events.each do |waiting_event| %>
+          <%= waiting_event.grand_prize.name %>大賞<%= link_to "辞退", grand_prize_waiting_event_path(waiting_event.grand_prize, waiting_event), method: :delete, class: "btn btn-outline-danger" %><br>
+        <% end %>
+      <% else %>
+        <p>ノミネート中の大賞はありません</p>
       <% end %>
-    <% else %>
-      <p>ノミネート中の大賞はありません</p>
-    <% end %>
+    </div>
   </div>
 </div>
