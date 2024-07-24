@@ -1,7 +1,7 @@
 <%= form_with model: award, url: url, method: method do |f| %>
 <div class="row d-flex justify-content-center">
   <div class="colspan-2 col-8">
-		<table class="table">
+		<table class="table my-3">
 			<tr>
 				<th>
 					<%= f.label :award_image, "アワード写真*" %>
@@ -15,7 +15,9 @@
 					<%= f.label :comment, "受賞インタビュー" %>
 				</th>
 				<td>
-					<%= f.text_area :comment %>
+					<div class="table-comment">
+						<%= f.text_area :comment %>
+					</div>
 				</td>
 			</tr>
 			<tr>

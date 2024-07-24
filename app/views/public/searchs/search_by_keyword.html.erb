@@ -1,11 +1,13 @@
-<h2>
-	『<%= I18n.t('enums.grand_prize.keyword_1.' + @keyword_1) %>』
+<div class="container my-3">
+	<h2>
+		『<%= I18n.t('enums.grand_prize.keyword_1.' + @keyword_1) %>』
 
-	<% if @keyword.present? %>
-		『<%= @keyword %>』
-	<% end %>
+		<% if @keyword.present? %>
+			『<%= @keyword %>』
+		<% end %>
 
-	を含む大賞は<%= @all_records.count %>件でした
-</h2>
+		を含む大賞は<%= @all_records.count %>件でした
+	</h2>
 
-<%= render 'public/grand_prizes/index', grand_prizes: @records %>
+	<%= render 'public/grand_prizes/index', grand_prizes: @records %>
+</div>

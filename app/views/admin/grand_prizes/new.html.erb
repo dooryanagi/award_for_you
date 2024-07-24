@@ -1,8 +1,9 @@
-<h2>管理者として新たに大賞を立ち上げる</h2>
+<div class="container my-3">
+	<h2>管理者として新たに大賞を立ち上げる</h2>
 
-<div class='row d-flex justify-content-center'>
-  <%= render 'layouts/errors', obj: @grand_prize %>
+	<div class='row d-flex justify-content-center'>
+	  <%= render 'layouts/errors', obj: @grand_prize %>
+	</div>
+
+	<%= render 'public/grand_prizes/form', grand_prize: @grand_prize, url: admin_grand_prizes_path %>
 </div>
-
-<%= render 'public/grand_prizes/form', grand_prize: @grand_prize, url: admin_grand_prizes_path %>
-

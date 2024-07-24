@@ -51,6 +51,10 @@
     line-height: 1.5;
 	}
 
+  // &-container {
+  //   background-color: #DADADA;
+  // }
+
 }
 
 .gp-container {
@@ -133,5 +137,51 @@
   height: 1px;
   transform: rotate(12deg);
   box-sizing: border-box;
-  background-color: #333333;
+  background-color: #6A6A6A;
+}
+
+.gp-title {
+  line-height: 60px;
+  position: relative;
+  height: 60px;
+  margin: 1em 40px 1em;
+  padding: 0 5px;
+  text-align: center;
+  color: #fff;
+  background: #6A6A6A;
+}
+
+.gp-title:before,
+.gp-title:after {
+  position: absolute;
+  top: 0;
+  display: block;
+  height: 48px;
+  content: '';
+  border: 30px solid #6A6A6A;
+}
+
+.gp-title:before {
+  left: -40px;
+  border-left-width: 15px;
+  border-left-color: transparent;
+}
+
+.gp-title:after {
+  right: -40px;
+  border-right-width: 15px;
+  border-right-color: transparent;
+}
+
+.gp-title span {
+  position: relative;
+  display: block;
+}
+
+.hight {
+  height: 30px;
+}
+
+.search {
+  background-color: #DADADA;
 }
