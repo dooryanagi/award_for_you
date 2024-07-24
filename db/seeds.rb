@@ -91,17 +91,49 @@ Award.find_or_create_by!(comment: "真剣に卵の殻をむいてくれる息子
 end
 
 # GrandPrize
-GrandPrize.find_or_create_by!(name: "作り置き") do |grand_prize|
+GrandPrize.find_or_create_by!(name: "全力泣き") do |grand_prize|
   grand_prize.grand_prize_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-g01.jpg"), filename:"sample-g01.jpg")
-  grand_prize.introduction = "明日、明後日の自分のために、子供のご飯を作り置き！特に離乳食はやる事・気にすることが多くて大変、、、お疲れ様、私たち！"
+  grand_prize.introduction = "どんなことをしても、何を言っても泣き止んでくれない時は誰しも経験するのでは。。。ふいに、泣きが全力過ぎて、面白くなってくること、ありますよね？？"
   grand_prize.owner_id = admin.id
 	grand_prize.keyword_1 = 0
-	grand_prize.keyword_2 = "離乳食"
-	grand_prize.keyword_3 = "幼児食"
+	grand_prize.keyword_2 = "お手上げ"
+	grand_prize.keyword_3 = "あるある"
+end
+
+GrandPrize.find_or_create_by!(name: "お手伝い") do |grand_prize|
+  grand_prize.grand_prize_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-g02jpg"), filename:"sample-g02.jpg")
+  grand_prize.introduction = "お手伝いしたい気持ちは無下にしたくないけど、家事は早く終わらせたいしキッチンは汚したくない、、、日々葛藤！"
+  grand_prize.owner_id = admin.id
+	grand_prize.keyword_1 = 0
+	grand_prize.keyword_2 = "ママの真似"
+	grand_prize.keyword_3 = "お手伝い"
+end
+
+GrandPrize.find_or_create_by!(name: "予防接種") do |grand_prize|
+  grand_prize.grand_prize_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-g03jpg"), filename:"sample-g03.jpg")
+  grand_prize.introduction = "こどものためとはわかっていても、針が刺さるのを見るのは辛い！こどもはもっと辛い？？注射はいつから平気になるのかな？"
+  grand_prize.owner_id = admin.id
+	grand_prize.keyword_1 = 0
+	grand_prize.keyword_2 = "注射"
+	grand_prize.keyword_3 = "ばんそうこう"
+end
+
+GrandPrize.find_or_create_by!(name: "とにかく大好き！") do |grand_prize|
+  grand_prize.grand_prize_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-g04jpg"), filename:"sample-g04.jpg")
+  grand_prize.introduction = "電車？〇ンパンマン？絵本？公園？パ〇パトロール？これさえあれば！な心の友達"
+  grand_prize.owner_id = admin.id
+	grand_prize.keyword_1 = 0
+end
+
+GrandPrize.find_or_create_by!(name: "何度でも何度でも何度でも♪") do |grand_prize|
+  grand_prize.grand_prize_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-g05jpg"), filename:"sample-g05.jpg")
+  grand_prize.introduction = "鳴りやまないアンコール！今日は何回かしら。今日はとことん付き合おう！"
+  grand_prize.owner_id = admin.id
+	grand_prize.keyword_1 = 0
 end
 
 GrandPrize.find_or_create_by!(name: "おやさい・くだもの") do |grand_prize|
-  grand_prize.grand_prize_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-g02.jpg"), filename:"sample-g02.jpg")
+  grand_prize.grand_prize_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-g06.jpg"), filename:"sample-g06.jpg")
   grand_prize.introduction = "野菜や果物を買うと、赤ちゃんや子供に持たせたくなるのはなんでだろう？？持つだけで、かわいい～"
   grand_prize.owner_id = admin.id
 	grand_prize.keyword_1 = 0
