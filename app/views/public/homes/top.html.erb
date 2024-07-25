@@ -1,49 +1,54 @@
-<div class="main-visual text-light d-flex justify-content-center mt-5"></div>
-<div class="row d-flex justify-content-center mb-5">
-  <h3>毎日頑張るわたしに、 ぐんぐん成長するわが子に、 アワードを！ AWARD FOR YOU</h3>
-</div>
-
-<div class="row d-flex justify-content-center mb-3">
-  <div class="colspan-2 col-8">
-    <div class="row d-flex justify-content-start">
-      <h2>NEW AWARDS</h2>
-    </div>
-    <div class="row d-flex justify-content-between">
-      <p>新しいアワード</p>
-      <%= link_to "アワードを受賞する", new_award_path, class: "btn btn-outline-dark mb-2" %>
-    </div>
-
-    <div class="row d-flex justify-content-around">
-      <% @awards.first(4).each do |award| %>
-        <div class="img-trim">
-          <%= link_to award_path(award.id) do %>
-            <%= image_tag award.get_award_image(100,100) %>
-          <% end %>
-        </div>
-      <% end %>
-    </div>
+<div class="main-visual text-light d-flex justify-content-center">
+  <div class="top-box">
+    <p class="afy">AWARD FOR YOU</p>
+    <p class="message">毎日頑張るわたしに、 ぐんぐん成長するわが子に、 アワードを！</p>
   </div>
 </div>
 
-<div class="row d-flex justify-content-center">
-  <div class="colspan-2 col-8">
-    <div class="row d-flex justify-content-start">
-      <h2>NEW GRAND PRIZE</h2>
-    </div>
-
-    <div class="row d-flex justify-content-between ">
-      <p>新しい大賞</p>
-      <%= link_to "大賞一覧から受賞する大賞を選ぶ", grand_prizes_path, class: "btn btn-outline-dark mb-2"%>
-    </div>
-
-    <div class="row d-flex justify-content-around mb-5 top-container">
-      <% @grand_prizes.first(4).each do |grand_prize| %>
-        <div class="img-trim">
-          <%= link_to grand_prize_path(grand_prize.id) do %>
-            <%= image_tag grand_prize.get_grand_prize_image(100,100) %>
+<div class="container my-3">
+  <div class="row d-flex justify-content-center my-3">
+    <div class="colspan-2 col-8">
+      <div class="first mx-auto my-5">
+        <% unless user_signed_in? %>
+          <%= link_to about_path do %>
+            <h3 class="text-center"><span><i class="fa-solid fa-hand-point-right"></i></span>はじめての方</h3>
           <% end %>
-        </div>
-      <% end %>
+        <% end %>
+      </div>
+      <h2 class="text-center title">NEW AWARDS</h2>
+      <p class="text-center">新しいアワード</p>
+      <div class="row d-flex justify-content-around about-box">
+        <% @awards.first(4).each do |award| %>
+          <div class="img-trim">
+            <%= link_to award_path(award.id) do %>
+              <%= image_tag award.get_award_image(100,100) %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+      <div class="row d-flex justify-content-end mt-3">
+        <%= link_to "アワードを受賞する", new_award_path, class: "btn btn-outline-dark mb-2" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row d-flex justify-content-center">
+    <div class="colspan-2 col-8">
+      <h2 class="text-center title">NEW GRAND PRIZES</h2>
+      <p class="text-center">新しい大賞</p>
+
+      <div class="row d-flex justify-content-around top-container about-box">
+        <% @grand_prizes.first(4).each do |grand_prize| %>
+          <div class="img-trim">
+            <%= link_to grand_prize_path(grand_prize.id) do %>
+              <%= image_tag grand_prize.get_grand_prize_image(100,100) %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+      <div class="row d-flex justify-content-end mt-3">
+        <%= link_to "大賞一覧から受賞する大賞を選ぶ", grand_prizes_path, class: "btn btn-outline-dark mb-2"%>
+      </div>
     </div>
   </div>
 </div>

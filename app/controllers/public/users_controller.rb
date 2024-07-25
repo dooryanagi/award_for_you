@@ -1,6 +1,5 @@
 class Public::UsersController < ApplicationController
-
-  before_action :ensure_guest_user, only: [:edit]
+  before_action :ensure_guest_user, only: [:edit, :withdraw]
 
   def show
     @user = current_user
@@ -31,10 +30,10 @@ class Public::UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :is_active)
+    params.require(:user).permit(:name, :is_active, :email)
   end
 
-  # ゲストユーザーはプロフィールを編集できない
+  # ゲストユーザーはプロフィールの編集、退会ができない
   def ensure_guest_user
     @user = current_user
     if @user.guest_user?

@@ -1,23 +1,31 @@
-<div class="row justify-content-center my-5">
-	<div class="award-frame mb-2">
-		<%= image_tag @award.get_award_image(500,500) %>
+<div class="container my-3">
+	<div class="row justify-content-center my-5">
+		<div class="award-frame mb-2">
+			<%= image_tag @award.get_award_image(500,500) %>
+		</div>
 	</div>
-</div>
-<div class="row justify-content-center">
-	<div class="award-comment text-dark">
-		<%= @award.comment %>
-	</div>
-</div>
-
-<% if @award.user == current_user %>
-	<div class="row justify-content-center mt-5">
-	<!--本人以外が編集・削除できないように、idを送って本人確認を行う-->
-		<%= link_to "編集する", edit_award_path, class: "btn btn-outline-success mx-2" %>
-		<%= link_to "削除する", award_path(@award), method: :delete, "data-confirm" => "一覧からもマイページからも閲覧できなくなります。削除しますか？", class: "btn btn-outline-danger" %>
+	<div class="row justify-content-center">
+		<div class="col-6 award-comment text-dark">
+			<div>
+				<%= @award.comment %>
+			</div>
+		</div>
 	</div>
 
-<% end %>
+	<p class="text-center my-3" id="applause_btn_<%= @award.id %>">
+		<%= render "public/applauses/btn", award: @award %>
+	</p>
 
-<div class="row justify-content-start">
-	<%= link_to "◀アワード一覧へ戻る", awards_path, class: "btn btn-outline-dark" %>
+	<% if @award.user == current_user %>
+		<div class="row justify-content-center mt-5">
+		<!--本人以外が編集・削除できないように、idを送って本人確認を行う-->
+			<%= link_to "編集する", edit_award_path, class: "btn btn-outline-success mx-2" %>
+			<%= link_to "削除する", award_path(@award), method: :delete, "data-confirm" => "一覧からもマイページからも閲覧できなくなります。削除しますか？", class: "btn btn-outline-danger" %>
+		</div>
+
+	<% end %>
+
+	<div class="row justify-content-start">
+		<%= link_to "◀アワード一覧へ戻る", awards_path, class: "btn btn-outline-dark" %>
+	</div>
 </div>

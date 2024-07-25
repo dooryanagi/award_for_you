@@ -1,7 +1,9 @@
-<h2><i class="fa-solid fa-trophy"></i>新たに大賞を立ち上げる</h2>
+<div class="container my-3">
+	<h2><i class="fa-solid fa-trophy"></i>新たに大賞を立ち上げる</h2>
 
-<div class='row d-flex justify-content-center'>
-  <%= render 'layouts/errors', obj: @grand_prize %>
+	<div class='row d-flex justify-content-center'>
+	  <%= render 'layouts/errors', obj: @grand_prize %>
+	</div>
+
+	<%= render 'form', grand_prize: @grand_prize, url: grand_prizes_path %>
 </div>
-
-<%= render 'form', grand_prize: @grand_prize, url: grand_prizes_path %>
