@@ -1,5 +1,7 @@
-<div class="container">
+<div class="container my-3">
+	
 	<h2>キーワード一覧</h2>
+	
 	<table class="table my-5 table-bordered">
 		<thead>
 			<tr>
@@ -12,11 +14,12 @@
 			<tr>
 				<td>
 					<% @daily_grand_prizes.each do |grand_prize| %>
-						<% if grand_prize.keyword_2.present? %>
-							<% grand_prize.keyword_2 %>
-						<% elsif grand_prize.keyword_3.present? %>
-							<% grand_prize.keyword_3 %>
-						<% end %>
+					  <% grand_prize_keywords = [grand_prize.keyword_2, grand_prize.keyword_3].compact %>
+					  <% grand_prize_keywords.each do |keyword| %>
+					    <%= link_to searchs_search_by_keyword_path(keyword_1: grand_prize.keyword_1, keyword: keyword) do %>
+					      #<%= keyword %>
+					    <% end %>
+					  <% end %>
 					<% end %>
 				</td>
 			</tr>
@@ -35,31 +38,16 @@
 			<tr>
 				<td>
 					<% @first_time_grand_prizes.each do |grand_prize| %>
-						<% if grand_prize.keyword_2.present? && grand_prize.keyword_3.present? %>
-
-							<%= link_to searchs_search_by_keyword_path(keyword_1: grand_prize.keyword_1, keyword: grand_prize.keyword_2) do %>
-								#<%= grand_prize.keyword_2 %>
-							<% end %>
-
-							<%= link_to searchs_search_by_keyword_path(keyword_1: grand_prize.keyword_1, keyword: grand_prize.keyword_3) do %>
-								#<%= grand_prize.keyword_3 %>
-							<% end %>
-
-						<% elsif grand_prize.keyword_2.present? %>
-
-							<%= link_to searchs_search_by_keyword_path(keyword_1: grand_prize.keyword_1, keyword: grand_prize.keyword_2) do %>
-								#<%= grand_prize.keyword_2 %>
-							<% end %>
-
-						<% elsif grand_prize.keyword_3.present? %>
-							<%= link_to searchs_search_by_keyword_path(keyword_1: grand_prize.keyword_1, keyword: grand_prize.keyword_3) do %>
-								#<%= grand_prize.keyword_3 %>
-							<% end %>
-
-						<% end %>
+					  <% grand_prize_keywords = [grand_prize.keyword_2, grand_prize.keyword_3].compact %>
+					  <% grand_prize_keywords.each do |keyword| %>
+					    <%= link_to searchs_search_by_keyword_path(keyword_1: grand_prize.keyword_1, keyword: keyword) do %>
+					      #<%= keyword %>
+					    <% end %>
+					  <% end %>
 					<% end %>
 				</td>
 			</tr>
 		</tdody>
 	</table>
+	
 </div>

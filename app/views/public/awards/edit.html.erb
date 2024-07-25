@@ -1,9 +1,11 @@
 <div class="container my-3">
+
 	<h2>アワード内容を変更する</h2>
-	
-	<%= render 'form', award: @award, url: award_path, method: :patch %>
-	
+
+	<%= render 'form', award: @award %>
+
 	<%= link_to award_path(@award), class: "btn btn-outline-dark" do %>
 		<i class="fa-solid fa-caret-left"></i> 編集せずに戻る
 	<% end %>
+
 </div>
