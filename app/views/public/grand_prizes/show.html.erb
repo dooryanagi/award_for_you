@@ -1,6 +1,3 @@
-<!--このエラー不要では？確認ののち消す-->
-<%= render 'layouts/errors', obj: @praise %>
-
 <div class="container my-3">
 	<div class="row d-flex justify-content-center">
 
@@ -45,26 +42,13 @@
 			</div>
 
 			<div class="mb-3">
-				<h5 class="text-center">賞賛の声 <i class="fa-regular fa-comment"></i><%= @grand_prize.praises.count %></h5>
+				<h5 class="text-center" id="comment-counter"><%= render 'public/praises/counter', grand_prize: @grand_prize %></h5>
 				<div class="row d-flex justify-content-center">
-					<%= form_with model: [@grand_prize, @praise] do |f| %>
-						<%= f.text_field :comment %>
-						<%= button_tag type: "submit",  class: "btn  btn-sm btn-info" do %>
-							<i class="fa-regular fa-paper-plane"></i>
-						<% end %>
-					<% end %>
+					<%= render 'public/praises/form', grand_prize: @grand_prize, praise: @praise %>
 				</div>
-
-			<% @grand_prize.praises.order(created_at: :desc).limit(5).each do |praise| %>
-				<div class="row d-flex justify-content-center mt-3">
-					『<%= praise.comment %>』
-					<% if user_signed_in? && praise.user_id == current_user.id %>
-						<%= link_to grand_prize_praise_path(praise.grand_prize, praise), method: :delete, class: "btn btn-outline-danger btn-sm" do %>
-							<i class="fa-solid fa-trash-can"></i>
-						<% end %>
-					<% end %>
+				<div id="comment-index">
+					<%= render 'public/praises/index', grand_prize: @grand_prize %>
 				</div>
-			<% end %>
 			</div>
 	  </div>
 	</div>
@@ -103,7 +87,9 @@
 			</div>
 		<% end %>
 
-		<%= link_to "大賞の編集・削除", edit_grand_prize_path, class: "btn btn-outline-dark mb-3" %>
+		<% unless @grand_prize.waiting_events.present? || @grand_prize.events.present? %>
+			<%= link_to "大賞の編集・削除", edit_grand_prize_path, class: "btn btn-outline-dark mb-3" %>
+		<% end %>
 
 	<% end %>
 

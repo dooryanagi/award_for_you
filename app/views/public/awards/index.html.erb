@@ -29,7 +29,7 @@
 						<%= image_tag award.get_award_image(200,200), class: "rounded-circle" %>
 					<% end %>
 				</div>
-				<div class="center-block text-center mb-3">
+				<div class="center-block text-center mb-3" id="applause_btn_<%= award.id %>">
 					<%= render "public/applauses/btn", award: award %>
 				</div>
 			</div>

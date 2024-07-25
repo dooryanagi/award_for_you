@@ -1,7 +1,5 @@
 class Public::GrandPrizesController < ApplicationController
-  # ログインしていない場合は一覧と詳細の閲覧以外は出来ない
   before_action :authenticate_user!, except: [:index, :show]
-  # 大賞のオーナーでなければ編集、更新、削除は出来ない
   before_action :is_matching_owner, only: [:edit, :update, :destroy]
 
   def new
@@ -21,24 +19,24 @@ class Public::GrandPrizesController < ApplicationController
   end
 
   def index
+    @user = current_user
     # 本人が受賞した大賞
     if params[:event]
-      @user = current_user
       events = Event.where(user_id: @user.id).pluck(:grand_prize_id)
       @grand_prizes = GrandPrize.where(id: events).page(params[:page]).per(6)
     # 本人が設立した大賞
     elsif params[:grand_prize]
-      @user = current_user
       @grand_prizes = GrandPrize.where(owner_id: @user.id).page(params[:page]).per(6)
+    # 大賞一覧（並び替えに対応）
     else
-      # 大賞一覧（並び替えに対応）
-      if params[:sort_by] == 'latest'
+      case params[:sort_by]
+      when 'latest'
         @grand_prizes = GrandPrize.page(params[:page]).latest.per(6)
-      elsif params[:sort_by] == 'old'
+      when 'old'
         @grand_prizes = GrandPrize.page(params[:page]).old.per(6)
-      elsif params[:sort_by] == 'event_count'
+      when 'event_count'
         @grand_prizes = GrandPrize.page(params[:page]).event_count.per(6)
-      elsif params[:sort_by] == 'praise_count'
+      when 'praise_count'
         @grand_prizes = GrandPrize.page(params[:page]).praise_count.per(6)
       else
         @grand_prizes = GrandPrize.page(params[:page]).latest.per(6)
@@ -68,7 +66,6 @@ class Public::GrandPrizesController < ApplicationController
 
   def destroy
     @grand_prize = GrandPrize.find(params[:id])
-    # destroy出来れば一覧ページへ、できなければrenderでshowのまま、は可能？
     if @grand_prize.destroy
       redirect_to grand_prizes_path
     else
@@ -90,6 +87,5 @@ class Public::GrandPrizesController < ApplicationController
       redirect_back fallback_location: grand_prizes_path
     end
   end
-
 
 end

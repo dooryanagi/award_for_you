@@ -11,7 +11,7 @@ class GrandPrize < ApplicationRecord
 
 	# バリデーション
 	validates :grand_prize_image, presence: true, blob: { content_type: :image }
-	validates :name, presence: true, length: { maximum: 13 }, uniqueness: true
+	validates :name, presence: true, length: { maximum: 10 }, uniqueness: true
 	validates :introduction, presence: true, length: {maximum: 200 }
 	validates :keyword_1, presence: true
 

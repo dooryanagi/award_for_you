@@ -1,17 +1,15 @@
 <div class="container mt-5">
-  <h3>登録情報を編集する</h3>
-
-  <%= form_with model: @user, url: update_information_path do |f| %>
-
-    <%= f.label :name, "ユーザー名" %>
-    <%= f.text_field :name %>
-
-    <%= f.label :email, "emailアドレス" %>
-    <%= f.text_field :email %>
-
-    <%= f.submit "変更", class: "btn btn-outline-success mb-3"  %>
-
-  <% end %>
-
-  <%= link_to "退会する", users_unsubscribe_path, class: "btn btn-outline-dark" %>
+  <h4><i class="fa-solid fa-pen-to-square"></i>登録情報を編集する</h4>
+  <div class="row d-flex justify-content-center">
+    <%= form_with model: @user, url: update_information_path do |f| %>
+      <%= f.label :name, "ユーザー名" %>
+      <%= f.text_field :name %>
+      <%= f.label :email, "emailアドレス" %>
+      <%= f.text_field :email %>
+      <%= f.submit "変更", class: "btn btn-outline-success mb-3"  %>
+    <% end %>
+  </div>
+  <div class="row d-flex justify-content-end">
+    <%= link_to "退会する", users_unsubscribe_path, class: "btn btn-outline-dark" %>
+  </div>
 </div>

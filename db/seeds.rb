@@ -13,8 +13,14 @@ admin.save!
 
 # テストデータ
 # User
+admin = User.find_or_create_by!(email: ENV['ADMIN_EMAIL']) do |user|
+  user.name = "admin"
+  user.password = ENV['ADMIN_PASSWORD']
+  user.is_active = true
+end
+
 carrot = User.find_or_create_by!(email: "carrot@example.com") do |user|
-  user.name = "carrot母さん"
+  user.name = "carrot母"
   user.password = "password"
   user.is_active = true
 end
@@ -38,7 +44,7 @@ banana = User.find_or_create_by!(email: "banana@example.com") do |user|
 end
 
 kiwi = User.find_or_create_by!(email: "kiwi@example.com") do |user|
-  user.name = "kiwi父さん"
+  user.name = "kiwi父"
   user.password = "password"
   user.is_active = true
 end
@@ -50,7 +56,7 @@ pumpkin = User.find_or_create_by!(email: "pumpkin@example.com") do |user|
 end
 
 radish = User.find_or_create_by!(email: "radish@example.com") do |user|
-  user.name = "radish母さん"
+  user.name = "radish母"
   user.password = "password"
   user.is_active = true
 end
@@ -74,7 +80,7 @@ bean = User.find_or_create_by!(email: "bean@example.com") do |user|
 end
 
 tomato = User.find_or_create_by!(email: "tomato@example.com") do |user|
-  user.name = "toma父さん"
+  user.name = "toma父"
   user.password = "password"
   user.is_active = true
 end
@@ -136,7 +142,7 @@ GrandPrize.find_or_create_by!(name: "全力泣き") do |grand_prize|
 end
 
 GrandPrize.find_or_create_by!(name: "お手伝い") do |grand_prize|
-  grand_prize.grand_prize_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-g02jpg"), filename:"sample-g02.jpg")
+  grand_prize.grand_prize_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-g02.jpg"), filename:"sample-g02.jpg")
   grand_prize.introduction = "お手伝いしたい気持ちは無下にしたくないけど、家事は早く終わらせたいしキッチンは汚したくない、、、日々葛藤！"
   grand_prize.owner_id = admin.id
 	grand_prize.keyword_1 = 0
@@ -145,7 +151,7 @@ GrandPrize.find_or_create_by!(name: "お手伝い") do |grand_prize|
 end
 
 GrandPrize.find_or_create_by!(name: "予防接種") do |grand_prize|
-  grand_prize.grand_prize_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-g03jpg"), filename:"sample-g03.jpg")
+  grand_prize.grand_prize_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-g03.jpg"), filename:"sample-g03.jpg")
   grand_prize.introduction = "こどものためとはわかっていても、針が刺さるのを見るのは辛い！こどもはもっと辛い？？注射はいつから平気になるのかな？"
   grand_prize.owner_id = admin.id
 	grand_prize.keyword_1 = 0
@@ -154,14 +160,14 @@ GrandPrize.find_or_create_by!(name: "予防接種") do |grand_prize|
 end
 
 GrandPrize.find_or_create_by!(name: "とにかく大好き！") do |grand_prize|
-  grand_prize.grand_prize_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-g04jpg"), filename:"sample-g04.jpg")
+  grand_prize.grand_prize_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-g04.jpg"), filename:"sample-g04.jpg")
   grand_prize.introduction = "電車？〇ンパンマン？絵本？公園？パ〇パトロール？これさえあれば！な心の友達"
   grand_prize.owner_id = admin.id
 	grand_prize.keyword_1 = 0
 end
 
-GrandPrize.find_or_create_by!(name: "何度でも何度でも何度でも♪") do |grand_prize|
-  grand_prize.grand_prize_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-g05jpg"), filename:"sample-g05.jpg")
+GrandPrize.find_or_create_by!(name: "何度でも何度でも♪") do |grand_prize|
+  grand_prize.grand_prize_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-g05.jpg"), filename:"sample-g05.jpg")
   grand_prize.introduction = "鳴りやまないアンコール！今日は何回かしら。今日はとことん付き合おう！"
   grand_prize.owner_id = admin.id
 	grand_prize.keyword_1 = 0
