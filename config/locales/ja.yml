@@ -3,7 +3,7 @@ ja:
     grand_prize:
       keyword_1:
         daily: "デイリー"
-        first_time: "はじめての"
+        first_time: "はじめて"
 
   views:
     pagination:

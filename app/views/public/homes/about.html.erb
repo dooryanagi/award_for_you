@@ -1,83 +1,187 @@
-<div class="mb-10">
-  <h2>CONCEPT</h2>
-  <p>コンセプト</p>
-  <p>たくさんのやらなきゃいけないことがある育児
-  目まぐるしく成長する我が子
-  孤立しがちな現代での子育て
-
-  誰もほめてくれない？？
-  待つのではなく、自分で自分をほめてあげる！同じ境遇の人たちとお互いにほめあう！
-
-  日々の頑張りをアワードとして記録
-  みんなが遭遇する出来事を大賞としてくくりノミネート（安心してください、みなさん大賞を受賞します！）
-  お互いに拍手と賞賛の声を送りあう！
-
-  日々を頑張るわたしたちの心を元気にしてくれるサードプレイスになれますように。</p>
-</div>
-
-
-<div id="how_to_use">
-  <h2>HOW TO USE</h2>
-  <p>このサイトの使い方</p>
-
-  <div class="mb-50">
-    <h3>アワードの受賞</h3>
-    <p>
-      (1)
-      頑張った出来事の写真を選択し、コメント（晴れやかにインタビューに答えるつもりでお願いします！）を記入（写真だけでも受賞は可能です！）
-    　ex.)　離乳食を作って小分けパックで冷凍した！<br>
-
-      (2)ノミネートボタンをクリック<br>
-
-      (3)アワードを受賞しました、おめでとうございます！<br>
-      マイページから、受賞結果をまとめてご確認いただけます。<br>
+<div class="container">
+  <div class="my-5">
+    <h2 class="text-center title">CONCEPT</h2>
+    <p class="text-center">コンセプト</p>
+    <p class="text-center">
+      たくさんのやらなきゃいけないことがある育児<br>
+      目まぐるしく成長する我が子<br>
+      孤立しがちな子育て<br>
     </p>
-
-    受賞は<%= link_to "こちら", new_award_path %>から！
-  </div>
-
-  <div class="mb-50">
-    <h3>大賞にノミネート</h3>
-    <p>
-      (1)大賞一覧からノミネートしたい大賞を選択<br>
-
-      (2)写真とコメント（晴れやかにインタビューに答えるつもりでお願いします！）を記入し、ノミネート！<br>
-
-      (3)大賞が授与されるまで、少々お待ちください、、、<br>
-      大賞の授与は通知でお知らせされます！<br>
-      ※授与まで少々お時間がかかる場合がございます、ご了承ください。<br>
+    <p class="text-center">
+      毎日は、キラキラした出来事ばかりではなく、地道な繰り返しでできている。<br>
+      ここでは、そんな日々をほめあったり、頑張りに対してアワードや大賞を受賞したりすることができます。<br>
+      日々の頑張りを報告しあい、ほめあい、称えあいましょう！
     </p>
-
-    ノミネートには、まず
-    <%= link_to "こちら", grand_prizes_path %>
-    からノミネートする大賞を選択してください！
-  </div>
-
-  <div class="mb-50">
-    <h3>アワードへ拍手を送る</h3>
-    <p>頑張りは称えあうことができます！
-
-    (1)一覧から、素敵だなと思うアワードを選ぶ<br>
-
-    (2)アワード写真下部の拍手マークをクリック<br>
-
-    マイページから、自身が拍手を贈ったアワードを一覧で確認することができます</p>
-  </div>
-
-  <div class="mb-50">
-    <h3>大賞への賞賛の声を送る</h3>
-    <p>大賞へは賞賛の声（コメント）を贈ることができます！
-    (1)大賞一覧から賞賛の声を送りたい大賞を選択<br>
-    (2)賞賛の声を入力し、「紙飛行機」をクリック<br>
-    (3)賞賛の声に追加されます<br>
-    ※賞賛の声は直近10件が表示されます。ご自身の声が表示されている場合は、取り消しが可能です。
+    <p class="text-center">
+      頑張るわたしたちの心を元気にしてくれる、そんなサードプレイスになれますように。
     </p>
   </div>
 
-  <div class="mb-50">
-    <h3>振り返りアルバム</h3>
-    <p>マイページから、「デイリー」と「はじめての」の一覧を確認することができます<br>
-    ご自身の頑張りや我が子の成長の振り返りにご活用ください</p>
+  <div id="how_to_use">
+    <h2 class="text-center title">HOW TO USE</h2>
+    <p class="text-center">つかいかた</p>
+
+    <div class="mb-5">
+      <h5><i class="fa-solid fa-1"></i>  アワードを受賞する</h5>
+      <div class="row d-flex justify-content-center">
+        <div class="col-3 about-box">
+          <p class="text-center about-container"><i class="fa-solid fa-camera"></i></p>
+          <h5 class="text-center mb-3">STEP1 頑張りを撮影</h5>
+          <p>
+            頑張った出来事を撮影！どんな些細なことでも大丈夫です。
+            たとえば、、、『足りなくなったオムツを補充した！』
+          </p>
+        </div>
+        <div class="col-3  about-box mx-5">
+          <p class="text-center about-container"><i class="fa-solid fa-pen-to-square"></i></p>
+          <h5 class="text-center mb-3">STEP2 入力する</h5>
+          <p>
+            写真の選択、受賞インタビューの記入（晴れやかにインタビューに答えるつもりがおすすめです！）、公開非公開の選択、をお願いします。
+          </p>
+        </div>
+        <div class="col-3 about-box">
+          <p class="text-center about-container"><i class="fa-solid fa-medal"></i></p>
+          <h5 class="text-center mb-3">STEP3 アワードを受賞！</h5>
+          <p>
+            おめでとうございます、アワードを受賞されました！アワード一覧やマイページからご確認いただけます。
+          </p>
+        </div>
+      </div>
+      <p class="text-right mt-3">受賞は<%= link_to "こちら", new_award_path %>から！</p>
+    </div>
+
+    <div class="mb-5">
+      <h5><i class="fa-solid fa-2"></i>  アワードに拍手を贈る</h5>
+      <div class="row d-flex justify-content-center">
+        <div class="col-4 about-box">
+          <p class="text-center about-container"><i class="fa-solid fa-list-ul"></i></p>
+          <h5 class="text-center mb-3">STEP1 アワードを選ぶ</h5>
+          <p>
+            一覧から拍手を贈りたいアワードを選びます。「新しい順」「古い順」「拍手が多い順」で並び替えることが可能です。
+          </p>
+        </div>
+        <div class="col-4 about-box mx-5">
+          <p class="text-center about-container"><i class="fa-solid fa-hands-clapping"></i></p>
+          <h5 class="text-center mb-3">STEP2 拍手を贈る</h5>
+          <p>
+            一覧もしくは詳細から拍手を贈りましょう！同じ投稿に対して贈れる拍手は一人ひとつです。
+          </p>
+        </div>
+      </div>
+      <p class="text-right mt-3">アワード一覧は<%= link_to "こちら", awards_path %>から！</p>
+    </div>
+
+    <div class="mb-5">
+      <h5><i class="fa-solid fa-3"></i>  大賞を受賞する</h5>
+      <div class="row d-flex justify-content-center">
+        <div class="col-3 about-box">
+          <p class="text-center about-container"><i class="fa-solid fa-list-ul"></i></p>
+          <h5 class="text-center mb-3">STEP1 大賞を選ぶ</h5>
+          <p>
+            一覧から受賞したい大賞を選びます。大賞は大賞名やキーワードから検索することや、「新しい順」「古い順」「受賞数多い順」「賞賛の声が多い順」で並び替えることが可能です。
+          </p>
+        </div>
+        <div class="col-3  about-box mx-5">
+          <p class="text-center about-container"><i class="fa-solid fa-pen-to-square"></i></p>
+          <h5 class="text-center mb-3">STEP2 入力する</h5>
+          <p>
+            写真の選択、大賞受賞インタビューの記入（晴れやかにインタビューに答えるつもりがおすすめです！）、をお願いします。
+          </p>
+        </div>
+        <div class="col-3 about-box">
+          <p class="text-center about-container"><i class="fa-solid fa-trophy"></i></p>
+          <h5 class="text-center mb-3">STEP3 大賞を受賞！</h5>
+          <p>
+            おめでとうございます、大賞を受賞されました！大賞詳細やマイページからご確認いただけます。
+          </p>
+          <p class="note">
+            ※大賞は受賞まで少々お時間を要する場合がございます。ご了承ください。受賞の際はおしらせにメッセージが届きます。
+          </p>
+        </div>
+      </div>
+      <p class="text-right mt-3">大賞一覧は<%= link_to "こちら", grand_prizes_path %>から！</p>
+    </div>
+
+    <div class="mb-5">
+      <h5><i class="fa-solid fa-4"></i>  大賞に賞賛の声を贈る</h5>
+      <div class="row d-flex justify-content-center">
+        <div class="col-4 about-box">
+          <p class="text-center about-container"><i class="fa-solid fa-list-ul"></i></p>
+          <h5 class="text-center mb-3">STEP1 大賞を選ぶ</h5>
+          <p>
+            一覧から受賞したい大賞を選びます。大賞は大賞名やキーワードから検索することや、「新しい順」「古い順」「受賞数多い順」「賞賛の声が多い順」で並び替えることが可能です。
+          </p>
+        </div>
+        <div class="col-4 about-box mx-5">
+          <p class="text-center about-container"><i class="fa-regular fa-comments"></i></p>
+          <h5 class="text-center mb-3">STEP2 賞賛の声を贈る</h5>
+          <p>
+            共感、ねぎらい、などの賞賛の声を贈りましょう！同じ投稿に対して賞賛の声はいくつでも贈ることができます。また、声は新着の５件が表示されます。表示されているご自身の声は取り消すことができます。
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-5">
+      <h5><i class="fa-solid fa-5"></i>  大賞を立ち上げる</h5>
+      <div class="row d-flex justify-content-center">
+        <div class="col-3 about-box">
+          <p class="text-center about-container"><i class="fa-solid fa-pen-to-square"></i></p>
+          <h5 class="text-center mb-3">STEP1 入力する</h5>
+          <p>
+            一覧から受賞したい大賞がなかった場合は、新たに大賞を立ち上げることも可能です！大賞写真を選び、大賞名、大賞説明を入力します。
+          </p>
+        </div>
+        <div class="col-3  about-box mx-5">
+          <p class="text-center about-container"><i class="fa-solid fa-flag"></i></p>
+          <h5 class="text-center mb-3">STEP2 大賞を設立する</h5>
+          <p>
+            立ち上げに成功すると一覧に追加されます。大賞を設立した方はノミネートした方に大賞を授与したり、大賞を編集・削除※したりすることが可能です。
+          </p>
+          <p class="note">
+            ※編集・削除は受賞者が０人のうちのみ可能です。
+          </p>
+        </div>
+        <div class="col-3 about-box">
+          <p class="text-center about-container"><i class="fa-solid fa-trophy"></i></p>
+          <h5 class="text-center mb-3">STEP3 大賞を授与！</h5>
+          <p>
+            設立した大賞にノミネートした方がいたら大賞の詳細に表示されます。ぜひ、大賞を授与してください！
+          </p>
+          <p class="note">
+            ※ノミネートされた際はおしらせにメッセージが届きます。
+          </p>
+        </div>
+      </div>
+      <p class="text-right mt-3">大賞設立は<%= link_to "こちら", new_grand_prize_path %>から！</p>
+    </div>
+
+    <div class="mb-5">
+      <h5><i class="fa-solid fa-6"></i>  マイページを利用する</h5>
+      <div class="row d-flex justify-content-center">
+        <div class="col-6 about-box">
+          <p class="text-center about-container"><i class="fa-solid fa-user"></i></p>
+          <h5 class="text-center mb-3">ユーザ情報の編集　退会　アワード情報　大賞情報</h5>
+          <p>
+            マイページではユーザーに関わる様々なことができます。ユーザー情報（ユーザ名、メールアドレス）の編集、受賞したアワードや拍手を贈ったアワードの確認、受賞した大賞や設立した大賞の確認、大賞の授与、ノミネートの取り消し、が可能です。
+          </p>
+          <p class="note">
+            ※マイページは登録後から利用可能です。
+          </p>
+        </div>
+      </div>
+      <% if user_signed_in? %>
+        <p class="text-right mt-3">マイページは<%= link_to "こちら", my_page_path %>から！</p>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="first mx-auto my-5">
+    <% unless user_signed_in? %>
+      <%= link_to new_user_registration_path do %>
+        <h3 class="text-center"><span><i class="fa-solid fa-hand-point-right"></i></span>登録して利用開始！</h3>
+      <% end %>
+    <% end %>
   </div>
 
 </div>

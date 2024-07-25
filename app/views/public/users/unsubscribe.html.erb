@@ -1,12 +1,14 @@
-<div class="row d-flex justify-content-center mb-3">
-	<b>
-		退会すると、マイページの使用や編集ができなくなります。<br>
-		退会する場合は、「退会する」をクリックしてください。
-	</b>
-</div>
+<div class="container mt-5">
+	<div class="row d-flex justify-content-center mb-3">
+		<b>
+			退会すると、マイページの使用や編集ができなくなります。<br>
+			退会する場合は、「退会する」をクリックしてください。
+		</b>
+	</div>
 
-<div class="row d-flex justify-content-center">
-	<%= link_to "退会しない", my_page_path(current_user),class: "btn btn-outline-dark mx-5" %>
+	<div class="row d-flex justify-content-center">
+		<%= link_to "退会しない", my_page_path(current_user),class: "btn btn-outline-dark mx-5" %>
 
-	<%= link_to "退会する", users_withdraw_path, method: :patch, data: { confirm: "退会してもよろしいですか？" } ,class: "btn btn-outline-danger mx-5" %>
+		<%= link_to "退会する", users_withdraw_path, method: :patch, data: { confirm: "退会してもよろしいですか？" } ,class: "btn btn-outline-danger mx-5" %>
+	</div>
 </div>

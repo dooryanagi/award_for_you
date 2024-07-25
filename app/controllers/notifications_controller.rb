@@ -10,7 +10,6 @@ class NotificationsController < ApplicationController
       redirect_to grand_prize_path(notification.notifiable.grand_prize.id)
     else
       redirect_to grand_prize_path(notification.notifiable.grand_prize.id)
-
     end
   end
 

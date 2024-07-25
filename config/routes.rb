@@ -28,6 +28,7 @@ Rails.application.routes.draw do
     # 検索機能
     get 'searchs/search'
     get 'searchs/search_by_keyword'
+    get 'searchs/keyword_index'
 
     resources :awards do
       # 拍手は１アワードに対して一つ→id不要

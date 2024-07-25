@@ -7,10 +7,7 @@ class Public::AwardsController < ApplicationController
   end
 
   def create
-    @award = Award.new(award_params)
-    # form_withで送られてこないデータについて指定
-    @award.user_id = current_user.id
-    # save出来れば詳細ページへ、できなければrenderでnewのまま
+    @award = current_user.awards.new(award_params)
     if @award.save
       flash[:notice] = "アワードを受賞されました！おめでとうございます！"
       redirect_to award_path(@award)
@@ -21,27 +18,25 @@ class Public::AwardsController < ApplicationController
   end
 
   def index
+    @user = current_user
     # 本人受賞のアワード（非公開選択でも表示する）
     if params[:user_id]
-      @user = User.find(params[:user_id])
-      @awards = @user.awards.page(params[:page]).per(8)
-
+      @awards = @user.awards.page(params[:page])
     # 拍手したアワード一覧
     elsif params[:applauses]
-      @user = current_user
       applauses = Applause.where(user_id: @user.id).pluck(:award_id)
-      @awards = Award.where(id: applauses).page(params[:page]).per(8)
-
+      @awards = Award.where(id: applauses).page(params[:page])
     # アワード一覧（非公開は表示しない）（並び替えに対応）
     else
-      if params[:sort_by] == 'latest'
-        @awards = Award.where(is_public: true).latest.page(params[:page]).per(8)
-      elsif params[:sort_by] == 'old'
-        @awards = Award.where(is_public: true).old.page(params[:page]).per(8)
-      elsif params[:sort_by] == 'applause_count'
-        @awards = Award.where(is_public: true).applause_count.page(params[:page]).per(8)
+      case params[:sort_by]
+      when 'latest'
+        @awards = Award.display.latest.page(params[:page])
+      when 'old'
+        @awards = Award.display.old.page(params[:page])
+      when 'applause_count'
+        @awards = Award.display.applause_count.page(params[:page])
       else
-        @awards = Award.where(is_public: true).page(params[:page]).latest.per(8)
+        @awards = Award.display.latest.page(params[:page])
       end
     end
   end
@@ -56,7 +51,6 @@ class Public::AwardsController < ApplicationController
 
   def update
     @award = Award.find(params[:id])
-    # update出来れば詳細ページへ、できなければrenderでeditのまま
     if @award.update(award_params)
       flash[:notice] = "アワードの編集が完了しました"
       redirect_to award_path(@award)
@@ -68,7 +62,6 @@ class Public::AwardsController < ApplicationController
 
   def destroy
     @award = Award.find(params[:id])
-    # destroy出来れば一覧ページへ、できなければrenderでshowのまま、は可能？
     if @award.destroy
       redirect_to awards_path
     else
@@ -82,7 +75,6 @@ class Public::AwardsController < ApplicationController
     params.require(:award).permit(:user_id, :comment, :is_public, :award_image)
   end
 
-  # 本人を確認するメソッド
   def is_matching_login_user
     award = Award.find(params[:id])
     user_id = award.user_id
@@ -90,6 +82,5 @@ class Public::AwardsController < ApplicationController
       redirect_back fallback_location: awards_path
     end
   end
-
 
 end

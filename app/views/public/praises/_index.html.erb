@@ -1,0 +1,10 @@
+<% grand_prize.praises.order(created_at: :desc).limit(5).each do |praise| %>
+	<div class="row d-flex justify-content-center mt-3">
+		『<%= praise.comment %>』
+		<% if user_signed_in? && praise.user_id == current_user.id %>
+			<%= link_to grand_prize_praise_path(praise.grand_prize, praise), method: :delete, class: "btn btn-outline-danger btn-sm", remote: true do %>
+				<i class="fa-solid fa-trash-can"></i>
+			<% end %>
+		<% end %>
+	</div>
+<% end %>

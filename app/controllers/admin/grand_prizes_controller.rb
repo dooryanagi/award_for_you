@@ -20,8 +20,6 @@ class Admin::GrandPrizesController < ApplicationController
 
   def show
     @grand_prize = GrandPrize.find(params[:id])
-    # @events = @grand_prize.events.all
-    # @waiting_events = @grand_prize.waiting_events.all
   end
 
   def edit

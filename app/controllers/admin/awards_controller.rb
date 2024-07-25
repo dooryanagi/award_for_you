@@ -3,19 +3,16 @@ class Admin::AwardsController < ApplicationController
 
   def index
     @awards = Award.all
-
-    if params[:sort_by] == 'latest'
-      @awards = Award.page(params[:page]).latest
-    elsif params[:sort_by] == 'old'
-      @awards = Award.page(params[:page]).old
-    elsif params[:sort_by] == 'applause_count'
-      @awards = Award.page(params[:page]).applause_count
+    case params[:sort_by]
+    when 'latest'
+      @awards = Award.latest.page(params[:page])
+    when 'old'
+      @awards = Award.old.page(params[:page])
+    when 'applause_count'
+      @awards = Award.applause_count.page(params[:page])
     else
       @awards = Award.page(params[:page])
     end
-  end
-
-  def show
   end
 
   def destroy

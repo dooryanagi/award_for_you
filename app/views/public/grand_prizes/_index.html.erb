@@ -1,24 +1,33 @@
 <div class="row row-cols-3">
 	<% grand_prizes.each do |grand_prize| %>
 		<div class="col gp-container mb-5">
-			<div class="text-center fw-bold">
-				<%= grand_prize.name %>大賞
-			</div>
+			<h5 class="text-center gp-title">
+				<span><%= grand_prize.name %>大賞</span>
+			</h5>
 			<div class="d-flex justify-content-center">
 				<%= image_tag grand_prize.get_grand_prize_image(200,160) %>
 			</div>
-			<div class="comment">
-				<%= grand_prize.introduction %>
-			</div>
-			<div class="row">
-				<div class="col-4"><%= "#"+ grand_prize.keyword_1_i18n %></div>
-				<div class="col-4"><%= grand_prize.keyword_2.present? ? "#" + grand_prize.keyword_2 : "" %></div>
-				<div class="col-4"><%= grand_prize.keyword_3.present? ? "#" + grand_prize.keyword_3 : "" %></div>
-			</div>
-			<div class="row">
-				<div class="col-6"><i class="fa-regular fa-comment"></i><%= grand_prize.praises.count %></div>
-				<div class="col-6"><i class="fa-solid fa-trophy"></i><%= grand_prize.events.count %></div>
-			</div>
+
+			<table class="table my-2">
+				<tr>
+					<td colspan="3" class="height">
+						<%= grand_prize.introduction %>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<%= link_to searchs_search_by_keyword_path(keyword_1: grand_prize.keyword_1, keyword: "") do %>
+							<%= "#"+ grand_prize.keyword_1_i18n %>
+						<% end %>
+					</td>
+					<td><%= grand_prize.keyword_2.present? ? "#" + grand_prize.keyword_2 : "" %></td>
+					<td><%= grand_prize.keyword_3.present? ? "#" + grand_prize.keyword_3 : "" %></td>
+				</tr>
+				<tr>
+					<td colspan="3"><i class="fa-regular fa-comment"></i><%= grand_prize.praises.count %> | <i class="fa-solid fa-trophy"></i><%= grand_prize.events.count %></td>
+				</tr>
+			</table>
+
 			<div class="row d-flex justify-content-center">
 				<%= link_to "この大賞を受賞 / 詳細", grand_prize_path(grand_prize.id), class: "btn btn-outline-dark mb-3" %>
 			</div>
