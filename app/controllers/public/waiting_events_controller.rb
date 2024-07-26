@@ -24,6 +24,9 @@ class Public::WaitingEventsController < ApplicationController
 		redirect_to my_page_path(params[:grand_prize_id])
   end
 
+  def congratulations
+  end
+
   private
 
   def waiting_event_params

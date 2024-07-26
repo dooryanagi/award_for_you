@@ -1,4 +1,4 @@
-# award for all
+# AWARD FOR YOU
 
 ## サイト概要
 
@@ -29,10 +29,10 @@
 - ふと、もう大きくなった子供の小さい時の思い出がよみがえってきたとき
 ​
 ## 設計書
-- ULフロー図
-- ワイヤーフレーム
-- テーブル設計書
-- アプリケーション詳細設計書
+- [ ULフロー図 ](https://app.diagrams.net/#G1egRZsf9goaXpPlkSF_X4x5BKg0KqZmuM#%7B%22pageId%22%3A%22vM_IINC7GvCu65bmRso6%22%7D)
+- [ ER図 ](https://app.diagrams.net/#G1GkH-bjAuObEUnXnBFJ5eA8Ljpb3CH6jq#%7B%22pageId%22%3A%22R2lEEEUBdFMjLlhIrx00%22%7D)
+- [ テーブル定義書 ](https://docs.google.com/spreadsheets/d/10KsQRCorEq2EjdCFqAJHkodJjF2AwNHJOZSbTngyhWU/edit?gid=2018117380#gid=2018117380)
+- [ アプリケーション詳細設計書【要修正】 ](https://docs.google.com/spreadsheets/d/1eX3RK9tPRO7JskbN145NVe73VDO5KBbRvLUcWc_5gmI/edit?gid=906767343#gid=906767343)
 ​
 ## 開発環境
 （使用状況に合わせて修正）

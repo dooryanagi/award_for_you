@@ -9,6 +9,12 @@ class Admin::GrandPrizesController < ApplicationController
     @admin = current_admin
     @grand_prize = GrandPrize.new(grand_prize_params)
     @grand_prize.owner_id = @admin.id
+    if grand_prize_params[:keyword_2].blank?
+      @grand_prize.keyword_2 = nil
+    end
+    if grand_prize_params[:keyword_3].blank?
+      @grand_prize.keyword_3 = nil
+    end
     if @grand_prize.save
       flash[:notice] = "大賞が設立できました。"
       redirect_to admin_path
