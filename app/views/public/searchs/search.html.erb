@@ -1,5 +1,5 @@
 <div class="container my-3">
-	<h2>『<%= @content %>』を含む大賞は<%= @records.count %>件でした</h2>
+	<h2>『<%= @content %>』を含む大賞は<%= @all_records.count %>件でした</h2>
 
 	<%= render 'public/grand_prizes/index', grand_prizes: @records %>
 </div>

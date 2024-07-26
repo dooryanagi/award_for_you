@@ -49,6 +49,9 @@ Rails.application.routes.draw do
     end
   end
 
+  # 通知
+  resources :notifications, only: [:update]
+
   # 管理者
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
     sessions: "admin/sessions"
@@ -56,24 +59,21 @@ Rails.application.routes.draw do
 
   namespace :admin do
 	   get '/' => 'homes#top'
-	   resources :users, only: [:index, :show] do
+	   resources :users, only: [:index] do
 	    collection do
         patch 'withdraw'
       end
     end
-    resources :awards, only: [:index, :show, :destroy]
+    resources :awards, only: [:index, :destroy]
     resources :grand_prizes, except: [:index] do
-	    resources :praises, only: [:destroy, :create, :edit, :update]
+	    resources :praises, only: [:destroy]
 	    resources :waiting_events, only: [:index, :destroy]
-      resources :events, only: [:index, :show, :destroy, :create] do
+      resources :events, only: [:destroy, :create] do
         collection do
           post 'create_all'
         end
       end
 	  end
   end
-
-  # 通知
-  resources :notifications, only: [:update]
 
 end
