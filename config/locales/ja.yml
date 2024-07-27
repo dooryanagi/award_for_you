@@ -224,10 +224,14 @@ ja:
         updated_at: 更新日
       award:
         award_image: アワード写真
+        comment: 受賞インタビュー
       grand_prize:
         name: 大賞名
         introduction: 大賞の説明
         grand_prize_image: 大賞のイメージ画像
+      waiting_event:
+        image: 大賞写真
+        comment: 大賞インタビュー
     models:
       user: ユーザー
       award: アワード
