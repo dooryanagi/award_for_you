@@ -1,7 +1,7 @@
 class Public::HomesController < ApplicationController
 
   def top
-    @awards = Award.where(is_public: true).latest
+    @awards = Award.display.latest
     @grand_prizes = GrandPrize.latest
   end
 

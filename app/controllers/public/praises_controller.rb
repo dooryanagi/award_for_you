@@ -11,6 +11,7 @@ class Public::PraisesController < ApplicationController
 
 	def destroy
 		Praise.find(params[:id]).destroy
+		@grand_prize = GrandPrize.find(params[:grand_prize_id])
 		render :destroy
 	end
 

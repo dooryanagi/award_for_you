@@ -10,6 +10,7 @@ class Event < ApplicationRecord
 
   # バリデーション
 	validates :image, presence: true, blob: { content_type: :image }
+	
 
   # 画像サイズの変更
   def get_image(width,height)
@@ -20,5 +21,14 @@ class Event < ApplicationRecord
   after_save do
     create_notification(user_id: self.user_id)
   end
+
+	def self.create_event(waiting_event,grand_prize)
+  	event = Event.new
+  	event.user_id = waiting_event.user_id
+  	event.grand_prize_id = grand_prize.id
+  	event.image.attach(waiting_event.image.blob)
+  	event.comment = waiting_event.comment
+  	event.save
+	end
 
 end
