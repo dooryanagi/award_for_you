@@ -2,52 +2,17 @@
 
 	<h2>キーワード一覧</h2>
 
-	<table class="table my-5 table-bordered">
-		<thead>
-			<tr>
-				<th class="table-dark ">
-					<%= link_to "＃デイリー", searchs_search_by_keyword_path(keyword_1: "daily", keyword: ""), class: "title-link" %>
-				</th>
-			</tr>
-		</thead>
-		<tdody>
-			<tr>
-				<td>
-					<% @daily_grand_prizes.each do |grand_prize| %>
-					  <% grand_prize_keywords = [grand_prize.keyword_2, grand_prize.keyword_3].compact %>
-					  <% grand_prize_keywords.each do |keyword| %>
-					    <%= link_to searchs_search_by_keyword_path(keyword_1: grand_prize.keyword_1, keyword: keyword), class: "link" do %>
-					      ＃<%= keyword %>
-					    <% end %>
-					  <% end %>
-					<% end %>
-				</td>
-			</tr>
-		</tdody>
-	</table>
+	<div class="keyword-box p-3 my-3">
+		<%= link_to "＃デイリー", searchs_search_by_keyword_path(keyword: "daily"), class: "link"%>
+		<%= link_to "＃はじめて", searchs_search_by_keyword_path(keyword: "first_time"), class: "link"%>
 
-	<table class="table my-5 table-bordered">
-		<thead class="table-dark">
-			<tr>
-				<th>
-					<%= link_to "＃はじめて", searchs_search_by_keyword_path(keyword_1: "first_time", keyword: ""), class: "title-link" %>
-				</th>
-			</tr>
-		</thead>
-		<tdody>
-			<tr>
-				<td>
-					<% @first_time_grand_prizes.each do |grand_prize| %>
-					  <% grand_prize_keywords = [grand_prize.keyword_2, grand_prize.keyword_3].compact %>
-					  <% grand_prize_keywords.each do |keyword| %>
-					    <%= link_to searchs_search_by_keyword_path(keyword_1: grand_prize.keyword_1, keyword: keyword), class: "link" do %>
-					      ＃<%= keyword %>
-					    <% end %>
-					  <% end %>
-					<% end %>
-				</td>
-			</tr>
-		</tdody>
-	</table>
-
+		<% @grand_prizes.each do |grand_prize| %>
+		  <% grand_prize_keywords = [grand_prize.keyword_2, grand_prize.keyword_3].compact %>
+		  <% grand_prize_keywords.each do |keyword| %>
+		    <%= link_to searchs_search_by_keyword_path(keyword: keyword), class: "link" do %>
+		      ＃<%= keyword %>
+		    <% end %>
+		  <% end %>
+		<% end %>
+	</div>
 </div>

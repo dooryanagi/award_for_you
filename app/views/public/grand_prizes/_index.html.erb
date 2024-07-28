@@ -16,12 +16,24 @@
 				</tr>
 				<tr>
 					<td>
-						<%= link_to searchs_search_by_keyword_path(keyword_1: grand_prize.keyword_1, keyword: "") do %>
-							<%= "#"+ grand_prize.keyword_1_i18n %>
-						<% end %>
+					  <%= link_to searchs_search_by_keyword_path(keyword: grand_prize.keyword_1) do %>
+					    <%= "#"+ grand_prize.keyword_1_i18n %>
+					  <% end %>
 					</td>
-					<td><%= grand_prize.keyword_2.present? ? "#" + grand_prize.keyword_2 : "" %></td>
-					<td><%= grand_prize.keyword_3.present? ? "#" + grand_prize.keyword_3 : "" %></td>
+					<td>
+					  <% if grand_prize.keyword_2.present? %>
+					    <%= link_to searchs_search_by_keyword_path(keyword: grand_prize.keyword_2) do %>
+					      #<%= grand_prize.keyword_2 %>
+					    <% end %>
+					  <% end %>
+					</td>
+					<td>
+					  <% if grand_prize.keyword_3.present? %>
+					    <%= link_to searchs_search_by_keyword_path(keyword: grand_prize.keyword_3) do %>
+					      #<%= grand_prize.keyword_3 %>
+					    <% end %>
+					  <% end %>
+					</td>
 				</tr>
 				<tr>
 					<td colspan="3"><i class="fa-regular fa-comment"></i><%= grand_prize.praises.count %> | <i class="fa-solid fa-trophy"></i><%= grand_prize.events.count %></td>
