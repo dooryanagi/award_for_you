@@ -21,11 +21,11 @@ class Public::AwardsController < ApplicationController
     @user = current_user
     # 本人受賞のアワード（非公開選択でも表示する）
     if params[:user_id]
-      @awards = @user.awards.page(params[:page])
+      @awards = @user.awards.page(params[:page]).latest
     # 拍手したアワード一覧
     elsif params[:applauses]
       applauses = Applause.where(user_id: @user.id).pluck(:award_id)
-      @awards = Award.where(id: applauses).page(params[:page])
+      @awards = Award.where(id: applauses).page(params[:page]).latest
     # アワード一覧（非公開は表示しない）（並び替えに対応）
     else
       case params[:sort_by]
