@@ -16,20 +16,20 @@
 				</tr>
 				<tr>
 					<td>
-					  <%= link_to searchs_search_by_keyword_path(keyword: grand_prize.keyword_1) do %>
+					  <%= link_to searchs_search_by_keyword_path(keyword: grand_prize.keyword_1), class: "link" do %>
 					    <%= "#"+ grand_prize.keyword_1_i18n %>
 					  <% end %>
 					</td>
 					<td>
 					  <% if grand_prize.keyword_2.present? %>
-					    <%= link_to searchs_search_by_keyword_path(keyword: grand_prize.keyword_2) do %>
+					    <%= link_to searchs_search_by_keyword_path(keyword: grand_prize.keyword_2), class: "link" do %>
 					      #<%= grand_prize.keyword_2 %>
 					    <% end %>
 					  <% end %>
 					</td>
 					<td>
 					  <% if grand_prize.keyword_3.present? %>
-					    <%= link_to searchs_search_by_keyword_path(keyword: grand_prize.keyword_3) do %>
+					    <%= link_to searchs_search_by_keyword_path(keyword: grand_prize.keyword_3), class: "link" do %>
 					      #<%= grand_prize.keyword_3 %>
 					    <% end %>
 					  <% end %>
