@@ -3,8 +3,8 @@
 	<h2>キーワード一覧</h2>
 
 	<div class="keyword-box p-3 my-3">
-		<%= link_to "＃デイリー", searchs_search_by_keyword_path(keyword: "daily"), class: "link"%>
-		<%= link_to "＃はじめて", searchs_search_by_keyword_path(keyword: "first_time"), class: "link"%>
+		<%= link_to "＃デイリー", searchs_search_by_keyword_path(keyword: "daily"), class: "link bold"%>
+		<%= link_to "＃はじめて", searchs_search_by_keyword_path(keyword: "first_time"), class: "link bold"%>
 
 		<% @grand_prizes.each do |grand_prize| %>
 		  <% grand_prize_keywords = [grand_prize.keyword_2, grand_prize.keyword_3].compact %>
