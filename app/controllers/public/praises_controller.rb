@@ -6,10 +6,13 @@ class Public::PraisesController < ApplicationController
 		@praise = current_user.praises.new(praise_params)
 		@praise.grand_prize_id = @grand_prize.id
 		@praise.save
+		render :create
 	end
 
 	def destroy
 		Praise.find(params[:id]).destroy
+		@grand_prize = GrandPrize.find(params[:grand_prize_id])
+		render :destroy
 	end
 
 	private

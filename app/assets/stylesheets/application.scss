@@ -53,6 +53,12 @@ footer {
   text-color: #000000;
   border-color: #747474;
 }
+.page-item.active .page-link {
+    z-index: 3;
+    color: #fff;
+    background-color: #747474;
+    border-color: #747474;
+}
 
 .pagination>li>a:hover {
   text-color: #000000;

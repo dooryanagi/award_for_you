@@ -34,8 +34,13 @@ class GrandPrize < ApplicationRecord
   def self.search_for(content)
      GrandPrize.where('name LIKE ?', '%' + content + '%')
   end
-	def self.search_by_keyword_for(keyword_1, keyword)
-    GrandPrize.where(keyword_1: keyword_1).merge(GrandPrize.where('keyword_2 LIKE ?','%' + keyword + '%').or(GrandPrize.where('keyword_3 LIKE ?','%' + keyword + '%')))
+	def self.search_by_keyword_for(keyword)
+		if keyword == "デイリー"
+			keyword = "daily"
+		elsif keyword == "はじめて"
+			keyword = "first_time"
+		end
+	  GrandPrize.where(keyword_1: GrandPrize.keyword_1s[keyword]).or(GrandPrize.where('keyword_2 LIKE ?','%' + keyword + '%')).or(GrandPrize.where('keyword_3 LIKE ?','%' + keyword + '%'))
 	end
 
 end

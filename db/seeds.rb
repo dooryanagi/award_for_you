@@ -385,7 +385,7 @@ Event.find_or_create_by!(user: bean) do |event|
 end
 
 Event.find_or_create_by!(user: tomato) do |event|
-  event.image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-e041.jpg"), filename:"sample-e041.jpg")
+  event.image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-e042.jpg"), filename:"sample-e042.jpg")
   event.grand_prize_id = 4
   event.comment = "めんめん大好き！！"
 end

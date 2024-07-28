@@ -1,5 +1,5 @@
 <%= form_with model: [grand_prize, praise], local: false do |f| %>
-	<%= f.text_area :comment, id: "comment_textarea" %>
+	<%= f.text_field :comment %>
 	<%= button_tag type: "submit", class: "btn btn-sm btn-info" do %>
 		<i class="fa-regular fa-paper-plane"></i>
 	<% end %>

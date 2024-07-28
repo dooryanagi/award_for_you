@@ -25,6 +25,9 @@
 				<%= link_to "この大賞を受賞する", new_grand_prize_waiting_event_path(grand_prize_id: @grand_prize.id), class: "btn btn-outline-dark btn-block"%>
 			</div>
 	  </div>
+
+	  <div class="col-1"></div>
+
 	  <div class="col-5 px-3 my-5">
 				<h5 class="text-center">大賞を受賞した皆さん　<i class="fa-solid fa-user"></i> <%= @grand_prize.events.count %></h5>
 
@@ -41,12 +44,12 @@
 				<% end %>
 			</div>
 
-			<div class="mb-3">
-				<h5 class="text-center" id="comment-counter"><%= render 'public/praises/counter', grand_prize: @grand_prize %></h5>
+			<div>
+				<h5 class="text-center comments-count"><%= render 'public/praises/counter', grand_prize: @grand_prize %></h5>
 				<div class="row d-flex justify-content-center">
 					<%= render 'public/praises/form', grand_prize: @grand_prize, praise: @praise %>
 				</div>
-				<div id="comment-index">
+				<div id="comments-index">
 					<%= render 'public/praises/index', grand_prize: @grand_prize %>
 				</div>
 			</div>

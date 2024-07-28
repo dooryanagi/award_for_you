@@ -10,6 +10,7 @@ class WaitingEvent < ApplicationRecord
 
   # バリデーション
 	validates :image, presence: true, blob: { content_type: :image }
+	validates :comment, presence: true, length: { maximum: 150 }
 
   # 画像サイズの変更
   def get_image(width,height)
