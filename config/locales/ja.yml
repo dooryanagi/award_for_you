@@ -195,7 +195,7 @@ ja:
         restrict_dependent_destroy:
           has_one: "%{record}が存在しているので削除できません"
           has_many: "%{record}が存在しているので削除できません"
-        taken: "このEメールはすでに使われています"
+        taken: "すでに使われています"
         blank: "必須です"
     attributes:
       user:
