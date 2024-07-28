@@ -9,6 +9,7 @@ class Award < ApplicationRecord
 
   # バリデーション
 	validates :award_image, presence: true, blob: { content_type: :image }
+  validates :comment, presence: true, length: { maximum: 150 }
 
   # scope
   scope :latest, -> {order(created_at: :desc)}

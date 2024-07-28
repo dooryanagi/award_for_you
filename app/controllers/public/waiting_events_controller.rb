@@ -11,9 +11,10 @@ class Public::WaitingEventsController < ApplicationController
     @waiting_event.user_id = current_user.id
     @waiting_event.grand_prize_id = params[:waiting_event][:grand_prize_id]
     if @waiting_event.save
-      flash[:notice] = "大賞へのノミネートが完了しました"
       redirect_to congratulations_grand_prize_waiting_events_path
     else
+      @grand_prize = GrandPrize.find(params[:waiting_event][:grand_prize_id])
+      flash.now[:alert] = "大賞へノミネートできませんでした。必須項目を確認してください。"
       render :new
     end
   end
@@ -22,6 +23,9 @@ class Public::WaitingEventsController < ApplicationController
 		WaitingEvent.find(params[:id]).destroy
 		flash[:notice] = "大賞を辞退しました"
 		redirect_to my_page_path(params[:grand_prize_id])
+  end
+
+  def congratulations
   end
 
   private

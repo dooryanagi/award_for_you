@@ -1,10 +1,6 @@
 <div class="container my-3">
 	<h2>
-		『<%= I18n.t('enums.grand_prize.keyword_1.' + @keyword_1) %>』
-
-		<% if @keyword.present? %>
-			『<%= @keyword %>』
-		<% end %>
+		『<%= @keyword %>』
 
 		を含む大賞は<%= @all_records.count %>件でした
 	</h2>

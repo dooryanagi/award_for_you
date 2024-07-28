@@ -1,3 +1,17 @@
 // Place all the styles related to the public/searchs controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+.link {
+  text-decoration: underline;
+  color: #555555 ;
+  margin-right: 1rem;
+}
+
+.title-link {
+	color: #fff ;
+}
+
+.keyword-box {
+  border: 2px solid #747474;
+}

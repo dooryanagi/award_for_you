@@ -1,7 +1,7 @@
 <div>
   <%= form_with url: searchs_search_path, method: :get do |f| %>
     大賞名検索：<%= f.text_field :content %>
-    <%= button_tag type: "submit", class: "btn  btn-sm btn-info" do %>
+    <%= button_tag type: "submit", class: "btn  btn-sm btn-dark" do %>
       <i class="fa-solid fa-magnifying-glass"></i>
     <% end %>
   <% end %>
@@ -9,9 +9,8 @@
 
 <div class="ml-3">
   <%= form_with url: searchs_search_by_keyword_path, method: :get do |f| %>
-    キーワード検索：<%= f.select :keyword_1, GrandPrize.keyword_1s.keys.map {|k| [I18n.t("enums.grand_prize.keyword_1.#{k}"), k]} %>
-    <%= f.text_field :keyword %>
-    <%= button_tag type: "submit", class: "btn  btn-sm btn-info" do %>
+    キーワード検索：<%= f.text_field :keyword %>
+    <%= button_tag type: "submit", class: "btn  btn-sm btn-dark" do %>
       <i class="fa-solid fa-magnifying-glass"></i>
     <% end %>
   <% end %>
