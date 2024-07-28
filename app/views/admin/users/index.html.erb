@@ -59,7 +59,7 @@
 					<%= user.is_active ? '有効' : '退会' %>
 				</td>
 				<td>
-					<% if user.is_active == true && user.name != "guest_user" %>
+					<% if user.is_active == true && user.name != "guest_user" && user.name != "admin" %>
 						<%= link_to "退会", withdraw_admin_users_path(user_id: user.id), method: :patch, data: { confirm: "管理者権限で退会させますか？" }, class: "btn btn-danger" %>
 					<% end %>
 				</td>
@@ -71,5 +71,5 @@
 	<div class="row d-flex justify-content-center">
 		<%= paginate @users, theme: 'bootstrap-5' %>
 	</div>
-	
+
 </div>

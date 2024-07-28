@@ -9,14 +9,16 @@
 		<% end %>
 	</div>
 
-	<div class="row my-4 p-3 search">
-		<div class="col-9 d-flex justify-content-between">
-			<%= render 'public/searchs/form' %>
+	<% unless params[:event] || params[:grand_prize] %>
+		<div class="row my-4 p-3 search">
+			<div class="col-9 d-flex justify-content-between">
+				<%= render 'public/searchs/form' %>
+			</div>
+			<div class="col-3">
+				<%= link_to "キーワード一覧", searchs_keyword_index_path, class: "btn btn-outline-dark btn-block" %>
+			</div>
 		</div>
-		<div class="col-3">
-			<%= link_to "キーワード一覧", searchs_keyword_index_path, class: "btn btn-outline-dark btn-block" %>
-		</div>
-	</div>
+	<% end %>
 
 	<div class="row d-flex justify-content-between px-5 mt-5">
 		<div>

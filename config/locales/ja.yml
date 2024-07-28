@@ -197,6 +197,12 @@ ja:
           has_many: "%{record}が存在しているので削除できません"
         taken: "すでに使われています"
         blank: "必須です"
+      models:
+        user:
+          attributes:
+            name:
+              too_short: "短すぎます。2文字以上で登録してください。"
+              too_long: "長すぎます。20文字以下で登録してください。"
     attributes:
       user:
         confirmation_sent_at: パスワード確認送信時刻
@@ -232,6 +238,10 @@ ja:
       waiting_event:
         image: 大賞写真
         comment: 大賞インタビュー
+      user:
+        name: ユーザー名
+        email: メールアドレス
+        password: パスワード
     models:
       user: ユーザー
       award: アワード
