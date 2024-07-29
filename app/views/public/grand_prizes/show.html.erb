@@ -59,12 +59,12 @@
 	<% if user_signed_in? && @grand_prize.owner_id == current_user.id %>
 		<h5><%= current_user.name %>さんはこの大賞の設立者です。</h5>
 		<% if @grand_prize.waiting_events.present? %>
-			<div class="row">
+			<div class="row d-flex justify-content-between mt-3">
 				<h5>受賞待ちが<%= @grand_prize.waiting_events.count %>件あります。大賞の授与をお願いします！</h5>
 				<%= link_to "みんなに大賞を授与する", create_all_grand_prize_events_path(@grand_prize), method: :post, class: "btn btn-outline-danger" %>
 			</div>
 
-			<div class="row">
+			<div class="row my-3">
 				<table class="table">
 					<tbody>
 						<% @grand_prize.waiting_events.each do |waiting_event| %>
@@ -73,9 +73,11 @@
 								<%= image_tag waiting_event.get_image(80,80) %>
 							</td>
 							<td>
+								<%= waiting_event.user.name %>
+							<td>
 								<%= waiting_event.comment %>
 							</td>
-							<td>
+							<td class="text-right">
 								<%= link_to "大賞授与", grand_prize_events_path(@grand_prize, waiting_event_id: waiting_event.id), method: :post, class: "btn btn-outline-success" %>
 							</td>
 						</tr>

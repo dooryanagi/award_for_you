@@ -89,32 +89,45 @@
           承認待ちはありません。
         <% end %>
 
-        <table>
+        <table class="table">
           <% @grand_prizes.each do |grand_prize| %>
             <% if grand_prize.waiting_events.present? %>
-            <tr>
-              <td>
-                <%= grand_prize.name %>大賞<%= link_to grand_prize_path(grand_prize.id), class: "btn btn-outline-danger btn-sm" do %>
-                  <i class="fa-solid fa-trophy"></i>授与
-                <% end %>
-              </td>
-            </tr>
+              <tr>
+                <td>
+                  <%= grand_prize.name %>大賞
+                </td>
+                <td>
+                  <%= link_to grand_prize_path(grand_prize.id), class: "btn btn-outline-danger btn-sm" do %>
+                    <i class="fa-solid fa-trophy"></i>授与
+                  <% end %>
+                </td>
+              </tr>
             <% end %>
-          </table>
-        <% end %>
+          <% end %>
+        </table>
 
       <% else %>
         <p>未設立</p>
       <% end %>
 
       <h4 class="mt-3"><i class="fa-solid fa-trophy"></i>大賞へのノミネート</h4>
-      <% if @user.waiting_events.present? %>
-        <% @user.waiting_events.each do |waiting_event| %>
-          <%= waiting_event.grand_prize.name %>大賞<%= link_to "辞退", grand_prize_waiting_event_path(waiting_event.grand_prize, waiting_event), method: :delete, class: "btn btn-outline-danger btn-sm" %><br>
+      <table class="table">
+        <% if @user.waiting_events.present? %>
+          <% @user.waiting_events.each do |waiting_event| %>
+            <tr>
+              <td>
+                <%= waiting_event.grand_prize.name %>大賞
+              </td>
+              <td>
+                <%= link_to "辞退", grand_prize_waiting_event_path(waiting_event.grand_prize, waiting_event), method: :delete, class: "btn btn-outline-danger btn-sm" %><br>
+              </td>
+            </tr>
+          <% end %>
+        </tr>
+        <% else %>
+          <p>ノミネート中の大賞はありません</p>
         <% end %>
-      <% else %>
-        <p>ノミネート中の大賞はありません</p>
-      <% end %>
+      </table>
     </div>
   </div>
 </div>

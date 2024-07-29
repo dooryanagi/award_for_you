@@ -1,5 +1,5 @@
 class Public::GrandPrizesController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, except: [:index, :show, :new]
   before_action :is_matching_owner, only: [:edit, :update, :destroy]
 
   def new
