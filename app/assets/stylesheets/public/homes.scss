@@ -60,7 +60,7 @@
   height: 40%;
   background-color: rgba( 0, 0, 0, 0.5);
   text-align: center;
-  margin-top: 30px;
+  margin-top: 150px;
   padding-top: 30px;
 }
 
@@ -96,3 +96,35 @@ h3 span {
   width: 60%;
 }
 
+@media screen and (max-width: 425px) {
+  .main-visual {
+    width: 100%;
+    background-position: top center;
+  }
+
+  .afy {
+    font-size: 50px;
+  }
+
+  .top-box {
+    height: 50%;
+    margin-top: 250px;
+  }
+
+  .first {
+    font-size: 10px;
+    width: 100%;
+}
+
+  .title {
+  border-bottom: 5px solid #000;
+  width: 80%;
+  // display: inline-block;
+  // padding-bottom: 30px;
+  margin: 0 auto;
+}
+
+  .img-trim {
+    margin-bottom: 5px;
+  }
+}
