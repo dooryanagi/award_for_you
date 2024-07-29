@@ -41,7 +41,7 @@
 - 大賞はすでにあるものにエントリーすることもできますし、自身で立ち上げることもできます。
 - 大賞を立ち上げた場合は、自身が大賞の設立者として他の方のノミネートに対して大賞を授与することができます。
 
-- マイページから自身のアワードや拍手を贈ったアワード、受賞した大賞、設立した大賞、ノミネート管理をすることができます。 
+- マイページから自身のアワードや拍手を贈ったアワード、受賞した大賞、設立した大賞、ノミネート管理をすることができます。
 
 
 #### 会員画面
@@ -57,6 +57,7 @@
 - [ ER図 ](https://app.diagrams.net/#G1GkH-bjAuObEUnXnBFJ5eA8Ljpb3CH6jq#%7B%22pageId%22%3A%22R2lEEEUBdFMjLlhIrx00%22%7D)
 - [ テーブル定義書 ](https://docs.google.com/spreadsheets/d/10KsQRCorEq2EjdCFqAJHkodJjF2AwNHJOZSbTngyhWU/edit?gid=2018117380#gid=2018117380)
 - [ アプリケーション詳細設計書 ](https://docs.google.com/spreadsheets/d/1eX3RK9tPRO7JskbN145NVe73VDO5KBbRvLUcWc_5gmI/edit?gid=906767343#gid=906767343)
+- [ テスト仕様書 ](https://docs.google.com/spreadsheets/d/1A1OlcHeP7gHicXZ550HddY4yGJYvM8ET/edit?gid=890261234#gid=890261234)
 ​
 ## 開発環境
 - OS：Linux(CentOS)
@@ -66,7 +67,4 @@
 - IDE：Cloud9
 ​
 ## 使用素材
-- gem：devise / kaminari / bootstrap5-kaminari-views / image_processing / activestorage-validator / enum_help / rails-i18n / dotenv-rails / mysql2 / net-smtp / net-pop / net-imap
-- Bootstrap
-- [ 実装機能リスト ](https://docs.google.com/spreadsheets/d/1QrLY5_aXKrg0dv0VJqBIzQ5fwJNYz9gdWRfl8DUg68w/edit?gid=885378170#gid=885378170)
-- [ テスト仕様書 ](https://docs.google.com/spreadsheets/d/1A1OlcHeP7gHicXZ550HddY4yGJYvM8ET/edit?gid=890261234#gid=890261234)
+- ロゴの作成 : canva.com
