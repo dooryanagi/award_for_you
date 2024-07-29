@@ -5,6 +5,7 @@ class Public::EventsController < ApplicationController
   def show
     @grand_prize = GrandPrize.find(params[:grand_prize_id])
     @event = @grand_prize.events.find(params[:id])
+    @user = @event.user
   end
 
   def create

@@ -24,7 +24,7 @@
     <div class="mb-5">
       <h5><i class="fa-solid fa-1"></i>  アワードを受賞する</h5>
       <div class="row d-flex justify-content-center">
-        <div class="col-3 about-box">
+        <div class="col-md-3 col-10 about-box">
           <p class="text-center about-container"><i class="fa-solid fa-camera"></i></p>
           <h5 class="text-center mb-3">STEP1 頑張りを撮影</h5>
           <p>
@@ -32,14 +32,14 @@
             たとえば、、、『足りなくなったオムツを補充した！』
           </p>
         </div>
-        <div class="col-3  about-box mx-5">
+        <div class="col-md-3 col-10 about-box mx-5">
           <p class="text-center about-container"><i class="fa-solid fa-pen-to-square"></i></p>
           <h5 class="text-center mb-3">STEP2 入力する</h5>
           <p>
             写真の選択、受賞インタビューの記入（晴れやかにインタビューに答えるつもりがおすすめです！）、公開非公開の選択、をお願いします。
           </p>
         </div>
-        <div class="col-3 about-box">
+        <div class="col-md-3 col-10 about-box">
           <p class="text-center about-container"><i class="fa-solid fa-medal"></i></p>
           <h5 class="text-center mb-3">STEP3 アワードを受賞！</h5>
           <p>
@@ -53,14 +53,14 @@
     <div class="mb-5">
       <h5><i class="fa-solid fa-2"></i>  アワードに拍手を贈る</h5>
       <div class="row d-flex justify-content-center">
-        <div class="col-4 about-box">
+        <div class="col-md-4 col-10 about-box">
           <p class="text-center about-container"><i class="fa-solid fa-list-ul"></i></p>
           <h5 class="text-center mb-3">STEP1 アワードを選ぶ</h5>
           <p>
             一覧から拍手を贈りたいアワードを選びます。「新しい順」「古い順」「拍手が多い順」で並び替えることが可能です。
           </p>
         </div>
-        <div class="col-4 about-box mx-5">
+        <div class="col-md-4 col-10 about-box mx-5">
           <p class="text-center about-container"><i class="fa-solid fa-hands-clapping"></i></p>
           <h5 class="text-center mb-3">STEP2 拍手を贈る</h5>
           <p>
@@ -74,21 +74,21 @@
     <div class="mb-5">
       <h5><i class="fa-solid fa-3"></i>  大賞を受賞する</h5>
       <div class="row d-flex justify-content-center">
-        <div class="col-3 about-box">
+        <div class="col-md-3 col-10 about-box">
           <p class="text-center about-container"><i class="fa-solid fa-list-ul"></i></p>
           <h5 class="text-center mb-3">STEP1 大賞を選ぶ</h5>
           <p>
             一覧から受賞したい大賞を選びます。大賞は大賞名やキーワードから検索することや、「新しい順」「古い順」「受賞数多い順」「賞賛の声が多い順」で並び替えることが可能です。
           </p>
         </div>
-        <div class="col-3  about-box mx-5">
+        <div class="col-md-3 col-10 about-box mx-5">
           <p class="text-center about-container"><i class="fa-solid fa-pen-to-square"></i></p>
           <h5 class="text-center mb-3">STEP2 入力する</h5>
           <p>
             写真の選択、大賞受賞インタビューの記入（晴れやかにインタビューに答えるつもりがおすすめです！）、をお願いします。
           </p>
         </div>
-        <div class="col-3 about-box">
+        <div class="col-md-3 col-10 about-box">
           <p class="text-center about-container"><i class="fa-solid fa-trophy"></i></p>
           <h5 class="text-center mb-3">STEP3 大賞を受賞！</h5>
           <p>
@@ -105,14 +105,14 @@
     <div class="mb-5">
       <h5><i class="fa-solid fa-4"></i>  大賞に賞賛の声を贈る</h5>
       <div class="row d-flex justify-content-center">
-        <div class="col-4 about-box">
+        <div class="col-md-4 col-10 about-box">
           <p class="text-center about-container"><i class="fa-solid fa-list-ul"></i></p>
           <h5 class="text-center mb-3">STEP1 大賞を選ぶ</h5>
           <p>
             一覧から受賞したい大賞を選びます。大賞は大賞名やキーワードから検索することや、「新しい順」「古い順」「受賞数多い順」「賞賛の声が多い順」で並び替えることが可能です。
           </p>
         </div>
-        <div class="col-4 about-box mx-5">
+        <div class="col-md-4 col-10 about-box mx-5">
           <p class="text-center about-container"><i class="fa-regular fa-comments"></i></p>
           <h5 class="text-center mb-3">STEP2 賞賛の声を贈る</h5>
           <p>
@@ -120,19 +120,20 @@
           </p>
         </div>
       </div>
+      <p class="text-right mt-3">大賞一覧は<%= link_to "こちら", grand_prizes_path %>から！</p>
     </div>
 
     <div class="mb-5">
       <h5><i class="fa-solid fa-5"></i>  大賞を立ち上げる</h5>
       <div class="row d-flex justify-content-center">
-        <div class="col-3 about-box">
+        <div class="col-md-3 col-10 about-box">
           <p class="text-center about-container"><i class="fa-solid fa-pen-to-square"></i></p>
           <h5 class="text-center mb-3">STEP1 入力する</h5>
           <p>
             一覧から受賞したい大賞がなかった場合は、新たに大賞を立ち上げることも可能です！大賞写真を選び、大賞名、大賞説明を入力します。
           </p>
         </div>
-        <div class="col-3  about-box mx-5">
+        <div class="col-md-3 col-10 about-box mx-5">
           <p class="text-center about-container"><i class="fa-solid fa-flag"></i></p>
           <h5 class="text-center mb-3">STEP2 大賞を設立する</h5>
           <p>
@@ -142,7 +143,7 @@
             ※編集・削除は受賞者が０人のうちのみ可能です。
           </p>
         </div>
-        <div class="col-3 about-box">
+        <div class="col-md-3 col-10 about-box">
           <p class="text-center about-container"><i class="fa-solid fa-trophy"></i></p>
           <h5 class="text-center mb-3">STEP3 大賞を授与！</h5>
           <p>
@@ -159,7 +160,7 @@
     <div class="mb-5">
       <h5><i class="fa-solid fa-6"></i>  マイページを利用する</h5>
       <div class="row d-flex justify-content-center">
-        <div class="col-6 about-box">
+        <div class="col-md-6 col-10 about-box">
           <p class="text-center about-container"><i class="fa-solid fa-user"></i></p>
           <h5 class="text-center mb-3">ユーザ情報の編集　退会　アワード情報　大賞情報</h5>
           <p>

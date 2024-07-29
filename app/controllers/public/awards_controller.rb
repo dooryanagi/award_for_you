@@ -43,6 +43,7 @@ class Public::AwardsController < ApplicationController
 
   def show
     @award = Award.find(params[:id])
+    @user = @award.user
   end
 
   def edit
