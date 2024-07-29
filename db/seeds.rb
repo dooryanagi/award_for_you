@@ -164,6 +164,8 @@ GrandPrize.find_or_create_by!(name: "とにかく大好き！") do |grand_prize|
   grand_prize.introduction = "電車？〇ンパンマン？絵本？公園？パ〇パトロール？これさえあれば！な心の友達"
   grand_prize.owner_id = admin.id
 	grand_prize.keyword_1 = 0
+	grand_prize.keyword_2 = "大好き"
+	grand_prize.keyword_3 = "オタク"
 end
 
 GrandPrize.find_or_create_by!(name: "何度でも何度でも♪") do |grand_prize|
@@ -176,7 +178,7 @@ end
 GrandPrize.find_or_create_by!(name: "おやさい・くだもの") do |grand_prize|
   grand_prize.grand_prize_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-g06.jpg"), filename:"sample-g06.jpg")
   grand_prize.introduction = "野菜や果物を買うと、赤ちゃんや子供に持たせたくなるのはなんでだろう？？持つだけで、かわいい～"
-  grand_prize.owner_id = admin.id
+  grand_prize.owner_id = carrot.id
 	grand_prize.keyword_1 = 0
 end
 
@@ -237,6 +239,14 @@ Applause.find_or_create_by!(user: carrot) do |applause|
 end
 
 Applause.find_or_create_by!(user: onion) do |applause|
+  applause.award_id = 1
+end
+
+Applause.find_or_create_by!(user: onion) do |applause|
+  applause.award_id = 2
+end
+
+Applause.find_or_create_by!(user: onion) do |applause|
   applause.award_id = 4
 end
 
@@ -249,11 +259,27 @@ Applause.find_or_create_by!(user: pumpkin) do |applause|
 end
 
 Applause.find_or_create_by!(user: pumpkin) do |applause|
+  applause.award_id = 5
+end
+
+Applause.find_or_create_by!(user: pumpkin) do |applause|
   applause.award_id = 7
+end
+
+Applause.find_or_create_by!(user: pumpkin) do |applause|
+  applause.award_id = 8
+end
+
+Applause.find_or_create_by!(user: radish) do |applause|
+  applause.award_id =2
 end
 
 Applause.find_or_create_by!(user: radish) do |applause|
   applause.award_id =4
+end
+
+Applause.find_or_create_by!(user: melon) do |applause|
+  applause.award_id = 1
 end
 
 Applause.find_or_create_by!(user: melon) do |applause|
@@ -265,7 +291,27 @@ Applause.find_or_create_by!(user: bean) do |applause|
 end
 
 Applause.find_or_create_by!(user: tomato) do |applause|
+  applause.award_id = 1
+end
+
+Applause.find_or_create_by!(user: tomato) do |applause|
+  applause.award_id = 2
+end
+
+Applause.find_or_create_by!(user: tomato) do |applause|
+  applause.award_id = 3
+end
+
+Applause.find_or_create_by!(user: tomato) do |applause|
   applause.award_id = 4
+end
+
+Applause.find_or_create_by!(user: tomato) do |applause|
+  applause.award_id = 5
+end
+
+Applause.find_or_create_by!(user: tomato) do |applause|
+  applause.award_id = 8
 end
 
 # WaitingEvent
@@ -481,6 +527,22 @@ Event.find_or_create_by!(user: onion) do |event|
 end
 
 # Praise
+Praise.find_or_create_by!(user: radish) do |praise|
+  praise.grand_prize_id = 1
+  praise.comment = "し、四角い～"
+end
+
+Praise.find_or_create_by!(user: melon) do |praise|
+  praise.grand_prize_id = 1
+  praise.comment = "笑ってはいけない育児！"
+end
+
+Praise.find_or_create_by!(user: melon) do |praise|
+  praise.grand_prize_id = 1
+  praise.comment = "こんだけ泣けばすっきりしそう！"
+end
+
+
 Praise.find_or_create_by!(user: carrot) do |praise|
   praise.grand_prize_id = 4
   praise.comment = "いろんな「好き」がありますね！"

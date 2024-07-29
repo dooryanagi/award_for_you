@@ -1,6 +1,12 @@
 <div class="container my-3">
 	<h2>
-		『<%= @keyword %>』
+		<% if @keyword == "daily" %>
+			『デイリー』
+		<% elsif @keyword == "first_time" %>
+			『はじめて』
+		<% else %>
+			『<%= @keyword %>』
+		<% end %>
 
 		をキーワードに含む大賞は<%= @all_records.count %>件でした
 	</h2>
