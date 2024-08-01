@@ -3,6 +3,7 @@ class WaitingEvent < ApplicationRecord
 	# アソシエーション
 	belongs_to :user
 	belongs_to :grand_prize
+	belongs_to :child
 	has_one :notification, as: :notifiable, dependent: :destroy
 
 	# 画像を扱う
