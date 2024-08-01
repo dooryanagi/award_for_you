@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_07_19_015418) do
+ActiveRecord::Schema.define(version: 2024_08_01_002430) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -52,6 +52,15 @@ ActiveRecord::Schema.define(version: 2024_07_19_015418) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
+  create_table "albums", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "grand_prize_id", null: false
+    t.integer "child_id", null: false
+    t.integer "event_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "applauses", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "award_id", null: false
@@ -67,10 +76,19 @@ ActiveRecord::Schema.define(version: 2024_07_19_015418) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "children", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "name", null: false
+    t.date "birthday", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "events", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "grand_prize_id", null: false
     t.text "comment", null: false
+    t.integer "child_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -123,6 +141,7 @@ ActiveRecord::Schema.define(version: 2024_07_19_015418) do
     t.integer "user_id", null: false
     t.integer "grand_prize_id", null: false
     t.text "comment", null: false
+    t.integer "child_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

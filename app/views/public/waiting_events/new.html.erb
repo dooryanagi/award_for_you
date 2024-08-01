@@ -17,9 +17,23 @@
 					<th><%= f.label :image, "大賞写真*" %></th>
 					<td><%= f.file_field :image, accept: 'image/*' %></td>
 				</tr>
-					<tr>
+				<tr>
 					<th><%= f.label :comment, "大賞インタビュー*" %></th>
 					<td><%= f.text_area :comment %></td>
+				</tr>
+				<tr>
+					<th rowspan="2"><%= f.label :select_member, "家族情報" %></th>
+					<td>
+						<%= f.radio_button :select_member, "my_self" %>
+						<%= f.label :select_member, "なし" %>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<%= f.radio_button :select_member, "children" %>
+						<%= f.label :select_member, "あり" %>
+						<%= f.select :child_id, options_from_collection_for_select(Child.all, :id, :name) %>
+					</td>
 				</tr>
 				<tr>
 					<td colspan="2">

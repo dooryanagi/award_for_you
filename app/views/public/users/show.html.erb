@@ -3,15 +3,18 @@
 
   <div class="row my-5">
     <div class="col-4">
-      <h4><i class="fa-solid fa-user"></i>基本情報</h4>
+      <h4>
+        <i class="fa-solid fa-user"></i>基本情報
+        <% unless current_user.guest_user? %>
+          <%= link_to "編集・家族の追加・退会", edit_information_path, class: "btn btn-outline-dark"  %>
+        <% end %>
+      </h4>
+
       <table class="table w-100">
         <tr>
           <th>ユーザ名　</th>
           <td>
             <%= current_user.name %>
-            <% unless current_user.guest_user? %>
-              <%= link_to "変更・退会", edit_information_path %>
-            <% end %>
           </td>
         </tr>
         <tr>
@@ -19,6 +22,23 @@
           <td><%= current_user.created_at.strftime("%Y/%m/%d") %></td>
         </tr>
       </table>
+
+      <% if current_user.children.present? %>
+        <h4><i class="fa-solid fa-house-chimney-window"></i>家族情報</h4>
+
+        <table class="table w-100">
+          <% @children.each do |child| %>
+          <tr>
+            <th><%= child.name %></th>
+            <td><%= child.birthday.strftime("%Y/%m/%d") %></td>
+            <td><%= child.age(child.birthday) %></td>
+          </tr>
+          <% end %>
+        </table>
+
+        <%= link_to "アルバムを作成する", new_album_path %>
+
+      <% end %>
     </div>
 
     <div class="col-4">

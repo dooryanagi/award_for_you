@@ -10,7 +10,12 @@
 		</div>
 	</div>
 
-	<p class="text-center my-3">by <%= @user.name %></p>
+	<p class="text-center my-3">
+		<% if @event.user == current_user %>
+			＃<%= @event.child.name %>
+		<% end %>
+		by <%= @user.name %>
+	</p>
 
 	<div class="row justify-content-start">
 		<%= link_to "◀ 大賞へ戻る", grand_prize_path(@grand_prize), class: "btn btn-outline-dark" %>

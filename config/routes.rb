@@ -47,6 +47,12 @@ Rails.application.routes.draw do
         end
       end
     end
+    resources :children, except: [:index, :show]
+    resources :albums, only: [:new, :create, :show] do
+      collection do
+          get 'make_album'
+      end
+    end
   end
 
   # 通知
@@ -75,5 +81,4 @@ Rails.application.routes.draw do
       end
 	  end
   end
-
 end
