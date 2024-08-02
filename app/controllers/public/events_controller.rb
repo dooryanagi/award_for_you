@@ -35,4 +35,17 @@ class Public::EventsController < ApplicationController
     redirect_notice(@grand_prize, "全てに大賞を授与しました。ご協力ありがとうございます！")
   end
 
+  def edit
+    @grand_prize = GrandPrize.find(params[:grand_prize_id])
+    @event = @event = @grand_prize.events.find(params[:id])
+  end
+
+  def update
+  end
+
+
+
+  def destroy
+  end
+
 end
