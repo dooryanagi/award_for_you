@@ -27,7 +27,9 @@ class GrandPrize < ApplicationRecord
 
   # 画像サイズの変更
   def get_grand_prize_image(width,height)
-    grand_prize_image.variant(resize_to_limit: [width,height]).processed
+		if grand_prize_image.present?
+			grand_prize_image.variant(resize_to_limit: [width,height]).processed
+		end
   end
 
 	# 検索機能

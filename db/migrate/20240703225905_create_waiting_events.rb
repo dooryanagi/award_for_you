@@ -5,6 +5,8 @@ class CreateWaitingEvents < ActiveRecord::Migration[6.1]
       t.integer :user_id, null: false
       t.integer :grand_prize_id, null: false
       t.text :comment, null: false
+      t.integer :child_id
+      t.date :date, null: false, default: -> { 'CURRENT_DATE' }
 
       t.timestamps
     end
