@@ -2,7 +2,7 @@
 
 <% @events.each do |event| %>
 	<div>
-		<%= event.created_at.strftime("%Y/%m/%d") %>
+		<%= event.date.strftime("%Y/%m/%d") %>
 		<%= event.grand_prize.name %>
 		<%= image_tag event.get_image(100,100) %>
 		<%= event.comment %>
