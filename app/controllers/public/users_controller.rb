@@ -4,10 +4,12 @@ class Public::UsersController < ApplicationController
   def show
     @user = current_user
     @grand_prizes = GrandPrize.where(owner_id: @user.id)
+    @children = @user.children
   end
 
   def edit
     @user = current_user
+    @child = Child.new
   end
 
   def update

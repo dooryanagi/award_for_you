@@ -19,7 +19,9 @@ class Award < ApplicationRecord
 
   # 画像サイズの変更
   def get_award_image(width,height)
-    award_image.variant(resize_to_limit: [width,height]).processed
+    if award_image.present?
+      award_image.variant(resize_to_limit: [width,height]).processed
+    end
   end
 
   # アワードにたいして拍手済みか確認
