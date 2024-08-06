@@ -41,10 +41,16 @@ Rails.application.routes.draw do
           get 'congratulations'
         end
       end
-      resources :events, only: [:create, :show] do
+      resources :events, only: [:create, :show, :edit, :destroy, :update] do
         collection do
           post 'create_all'
         end
+      end
+    end
+    resources :children, except: [:index, :show]
+    resources :albums, only: [:new, :create, :show] do
+      collection do
+          get 'make_album'
       end
     end
   end
@@ -75,5 +81,4 @@ Rails.application.routes.draw do
       end
 	  end
   end
-
 end

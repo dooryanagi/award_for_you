@@ -1,0 +1,113 @@
+                                    Prefix Verb   URI Pattern                                                                                       Controller#Action
+                          new_user_session GET    /users/sign_in(.:format)                                                                          public/sessions#new
+                              user_session POST   /users/sign_in(.:format)                                                                          public/sessions#create
+                      destroy_user_session DELETE /users/sign_out(.:format)                                                                         public/sessions#destroy
+                  cancel_user_registration GET    /users/cancel(.:format)                                                                           public/registrations#cancel
+                     new_user_registration GET    /users/sign_up(.:format)                                                                          public/registrations#new
+                    edit_user_registration GET    /users/edit(.:format)                                                                             public/registrations#edit
+                         user_registration PATCH  /users(.:format)                                                                                  public/registrations#update
+                                           PUT    /users(.:format)                                                                                  public/registrations#update
+                                           DELETE /users(.:format)                                                                                  public/registrations#destroy
+                                           POST   /users(.:format)                                                                                  public/registrations#create
+                       users_guest_sign_in POST   /users/guest_sign_in(.:format)                                                                    public/sessions#guest_sign_in
+                                      root GET    /                                                                                                 public/homes#top
+                                     about GET    /about(.:format)                                                                                  public/homes#about
+                                   my_page GET    /users/my_page(.:format)                                                                          public/users#show
+                          edit_information GET    /users/information/edit(.:format)                                                                 public/users#edit
+                        update_information PATCH  /users/information(.:format)                                                                      public/users#update
+                         users_information PUT    /users/information(.:format)                                                                      public/users#update
+                         users_unsubscribe GET    /users/unsubscribe(.:format)                                                                      public/users#unsubscribe
+                            users_withdraw PATCH  /users/withdraw(.:format)                                                                         public/users#withdraw
+                            searchs_search GET    /searchs/search(.:format)                                                                         public/searchs#search
+                 searchs_search_by_keyword GET    /searchs/search_by_keyword(.:format)                                                              public/searchs#search_by_keyword
+                     searchs_keyword_index GET    /searchs/keyword_index(.:format)                                                                  public/searchs#keyword_index
+                            award_applause DELETE /awards/:award_id/applause(.:format)                                                              public/applauses#destroy
+                                           POST   /awards/:award_id/applause(.:format)                                                              public/applauses#create
+                                    awards GET    /awards(.:format)                                                                                 public/awards#index
+                                           POST   /awards(.:format)                                                                                 public/awards#create
+                                 new_award GET    /awards/new(.:format)                                                                             public/awards#new
+                                edit_award GET    /awards/:id/edit(.:format)                                                                        public/awards#edit
+                                     award GET    /awards/:id(.:format)                                                                             public/awards#show
+                                           PATCH  /awards/:id(.:format)                                                                             public/awards#update
+                                           PUT    /awards/:id(.:format)                                                                             public/awards#update
+                                           DELETE /awards/:id(.:format)                                                                             public/awards#destroy
+                       grand_prize_praises POST   /grand_prizes/:grand_prize_id/praises(.:format)                                                   public/praises#create
+                        grand_prize_praise DELETE /grand_prizes/:grand_prize_id/praises/:id(.:format)                                               public/praises#destroy
+congratulations_grand_prize_waiting_events GET    /grand_prizes/:grand_prize_id/waiting_events/congratulations(.:format)                            public/waiting_events#congratulations
+                grand_prize_waiting_events POST   /grand_prizes/:grand_prize_id/waiting_events(.:format)                                            public/waiting_events#create
+             new_grand_prize_waiting_event GET    /grand_prizes/:grand_prize_id/waiting_events/new(.:format)                                        public/waiting_events#new
+                 grand_prize_waiting_event DELETE /grand_prizes/:grand_prize_id/waiting_events/:id(.:format)                                        public/waiting_events#destroy
+             create_all_grand_prize_events POST   /grand_prizes/:grand_prize_id/events/create_all(.:format)                                         public/events#create_all
+                        grand_prize_events POST   /grand_prizes/:grand_prize_id/events(.:format)                                                    public/events#create
+                    edit_grand_prize_event GET    /grand_prizes/:grand_prize_id/events/:id/edit(.:format)                                           public/events#edit
+                         grand_prize_event GET    /grand_prizes/:grand_prize_id/events/:id(.:format)                                                public/events#show
+                                           PATCH  /grand_prizes/:grand_prize_id/events/:id(.:format)                                                public/events#update
+                                           PUT    /grand_prizes/:grand_prize_id/events/:id(.:format)                                                public/events#update
+                                           DELETE /grand_prizes/:grand_prize_id/events/:id(.:format)                                                public/events#destroy
+                              grand_prizes GET    /grand_prizes(.:format)                                                                           public/grand_prizes#index
+                                           POST   /grand_prizes(.:format)                                                                           public/grand_prizes#create
+                           new_grand_prize GET    /grand_prizes/new(.:format)                                                                       public/grand_prizes#new
+                          edit_grand_prize GET    /grand_prizes/:id/edit(.:format)                                                                  public/grand_prizes#edit
+                               grand_prize GET    /grand_prizes/:id(.:format)                                                                       public/grand_prizes#show
+                                           PATCH  /grand_prizes/:id(.:format)                                                                       public/grand_prizes#update
+                                           PUT    /grand_prizes/:id(.:format)                                                                       public/grand_prizes#update
+                                           DELETE /grand_prizes/:id(.:format)                                                                       public/grand_prizes#destroy
+                                  children POST   /children(.:format)                                                                               public/children#create
+                                 new_child GET    /children/new(.:format)                                                                           public/children#new
+                                edit_child GET    /children/:id/edit(.:format)                                                                      public/children#edit
+                                     child PATCH  /children/:id(.:format)                                                                           public/children#update
+                                           PUT    /children/:id(.:format)                                                                           public/children#update
+                                           DELETE /children/:id(.:format)                                                                           public/children#destroy
+                         make_album_albums GET    /albums/make_album(.:format)                                                                      public/albums#make_album
+                                    albums POST   /albums(.:format)                                                                                 public/albums#create
+                                 new_album GET    /albums/new(.:format)                                                                             public/albums#new
+                                     album GET    /albums/:id(.:format)                                                                             public/albums#show
+                              notification PATCH  /notifications/:id(.:format)                                                                      notifications#update
+                                           PUT    /notifications/:id(.:format)                                                                      notifications#update
+                         new_admin_session GET    /admin/sign_in(.:format)                                                                          admin/sessions#new
+                             admin_session POST   /admin/sign_in(.:format)                                                                          admin/sessions#create
+                     destroy_admin_session DELETE /admin/sign_out(.:format)                                                                         admin/sessions#destroy
+                                     admin GET    /admin(.:format)                                                                                  admin/homes#top
+                      withdraw_admin_users PATCH  /admin/users/withdraw(.:format)                                                                   admin/users#withdraw
+                               admin_users GET    /admin/users(.:format)                                                                            admin/users#index
+                              admin_awards GET    /admin/awards(.:format)                                                                           admin/awards#index
+                               admin_award DELETE /admin/awards/:id(.:format)                                                                       admin/awards#destroy
+                  admin_grand_prize_praise DELETE /admin/grand_prizes/:grand_prize_id/praises/:id(.:format)                                         admin/praises#destroy
+          admin_grand_prize_waiting_events GET    /admin/grand_prizes/:grand_prize_id/waiting_events(.:format)                                      admin/waiting_events#index
+           admin_grand_prize_waiting_event DELETE /admin/grand_prizes/:grand_prize_id/waiting_events/:id(.:format)                                  admin/waiting_events#destroy
+       create_all_admin_grand_prize_events POST   /admin/grand_prizes/:grand_prize_id/events/create_all(.:format)                                   admin/events#create_all
+                  admin_grand_prize_events POST   /admin/grand_prizes/:grand_prize_id/events(.:format)                                              admin/events#create
+                   admin_grand_prize_event DELETE /admin/grand_prizes/:grand_prize_id/events/:id(.:format)                                          admin/events#destroy
+                        admin_grand_prizes POST   /admin/grand_prizes(.:format)                                                                     admin/grand_prizes#create
+                     new_admin_grand_prize GET    /admin/grand_prizes/new(.:format)                                                                 admin/grand_prizes#new
+                    edit_admin_grand_prize GET    /admin/grand_prizes/:id/edit(.:format)                                                            admin/grand_prizes#edit
+                         admin_grand_prize GET    /admin/grand_prizes/:id(.:format)                                                                 admin/grand_prizes#show
+                                           PATCH  /admin/grand_prizes/:id(.:format)                                                                 admin/grand_prizes#update
+                                           PUT    /admin/grand_prizes/:id(.:format)                                                                 admin/grand_prizes#update
+                                           DELETE /admin/grand_prizes/:id(.:format)                                                                 admin/grand_prizes#destroy
+             rails_postmark_inbound_emails POST   /rails/action_mailbox/postmark/inbound_emails(.:format)                                           action_mailbox/ingresses/postmark/inbound_emails#create
+                rails_relay_inbound_emails POST   /rails/action_mailbox/relay/inbound_emails(.:format)                                              action_mailbox/ingresses/relay/inbound_emails#create
+             rails_sendgrid_inbound_emails POST   /rails/action_mailbox/sendgrid/inbound_emails(.:format)                                           action_mailbox/ingresses/sendgrid/inbound_emails#create
+       rails_mandrill_inbound_health_check GET    /rails/action_mailbox/mandrill/inbound_emails(.:format)                                           action_mailbox/ingresses/mandrill/inbound_emails#health_check
+             rails_mandrill_inbound_emails POST   /rails/action_mailbox/mandrill/inbound_emails(.:format)                                           action_mailbox/ingresses/mandrill/inbound_emails#create
+              rails_mailgun_inbound_emails POST   /rails/action_mailbox/mailgun/inbound_emails/mime(.:format)                                       action_mailbox/ingresses/mailgun/inbound_emails#create
+            rails_conductor_inbound_emails GET    /rails/conductor/action_mailbox/inbound_emails(.:format)                                          rails/conductor/action_mailbox/inbound_emails#index
+                                           POST   /rails/conductor/action_mailbox/inbound_emails(.:format)                                          rails/conductor/action_mailbox/inbound_emails#create
+         new_rails_conductor_inbound_email GET    /rails/conductor/action_mailbox/inbound_emails/new(.:format)                                      rails/conductor/action_mailbox/inbound_emails#new
+        edit_rails_conductor_inbound_email GET    /rails/conductor/action_mailbox/inbound_emails/:id/edit(.:format)                                 rails/conductor/action_mailbox/inbound_emails#edit
+             rails_conductor_inbound_email GET    /rails/conductor/action_mailbox/inbound_emails/:id(.:format)                                      rails/conductor/action_mailbox/inbound_emails#show
+                                           PATCH  /rails/conductor/action_mailbox/inbound_emails/:id(.:format)                                      rails/conductor/action_mailbox/inbound_emails#update
+                                           PUT    /rails/conductor/action_mailbox/inbound_emails/:id(.:format)                                      rails/conductor/action_mailbox/inbound_emails#update
+                                           DELETE /rails/conductor/action_mailbox/inbound_emails/:id(.:format)                                      rails/conductor/action_mailbox/inbound_emails#destroy
+  new_rails_conductor_inbound_email_source GET    /rails/conductor/action_mailbox/inbound_emails/sources/new(.:format)                              rails/conductor/action_mailbox/inbound_emails/sources#new
+     rails_conductor_inbound_email_sources POST   /rails/conductor/action_mailbox/inbound_emails/sources(.:format)                                  rails/conductor/action_mailbox/inbound_emails/sources#create
+     rails_conductor_inbound_email_reroute POST   /rails/conductor/action_mailbox/:inbound_email_id/reroute(.:format)                               rails/conductor/action_mailbox/reroutes#create
+                        rails_service_blob GET    /rails/active_storage/blobs/redirect/:signed_id/*filename(.:format)                               active_storage/blobs/redirect#show
+                  rails_service_blob_proxy GET    /rails/active_storage/blobs/proxy/:signed_id/*filename(.:format)                                  active_storage/blobs/proxy#show
+                                           GET    /rails/active_storage/blobs/:signed_id/*filename(.:format)                                        active_storage/blobs/redirect#show
+                 rails_blob_representation GET    /rails/active_storage/representations/redirect/:signed_blob_id/:variation_key/*filename(.:format) active_storage/representations/redirect#show
+           rails_blob_representation_proxy GET    /rails/active_storage/representations/proxy/:signed_blob_id/:variation_key/*filename(.:format)    active_storage/representations/proxy#show
+                                           GET    /rails/active_storage/representations/:signed_blob_id/:variation_key/*filename(.:format)          active_storage/representations/redirect#show
+                        rails_disk_service GET    /rails/active_storage/disk/:encoded_key/*filename(.:format)                                       active_storage/disk#show
+                 update_rails_disk_service PUT    /rails/active_storage/disk/:encoded_token(.:format)                                               active_storage/disk#update
+                      rails_direct_uploads POST   /rails/active_storage/direct_uploads(.:format)                                                    active_storage/direct_uploads#create

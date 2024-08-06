@@ -18,12 +18,14 @@
       <h2 class="text-center title">NEW AWARDS</h2>
       <p class="text-center">新しいアワード</p>
       <div class="row d-flex justify-content-around about-box">
-        <% @awards.first(4).each do |award| %>
-          <div class="img-trim">
-            <%= link_to award_path(award.id) do %>
-              <%= image_tag award.get_award_image(100,100) %>
-            <% end %>
-          </div>
+        <% if @awards.present? %>
+          <% @awards.first(4).each do |award| %>
+            <div class="img-trim">
+              <%= link_to award_path(award.id) do %>
+                <%= image_tag award.get_award_image(100,100) %>
+              <% end %>
+            </div>
+          <% end %>
         <% end %>
       </div>
       <div class="row d-flex justify-content-end mt-3">
@@ -38,12 +40,14 @@
       <p class="text-center">新しい大賞</p>
 
       <div class="row d-flex justify-content-around top-container about-box">
-        <% @grand_prizes.first(4).each do |grand_prize| %>
-          <div class="img-trim">
-            <%= link_to grand_prize_path(grand_prize.id) do %>
-              <%= image_tag grand_prize.get_grand_prize_image(100,100) %>
-            <% end %>
-          </div>
+        <% if @grand_prizes.present? %>
+          <% @grand_prizes.first(4).each do |grand_prize| %>
+            <div class="img-trim">
+              <%= link_to grand_prize_path(grand_prize.id) do %>
+                <%= image_tag grand_prize.get_grand_prize_image(100,100) %>
+              <% end %>
+            </div>
+          <% end %>
         <% end %>
       </div>
       <div class="row d-flex justify-content-end mt-3">

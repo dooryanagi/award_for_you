@@ -3,6 +3,7 @@ class Event < ApplicationRecord
 	# アソシエーション
 	belongs_to :user
 	belongs_to :grand_prize
+	belongs_to :child
 	has_one :notification, as: :notifiable, dependent: :destroy
 
 	# 画像を扱う
@@ -10,7 +11,7 @@ class Event < ApplicationRecord
 
   # バリデーション
 	validates :image, presence: true, blob: { content_type: :image }
-	
+
 
   # 画像サイズの変更
   def get_image(width,height)
@@ -28,7 +29,11 @@ class Event < ApplicationRecord
   	event.grand_prize_id = grand_prize.id
   	event.image.attach(waiting_event.image.blob)
   	event.comment = waiting_event.comment
+  	event.child_id = waiting_event.child_id
+  	event.date = waiting_event.date
   	event.save
 	end
+
+
 
 end

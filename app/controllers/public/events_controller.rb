@@ -35,4 +35,32 @@ class Public::EventsController < ApplicationController
     redirect_notice(@grand_prize, "全てに大賞を授与しました。ご協力ありがとうございます！")
   end
 
+  def edit
+    @grand_prize = GrandPrize.find(params[:grand_prize_id])
+    @event = @event = @grand_prize.events.find(params[:id])
+  end
+
+  def update
+    @grand_prize = GrandPrize.find(params[:grand_prize_id])
+    @event = @event = @grand_prize.events.find(params[:id])
+    if @event.update(event_params)
+      flash[:notice] = "編集が完了しました"
+      redirect_to grand_prize_event_path(@grand_prize, @event)
+    else
+      flash.now[:alert] = "編集できませんでした。必須項目を確認してください。"
+      render :edit
+    end
+  end
+
+
+
+  def destroy
+  end
+
+  private
+
+  def event_params
+    params.require(:event).permit(:child_id, :date)
+  end
+
 end

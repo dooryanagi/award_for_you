@@ -2,6 +2,7 @@ class Public::HomesController < ApplicationController
 
   def top
     @awards = Award.display.latest
+    p @awards
     @grand_prizes = GrandPrize.latest
   end
 
