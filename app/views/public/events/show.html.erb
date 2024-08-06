@@ -11,16 +11,17 @@
 	</div>
 
 	<p class="text-center my-3">
-		<% if @event.user == current_user %>
-			＃<%= @event.child.name %>
-		<% end %>
-		by <%= @user.name %>
+	  <% if @event.user == current_user %>
+	    <i class="fa-solid fa-baby"></i> <%= @event.child.name %>
+	    <i class="fa-regular fa-calendar-days"></i> <%= @event.child.name %>
+	  <% end %>
+	  by <%= @user.name %>
 	</p>
-	
+
 	<% if @event.user == current_user %>
 		<div class="row justify-content-center mt-5">
-			<%= link_to "編集する", edit_award_path, class: "btn btn-outline-success mx-2" %>
-			<%= link_to "削除する", award_path(@award), method: :delete, "data-confirm" => "一覧からもマイページからも閲覧できなくなります。削除しますか？", class: "btn btn-outline-danger" %>
+			<%= link_to "編集する", edit_grand_prize_event_path, class: "btn btn-outline-success mx-2" %>
+			<%= link_to "削除する", grand_prize_event_path(@grand_prize, @event), method: :delete, "data-confirm" => "一覧からもマイページからも閲覧できなくなります。削除しますか？", class: "btn btn-outline-danger" %>
 		</div>
 	<% end %>
 

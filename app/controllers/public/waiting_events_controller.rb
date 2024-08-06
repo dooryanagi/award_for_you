@@ -37,7 +37,7 @@ class Public::WaitingEventsController < ApplicationController
   private
 
   def waiting_event_params
-    params.require(:waiting_event).permit(:user_id, :grand_prize_id, :image, :comment, :child_id)
+    params.require(:waiting_event).permit(:user_id, :grand_prize_id, :image, :comment, :child_id, :date)
   end
 
 end

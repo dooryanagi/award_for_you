@@ -30,6 +30,7 @@ class Event < ApplicationRecord
   	event.image.attach(waiting_event.image.blob)
   	event.comment = waiting_event.comment
   	event.child_id = waiting_event.child_id
+  	event.date = waiting_event.date
   	event.save
 	end
 
