@@ -1,5 +1,37 @@
-<%= form_with model: [@grand_prize, @event] do |f| %>
-  <%= f.select :child_id, options_from_collection_for_select(Child.all, :id, :name) %>
-  <%= f.date_field :date %>
-  <%= f.submit %>
-<% end %>
+<div class="container my-3">
+
+	<h2>受賞した登録内容を変更する</h2>
+
+	<div class="row d-flex justify-content-center">
+    <div class="colspan-2 col-8">
+		  <table class="table my-3">
+		    <%= form_with model: [@grand_prize, @event] do |f| %>
+	      <tr>
+	        <th>
+	          <%= f.label :child_id, "家族の変更" %>
+	        </th>
+	        <td>
+	          <%= f.select :child_id, options_from_collection_for_select(Child.all, :id, :name) %>
+	        </td>
+	      </tr>
+	      <tr>
+	        <th>
+	          <%= f.label :date, "日付" %>
+	        </th>
+	        <td>
+	          <%= f.date_field :date %>
+	        </td>
+	      </tr>
+	      <tr>
+	        <td colspan="2"><%= f.submit "変更する", class: "btn btn-outline-dark btn-block" %></td>
+        </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+
+	<%= link_to grand_prize_event_path(@grand_prize, @event), class: "btn btn-outline-dark" do %>
+		<i class="fa-solid fa-caret-left"></i> 編集せずに戻る
+	<% end %>
+
+</div>
