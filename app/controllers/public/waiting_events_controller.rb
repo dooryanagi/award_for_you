@@ -7,6 +7,7 @@ class Public::WaitingEventsController < ApplicationController
   end
 
   def create
+    
     @waiting_event = WaitingEvent.new(waiting_event_params)
     @waiting_event.user_id = current_user.id
     @waiting_event.grand_prize_id = params[:waiting_event][:grand_prize_id]
@@ -39,7 +40,7 @@ class Public::WaitingEventsController < ApplicationController
   private
 
   def waiting_event_params
-    params.require(:waiting_event).permit(:user_id, :grand_prize_id, :image, :comment, :child_id, :date, :select_date, :select_character)
+    params.require(:waiting_event).permit(:user_id, :grand_prize_id, :image, :comment, :date)
   end
 
 end
