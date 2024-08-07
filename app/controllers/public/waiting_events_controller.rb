@@ -11,9 +11,11 @@ class Public::WaitingEventsController < ApplicationController
     @waiting_event.user_id = current_user.id
     @waiting_event.grand_prize_id = params[:waiting_event][:grand_prize_id]
 
-    if params[:waiting_event][:select_member] == "children"
+    if params[:waiting_event][:select_character] == "children"
       @child = Child.find(params[:waiting_event][:child_id])
-      @waiting_event.child_id = @child.id
+      @waiting_event.character = @child.name
+    else
+      @waiting_event.character = current_user.name
     end
 
     if @waiting_event.save
@@ -37,7 +39,7 @@ class Public::WaitingEventsController < ApplicationController
   private
 
   def waiting_event_params
-    params.require(:waiting_event).permit(:user_id, :grand_prize_id, :image, :comment, :child_id, :date)
+    params.require(:waiting_event).permit(:user_id, :grand_prize_id, :image, :comment, :child_id, :date, :select_date, :select_character)
   end
 
 end

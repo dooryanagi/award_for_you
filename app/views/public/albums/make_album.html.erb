@@ -1,53 +1,18 @@
 <div class="container my-3">
-	<h2><i class="fa-solid fa-film"></i><%= @child.name %>のはじめてアルバム</h2>
+  <h2><i class="fa-solid fa-film"></i><%= @child.name %>のはじめてアルバム</h2>
 
-	<% @events.each do |event| %>
-		<div>
-			<%= event.date.strftime("%Y/%m/%d") %>
-			<%= event.grand_prize.name %>
-			<%= image_tag event.get_image(100,100) %>
-			<%= event.comment %>
-		</div>
-	<% end %>
-</div>
-
-<div class="stepbar">
-
-    <div class="stepbarwrap">
-        <div class="steptitle">
-            <span class="stepcircle"></span>
-            <span class="stepnum">ステップ1</span>
-        </div>
-        <div class="steptxt">
-            <p class="title">テキスト</p>
-            <span class="txt">テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</span>
-        </div>
-        <span class="stepline"></span>
+  <% @events.each do |event| %>
+    <div class="row justify-content-center my-3">
+      <div class="bg-gray col-6 p-2">
+        <p class="text-center album-text"><%= event.date.strftime("%Y/%m/%d") %></p>
+        <p class="text-center"><%= event.grand_prize.name %></p>
+        <div class="album-container mx-auto">
+		  <%= image_tag event.get_image(200,200), class: "rounded-circle" %>
+	    </div>
+	    <div class="award-comment text-dark m-3">
+		  <%= event.comment %>
+	    </div>
+	</div>
     </div>
-
-    <div class="stepbarwrap">
-        <div class="steptitle">
-            <span class="stepcircle"></span>
-            <span class="stepnum">ステップ2</span>
-        </div>
-        <div class="steptxt">
-            <p class="title">テキスト</p>
-            <span class="txt">テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
-            </span>
-        </div>
-        <span class="stepline"></span>
-    </div>
-
-    <div class="stepbarwrap">
-        <div class="steptitle">
-            <span class="stepcircle"></span>
-            <span class="stepnum">ステップ3</span>
-        </div>
-        <div class="steptxt">
-            <p class="title">テキスト</p>
-            <span class="txt">テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</span>
-        </div>
-        <span class="stepline"></span>
-    </div>
-
+  <% end %>
 </div>

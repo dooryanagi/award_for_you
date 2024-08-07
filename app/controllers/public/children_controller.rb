@@ -13,6 +13,11 @@ class Public::ChildrenController < ApplicationController
   def edit
   end
 
+  def show
+    child = Child.find(params[:id])
+    render json: child
+  end
+
   private
 
   def child_params
