@@ -1,38 +1,42 @@
 <div class="container my-3">
+	<div class="row d-flex justify-content-center">
+		<div class="colspan-2 col-8">
 
-	<h2><i class="fa-solid fa-film"></i>振り返りアルバムを作成する</h2>
+			<h2><i class="fa-solid fa-film"></i>振り返りアルバムを作成する</h2>
 
-	<div class='row d-flex justify-content-center'>
-	  <%= render 'layouts/errors', obj: @album %>
+			<div class='row d-flex justify-content-center'>
+			  <%= render 'layouts/errors', obj: @album %>
+			</div>
+
+			<%= form_with url: make_album_albums_path, method: :get do |f| %>
+				<table class="table">
+					<tr>
+						<th>
+							<%= f.label :child_id, "家族を選択" %>
+						</th>
+						<td colspan="2">
+							<%= f.select :child_id, options_from_collection_for_select(Child.all, :id, :name) %>
+						</td>
+					</tr>
+					<tr>
+						<th>
+							<%= f.label "期間" %>
+						</th>
+						<td>
+							<%= f.date_select(:start_date),default: %>
+						</td>
+						<td>
+							～<%= f.date_select(:end_date) %>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="3">
+							<%= f.submit %>
+						</td>
+					</tr>
+				</table>
+			<% end %>
+
+		</div>
 	</div>
-
-	<%= form_with url: make_album_albums_path, method: :get do |f| %>
-		<table class="table">
-			<tr>
-				<th>
-					<%= f.label :child_id, "家族を選択" %>
-				</th>
-				<td colspan="2">
-					<%= f.select :child_id, options_from_collection_for_select(Child.all, :id, :name) %>
-				</td>
-			</tr>
-			<tr>
-				<th>
-					<%= f.label "期間" %>
-				</th>
-				<td>
-					<%= f.date_select(:start_date) %>
-				</td>
-				<td>
-					～<%= f.date_select(:end_date) %>
-				</td>
-			</tr>
-			<tr>
-				<td colspan="3">
-					<%= f.submit %>
-				</td>
-			</tr>
-		</table>
-	<% end %>
-
 </div>
