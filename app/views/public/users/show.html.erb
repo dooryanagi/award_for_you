@@ -29,8 +29,8 @@
         <table class="table w-100">
           <% @children.each do |child| %>
           <tr>
-            <th><%= child.name %></th>
-            <td><%= child.birthday.strftime("%Y/%m/%d") %></td>
+            <th><i class="fa-solid fa-baby"></i><%= child.name %></th>
+            <td><i class="fa-solid fa-cake-candles"></i><%= child.birthday.strftime("%Y/%m/%d") %></td>
             <td><%= child.age(child.birthday) %></td>
           </tr>
           <% end %>
@@ -153,3 +153,4 @@
     </div>
   </div>
 </div>
+
