@@ -2,8 +2,8 @@ class Child < ApplicationRecord
 
 	# アソシエーション
   belongs_to :user
-  has_many :waiting_events
-  has_many :events
+  # has_many :waiting_events
+  # has_many :events
 
 	# 画像を扱う
   has_one_attached :prof_image
