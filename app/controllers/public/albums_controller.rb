@@ -8,11 +8,7 @@ class Public::AlbumsController < ApplicationController
     @child = Child.find(params[:child_id])
     start_date = Date.new(params["start_date(1i)"].to_i, params["start_date(2i)"].to_i, params["start_date(3i)"].to_i)
     end_date = Date.new(params["end_date(1i)"].to_i, params["end_date(2i)"].to_i, params["end_date(3i)"].to_i)
-    p start_date
-    p end_date
     @events = Event.includes(:grand_prize, :child).where(grand_prize: {keyword_1: 'first_time'}).where(child_id: @child.id).where(date: start_date...end_date)
-    p "============================"
-    p @events
   end
 
   private

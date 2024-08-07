@@ -2,26 +2,53 @@
   <h4><i class="fa-solid fa-pen-to-square"></i>登録情報を編集する</h4>
   <div class="row d-flex justify-content-center">
     <%= form_with model: @user, url: update_information_path do |f| %>
-      <%= f.label :name, "ユーザー名" %>
-      <%= f.text_field :name %>
-      <%= f.label :email, "emailアドレス" %>
-      <%= f.text_field :email %>
-      <%= f.submit "変更", class: "btn btn-outline-success mb-3" %>
+      <table class="table">
+        <tr>
+          <th>
+            <%= f.label :name, "ユーザー名" %>
+          </th>
+          <td>
+            <%= f.text_field :name %>
+          </td>
+        </tr>
+        <tr>
+          <th><%= f.label :email, "emailアドレス" %></th>
+          <td><%= f.text_field :email %></td>
+        </tr>
+        <tr>
+          <td colspan="2"><%= f.submit "変更", class: "btn btn-outline-success mb-3 btn-block" %></td>
+        </tr>
+      </table>
     <% end %>
   </div>
 
   <h4><i class="fa-solid fa-baby"></i>家族を追加登録する</h4>
   <div class="row d-flex justify-content-center">
     <%= form_with model: @child, url: children_path, method: :post do |f| %>
-      <%= f.label :name, "家族の名前" %>
-      <%= f.text_field :name %>
-      <%= f.label :birthday, "生年月日" %>
-      <%= f.date_field :birthday %>
-      <%= f.submit "追加", class: "btn btn-outline-success mb-3" %>
+      <table class="table">
+        <tr>
+          <th>
+            <%= f.label :name, "家族の名前" %>
+          </th>
+          <td>
+            <%= f.text_field :name %>
+          </td>
+        </tr>
+        <tr>
+          <th><%= f.label :birthday, "生年月日" %></th>
+          <td><%= f.date_field :birthday %></td>
+        </tr>
+        <tr>
+          <td colspan="2"><%= f.submit "追加", class: "btn btn-outline-success mb-3 btn-block" %></td>
+        </tr>
+      </table>
     <% end %>
   </div>
 
-  <div class="row d-flex justify-content-end">
+  <div class="row d-flex justify-content-between">
+
+		<%= link_to "◀　マイページへ戻る", my_page_path, class: "btn btn-outline-dark" %>
+
     <%= link_to "退会する", users_unsubscribe_path, class: "btn btn-outline-dark" %>
   </div>
 </div>
