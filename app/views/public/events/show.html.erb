@@ -12,8 +12,12 @@
 
 	<p class="text-center my-3">
 	  <% if @event.user == current_user %>
-    	<i class="fa-solid fa-baby"></i> <%= @event.character %><br>
-	    <i class="fa-regular fa-calendar-days"></i> <%= @event.date.strftime("%Y/%m/%d") %><br>
+	  	<% if @event.character.present? %>
+	    	<i class="fa-solid fa-baby"></i> <%= @event.character %><br>
+	    <% end %>
+	    <% if @event.date.present? %>
+		    <i class="fa-regular fa-calendar-days"></i> <%= @event.date.strftime("%Y/%m/%d") %><br>
+		   <% end %>
 	  <% end %>
 	  by <%= @user.name %>
 	</p>

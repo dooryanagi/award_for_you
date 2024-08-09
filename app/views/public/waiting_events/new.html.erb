@@ -22,7 +22,7 @@
 					<td><%= f.text_area :comment %></td>
 				</tr>
 				<tr>
-					<th rowspan="2"><%= f.label :select_date, "日付" %></th>
+					<th rowspan="2"><%= f.label :select_date, "日付" %>　<p data-toggle="modal" data-target="#exampleModalFirst"><i class="fa-solid fa-circle-question"></i></p></th>
 					<td>
 						<%= f.radio_button :select_date, "registration_date" %>
 						<%= f.label :select_date, "登録日" %>
@@ -36,7 +36,7 @@
 					</td>
 				</tr>
 				<tr>
-					<th rowspan="2"><%= f.label :select_character, "家族情報" %> <p data-toggle="modal" data-target="#exampleModalCenter"><i class="fa-solid fa-circle-question"></i></p></th>
+					<th rowspan="2"><%= f.label :select_character, "家族情報" %> <p data-toggle="modal" data-target="#exampleModalSecond"><i class="fa-solid fa-circle-question"></i></p></th>
 					<td>
 						<%= f.radio_button :select_character, "my_self" %>
 						<%= f.label :select_character, "#{current_user.name}さん" %>
@@ -65,7 +65,26 @@
 	</div>
 </div>
 
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="exampleModalFirst" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">日付情報</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      	登録日と出来事があった日が異なる場合は、ぜひ出来事があった日をご登録ください。
+      	詳細ページでは日にちも表示されます。<br>
+      	特に、キーワードに「＃はじめて」を含む大賞は、マイページから家族ごとの「はじめてアルバム」を作成でき、日付とともに振り返ることができます。
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="exampleModalSecond" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
