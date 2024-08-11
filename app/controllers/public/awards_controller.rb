@@ -16,7 +16,7 @@ class Public::AwardsController < ApplicationController
       render :new
     end
   end
-
+  
   def index
     @user = current_user
     # 本人受賞のアワード（非公開選択でも表示する）
