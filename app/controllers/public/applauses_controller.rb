@@ -14,3 +14,4 @@ class Public::ApplausesController < ApplicationController
 	end
 
 end
+		
