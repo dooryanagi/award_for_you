@@ -1,6 +1,6 @@
 class Public::AwardsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show, :new]
-  before_action :is_matching_login_user, only: [:edit, :update, :destroy]
+  before_action :is_matching_login_user, only: [:edit, :destroy]
 
   def new
     @award = Award.new

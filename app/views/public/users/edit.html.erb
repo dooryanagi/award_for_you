@@ -1,6 +1,10 @@
 <div class="container mt-5">
   <h4><i class="fa-solid fa-pen-to-square"></i>登録情報を編集する</h4>
+
   <div class="row d-flex justify-content-center">
+    <div class='row d-flex justify-content-center'>
+  	  <%= render 'layouts/errors', obj: @user %>
+  	</div>
     <%= form_with model: @user, url: update_information_path do |f| %>
       <table class="table">
         <tr>
@@ -22,8 +26,11 @@
     <% end %>
   </div>
 
-  <h4><i class="fa-solid fa-baby"></i>家族を追加登録する　<i class="fa-solid fa-circle-question" data-toggle="modal" data-target="#exampleModalCenter"></i></h4>
+  <h4><i class="fa-solid fa-baby"></i>家族情報を登録する　<i class="fa-solid fa-circle-question" data-toggle="modal" data-target="#exampleModalCenter"></i></h4>
   <div class="row d-flex justify-content-center">
+    <div class='row d-flex justify-content-center'>
+  	  <%= render 'layouts/errors', obj: @child %>
+  	</div>
     <%= form_with model: @child, url: children_path, method: :post do |f| %>
       <table class="table">
         <tr>

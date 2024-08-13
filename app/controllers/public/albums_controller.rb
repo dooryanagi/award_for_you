@@ -11,10 +11,4 @@ class Public::AlbumsController < ApplicationController
     @events = Event.includes(:grand_prize).where(grand_prize: {keyword_1: 'first_time'}).where(character: @child.name).where(date: start_date...end_date)
   end
 
-  private
-
-  def album_params
-    params.require(:album).permit(:child_id)
-  end
-
 end

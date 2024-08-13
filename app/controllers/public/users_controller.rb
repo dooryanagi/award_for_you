@@ -10,12 +10,20 @@ class Public::UsersController < ApplicationController
   def edit
     @user = current_user
     @child = Child.new
+    p "=============="
+    p @user
+    p @user.errors
   end
 
   def update
     user = current_user
-    user.update(user_params)
-    redirect_to my_page_path(current_user)
+    if user.update(user_params)
+      flash[:notice] = "ユーザー情報の編集が完了しました"
+      redirect_to my_page_path(current_user)
+    else
+      flash.now[:alert] = "編集できませんでした。必須項目を確認してください。"
+      render :edit
+    end
   end
 
   def unsubscribe

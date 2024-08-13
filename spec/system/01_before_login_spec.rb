@@ -70,7 +70,6 @@ describe '[STEP1] ユーザログイン前のテスト' do
     #     logo_link = find('a.navbar-brand')
     #     expect(logo_link[:href]).to eq root_path
     #   end
-
     #   it 'Aboutリンクが表示される: 左上から2番目のリンクが「About」である', spec_category: "CRUD機能に対するコントローラの処理と流れ(ログイン状況を反映)" do
     #     about_link = find_all('a')[1].text
     #     expect(about_link).to match(/ABOUT/)
@@ -93,39 +92,39 @@ describe '[STEP1] ユーザログイン前のテスト' do
     #   end
     # end
 
-  #   context 'リンクの内容を確認' do
-  #     subject { current_path }
+    # context 'リンクの内容を確認' do
+    #   subject { current_path }
 
-  #     it 'AWARD FOR YOUを押すと、トップ画面に遷移する', spec_category: "ルーティング・URL設定(ログイン状況に合わせる)" do
-  #       find('.navbar-brand[alt="AWARD FOR YOU"]').click
-  #       expect(current_path).to eq '/'
-  #     end
-  #     it 'Aboutを押すと、アバウト画面に遷移する', spec_category: "ルーティング・URL設定(ログイン状況に合わせる)" do
-  #       about_link = find_all('a')[1].text
-  #       click_link about_link
-  #       is_expected.to eq '/about'
-  #     end
-  #     it 'アワード一覧を押すと、アワード一覧画面に遷移する', spec_category: "ルーティング・URL設定(ログイン状況に合わせる)" do
-  #       award_index_link = find_all('a')[2].text
-  #       click_link award_index_link
-  #       is_expected.to eq '/awards'
-  #     end
-  #     it '大賞一覧を押すと、大賞一覧画面に遷移する', spec_category: "ルーティング・URL設定(ログイン状況に合わせる)" do
-  #       grand_prize_index_link = find_all('a')[3].text
-  #       click_link grand_prize_index_link, match: :first
-  #       is_expected.to eq '/grand_prizes'
-  #     end
-  #     it 'ログインを押すと、ログイン画面に遷移する', spec_category: "ルーティング・URL設定(ログイン状況に合わせる)" do
-  #       login_link = find_all('a')[4].text
-  #       click_link login_link
-  #       is_expected.to eq '/users/sign_in'
-  #     end
-  #     it '新規登録を押すと、新規登録画面に遷移する', spec_category: "ルーティング・URL設定(ログイン状況に合わせる)" do
-  #       signup_link = find_all('a')[5].text
-  #       click_link signup_link
-  #       is_expected.to eq '/users/sign_up'
-  #     end
-  #   end
+    #   it 'AWARD FOR YOUを押すと、トップ画面に遷移する', spec_category: "ルーティング・URL設定(ログイン状況に合わせる)" do
+    #     find('.navbar-brand[alt="AWARD FOR YOU"]').click
+    #     expect(current_path).to eq '/'
+    #   end
+    #   it 'Aboutを押すと、アバウト画面に遷移する', spec_category: "ルーティング・URL設定(ログイン状況に合わせる)" do
+    #     about_link = find_all('a')[1].text
+    #     click_link about_link
+    #     is_expected.to eq '/about'
+    #   end
+    #   it 'アワード一覧を押すと、アワード一覧画面に遷移する', spec_category: "ルーティング・URL設定(ログイン状況に合わせる)" do
+    #     award_index_link = find_all('a')[2].text
+    #     click_link award_index_link
+    #     is_expected.to eq '/awards'
+    #   end
+    #   it '大賞一覧を押すと、大賞一覧画面に遷移する', spec_category: "ルーティング・URL設定(ログイン状況に合わせる)" do
+    #     grand_prize_index_link = find_all('a')[3].text
+    #     click_link grand_prize_index_link, match: :first
+    #     is_expected.to eq '/grand_prizes'
+    #   end
+    #   it 'ログインを押すと、ログイン画面に遷移する', spec_category: "ルーティング・URL設定(ログイン状況に合わせる)" do
+    #     login_link = find_all('a')[4].text
+    #     click_link login_link
+    #     is_expected.to eq '/users/sign_in'
+    #   end
+    #   it '新規登録を押すと、新規登録画面に遷移する', spec_category: "ルーティング・URL設定(ログイン状況に合わせる)" do
+    #     signup_link = find_all('a')[5].text
+    #     click_link signup_link
+    #     is_expected.to eq '/users/sign_up'
+    #   end
+    # end
   # end
 
   # describe 'ユーザ新規登録のテスト' do
@@ -165,7 +164,7 @@ describe '[STEP1] ユーザログイン前のテスト' do
   #       fill_in 'user[password_confirmation]', with: 'password'
   #     end
 
-  #     it '正しく新規登録される', spec_category: "CRUD機能に対するコントローラの処理と流れ(ログイン状況を意識した応用)" do
+  #     it '正しく新規登録される', spec_category: "CRUD機能に対するコントローラの処理と流れ(ログイン状況を反映)" do
   #       expect { click_button '登録' }.to change(User.all, :count).by(1)
   #     end
   #     it '新規登録後のリダイレクト先が、トップ画面になっている', spec_category: "CRUD機能に対するコントローラの処理と流れ(ログイン状況を反映)" do
@@ -175,112 +174,135 @@ describe '[STEP1] ユーザログイン前のテスト' do
   #   end
   # end
 
-  describe 'ユーザログイン' do
-    let(:user) { create(:user) }
+  # describe 'ユーザログイン' do
+  #   let(:user) { create(:user) }
 
-    before do
-      visit new_user_session_path
-    end
+  #   before do
+  #     visit new_user_session_path
+  #   end
 
   #   context '表示内容の確認' do
-  #     it 'URLが正しい', spec_category: "deviseの基本的な導入・認証設定" do
+  #     it 'URLが正しい', spec_category: "devise機能" do
   #       expect(current_path).to eq '/users/sign_in'
   #     end
-  #     it '「Log in」と表示される', spec_category: "deviseの基本的な導入・認証設定" do
-  #       expect(page).to have_content 'Log in'
+  #     it '「ログイン」と表示される', spec_category: "devise機能" do
+  #       expect(page).to have_content 'ログイン'
   #     end
-  #     it 'nameフォームが表示される', spec_category: "deviseの基本的な導入・認証設定" do
-  #       expect(page).to have_field 'user[name]'
+  #     it 'emailアドレスフォームが表示される', spec_category: "devise機能" do
+  #       expect(page).to have_field 'user[email]'
   #     end
-  #     it 'passwordフォームが表示される', spec_category: "deviseの基本的な導入・認証設定" do
+  #     it 'パスワードフォームが表示される', spec_category: "devise機能" do
   #       expect(page).to have_field 'user[password]'
   #     end
-  #     it 'Log inボタンが表示される', spec_category: "deviseの基本的な導入・認証設定" do
-  #       expect(page).to have_button 'Log in'
+  #     it 'ログインボタンが表示される', spec_category: "devise機能" do
+  #       expect(page).to have_button 'ログイン'
   #     end
-  #     it 'emailフォームは表示されない', spec_category: "deviseの基本的な導入・認証設定" do
-  #       expect(page).not_to have_field 'user[email]'
-  #     end
-    end
+  #   end
 
   #   context 'ログイン成功のテスト' do
   #     before do
-  #       fill_in 'user[name]', with: user.name
+  #       fill_in 'user[email]', with: user.email
   #       fill_in 'user[password]', with: user.password
-  #       click_button 'Log in'
+  #       click_button 'ログイン'
   #     end
 
-  #     it 'ログイン後のリダイレクト先が、ログインしたユーザの詳細画面になっている', spec_category: "CRUD機能に対するコントローラの処理と流れ(ログイン状況を意識した応用)" do
-  #       expect(current_path).to eq '/users/' + user.id.to_s
+  #     it 'ログイン後のリダイレクト先が、ログインしたユーザのマイページ画面になっている', spec_category: "CRUD機能に対するコントローラの処理と流れ(ログイン状況を反映)" do
+  #       expect(current_path).to eq '/users/my_page'
+  #       # + user.id.to_s
   #     end
   #   end
 
   #   context 'ログイン失敗のテスト' do
   #     before do
-  #       fill_in 'user[name]', with: ''
+  #       fill_in 'user[email]', with: ''
   #       fill_in 'user[password]', with: ''
-  #       click_button 'Log in'
+  #       click_button 'ログイン'
   #     end
 
-  #     it 'ログインに失敗し、ログイン画面にリダイレクトされる', spec_category: "CRUD機能に対するコントローラの処理と流れ(ログイン状況を意識した応用)" do
+  #     it 'ログインに失敗し、ログイン画面にリダイレクトされる', spec_category: "CRUD機能に対するコントローラの処理と流れ(ログイン状況を反映)" do
   #       expect(current_path).to eq '/users/sign_in'
   #     end
   #   end
   # end
 
-  # describe 'ヘッダーのテスト: ログインしている場合' do
-  #   let(:user) { create(:user) }
+  describe 'ヘッダーのテスト: ログインしている場合' do
+    let(:user) { create(:user) }
 
-  #   before do
-  #     visit new_user_session_path
-  #     fill_in 'user[name]', with: user.name
-  #     fill_in 'user[password]', with: user.password
-  #     click_button 'Log in'
-  #   end
+    before do
+      visit new_user_session_path
+      fill_in 'user[email]', with: user.email
+      fill_in 'user[password]', with: user.password
+      click_button 'ログイン'
+    end
 
-  #   context 'ヘッダーの表示を確認' do
-  #     it 'Bookersリンクが表示される: 左上から1番目のリンクが「Bookers」である', spec_category: "ログイン状況に合わせた画面表示や機能制限のロジック設定" do
-  #       home_link = find_all('a')[0].text
-  #       expect(home_link).to match(/Bookers/)
-  #     end
-  #     it 'Homeリンクが表示される: 左上から2番目のリンクが「Home」である', spec_category: "ログイン状況に合わせた画面表示や機能制限のロジック設定" do
-  #       home_link = find_all('a')[1].text
-  #       expect(home_link).to match(/Home/)
-  #     end
-  #     it 'Usersリンクが表示される: 左上から3番目のリンクが「Users」である', spec_category: "ログイン状況に合わせた画面表示や機能制限のロジック設定" do
-  #       users_link = find_all('a')[2].text
-  #       expect(users_link).to match(/Users/)
-  #     end
-  #     it 'Booksリンクが表示される: 左上から4番目のリンクが「Books」である', spec_category: "ログイン状況に合わせた画面表示や機能制限のロジック設定" do
-  #       books_link = find_all('a')[3].text
-  #       expect(books_link).to match(/Books/)
-  #     end
-  #     it 'Log outリンクが表示される: 左上から5番目のリンクが「Log out」である', spec_category: "ログイン状況に合わせた画面表示や機能制限のロジック設定" do
-  #       logout_link = find_all('a')[4].text
-  #       expect(logout_link).to match(/Log out/)
-  #     end
-  #   end
-  # end
+    context 'ヘッダーの表示を確認' do
+      # it 'AWARD FOR YOUリンクが表示される: 左上から1番目のリンクが「AWARD FOR YOU」である', spec_category: "ログイン状況に合わせた画面表示や機能制限のロジック設定" do
+      #   logo_link = find('a.navbar-brand')
+      #   expect(logo_link[:href]).to eq root_path
+      # end
+      # it '使い方リンクが表示される: 左上から2番目のリンクが「使い方」である', spec_category: "ログイン状況に合わせた画面表示や機能制限のロジック設定" do
+      #   how_to_use_link = find_all('a')[1].text
+      #   expect(how_to_use_link).to match(/使い方/)
+      # end
+      # it 'アワード一覧リンクが表示される: 左上から3番目のリンクが「アワード一覧」である', spec_category: "ログイン状況に合わせた画面表示や機能制限のロジック設定" do
+      #   award_index_link = find_all('a')[2].text
+      #   expect(award_index_link).to match(/アワード一覧/)
+      # end
+      # it '大賞一覧リンクが表示される: 左上から4番目のリンクが「大賞一覧」である', spec_category: "ログイン状況に合わせた画面表示や機能制限のロジック設定" do
+      #   grand_prize_index_link = find_all('a')[3].text
+      #   expect(grand_prize_index_link).to match(/大賞一覧/)
+      # end
+      # it 'マイページリンクが表示される: 左上から5番目のリンクが「マイページ」である', spec_category: "ログイン状況に合わせた画面表示や機能制限のロジック設定" do
+      #   my_page_link = find_all('a')[4].text
+      #   expect(my_page_link).to match(/マイページ/)
+      # end
+
+      # 【質問】他のリンクのように6番目におしらせがあるか、というテストはどのように作ればよいか？
+      it 'おしらせリンクが表示される', spec_category: "ログイン状況に合わせた画面表示や機能制限のロジック設定" do
+        expect(page).to have_button 'おしらせ'
+      end
+
+      # it 'ログアウトリンクが表示される: 左上から7番目のリンクが「ログアウト」である', spec_category: "ログイン状況に合わせた画面表示や機能制限のロジック設定" do
+      #   logaout_link = find_all('a')[5].text
+      #   expect(logaout_link).to match(/ログアウト/)
+      # end
+    end
+
+    context 'リンクの内容を確認' do
+      subject { current_path }
+
+      # 【質問】アンカーの検出は出来ない？
+      it '使い方を押すと、アバウト画面の使い方の部分に遷移する', spec_category: "ルーティング・URL設定(ログイン状況に合わせる)" do
+        how_to_use_link = find_all('a')[1].text
+        click_link how_to_use_link
+        is_expected.to eq '/about#how_to_use/'
+      end
+      # it 'マイページを押すと、ログイン画面に遷移する', spec_category: "ルーティング・URL設定(ログイン状況に合わせる)" do
+      #   my_page_link = find_all('a')[4].text
+      #   click_link my_page_link
+      #   is_expected.to eq '/users/my_page'
+      # end
+    end
+  end
 
   # describe 'ユーザログアウトのテスト' do
   #   let(:user) { create(:user) }
 
   #   before do
   #     visit new_user_session_path
-  #     fill_in 'user[name]', with: user.name
+  #     fill_in 'user[email]', with: user.email
   #     fill_in 'user[password]', with: user.password
-  #     click_button 'Log in'
-  #     logout_link = find_all('a')[4].text
-  #     logout_link = logout_link.gsub(/\n/, '').gsub(/\A\s*/, '').gsub(/\s*\Z/, '')
+  #     click_button 'ログイン'
+  #     logout_link = find_all('a')[5].text
   #     click_link logout_link
   #   end
 
   #   context 'ログアウト機能のテスト' do
-  #     it '正しくログアウトできている: ログアウト後のリダイレクト先においてAbout画面へのリンクが存在する', spec_category: "CRUD機能に対するコントローラの処理と流れ(ログイン状況を意識した応用)" do
-  #       expect(page).to have_link '', href: '/home/about'
+  #     it '正しくログアウトできている: ログアウト後のリダイレクト先においてログイン画面へのリンクが存在する', spec_category: "CRUD機能に対するコントローラの処理と流れ(ログイン状況を反映)" do
+  #       expect(page).to have_link '', href: '/users/sign_in'
   #     end
-  #     it 'ログアウト後のリダイレクト先が、トップになっている', spec_category: "CRUD機能に対するコントローラの処理と流れ(ログイン状況を意識した応用)" do
-  #       expect(current_path).to eq '/'
+  #     it 'ログアウト後のリダイレクト先が、ログイン画面になっている', spec_category: "CRUD機能に対するコントローラの処理と流れ(ログイン状況を反映)" do
+  #       expect(current_path).to eq '/users/sign_in'
   #     end
   #   end
   # end
