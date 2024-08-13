@@ -2,7 +2,7 @@
 	<div class="row d-flex justify-content-center">
 		<div class="colspan-2 col-8">
 
-			<h2><i class="fa-solid fa-film"></i>振り返りアルバムを作成する</h2>
+			<h2><i class="fa-solid fa-film"></i>「＃はじめて」アルバムを作成する</h2>
 
 			<div class='row d-flex justify-content-center'>
 			  <%= render 'layouts/errors', obj: @album %>
@@ -31,7 +31,7 @@
         <p class="text-center about-container"><i class="fa-solid fa-heart"></i></p>
         <h5 class="text-center mb-3">STEP3 懐かしむ</h5>
         <p>
-          「はじめて」を振り返りましょう！懐かしい気持ちになったり、改めて、その当時の家族を、自分自身を、称えましょう！
+          「はじめて」の出来事を振り返りましょう！懐かしい気持ちになったり、改めて、その当時の家族を、自分自身を、称えましょう！
         </p>
       </div>
     </div>
@@ -75,24 +75,16 @@
 
 <script>
   document.querySelector("#child_id").addEventListener("change", function() {
-    console.log(this)
     var childId = this.value;
-    console.log(childId)
     var request = new XMLHttpRequest();
-    console.log(request)
     request.open("GET", "/children/" + childId);
-    console.log("/children/" + childId)
     request.send();
-    console.log("test2")
 
     request.onreadystatechange = function() {
       if (request.readyState === XMLHttpRequest.DONE && request.status === 200) {
         var child = JSON.parse(request.responseText);
-        console.log(child)
         var birthday = child.birthday;
-        console.log(birthday)
         var start_date_select = document.querySelector("#start_date");
-        console.log(start_date_select)
         start_date_select.value = birthday;
       }
     };

@@ -3,17 +3,9 @@ class Child < ApplicationRecord
   # アソシエーション
   belongs_to :user
 
-
-  # 画像を扱う
-  has_one_attached :prof_image
-
   # バリデーション
-  validates :name, presence: true, length: {in: 2..10}
+  validates :name, presence: true, length: {in: 2..20}
   validates :birthday, presence: true
-
-  def get_prof_image(width,height)
-    prof_image.variant(resize_to_limit: [width,height]).processed
-  end
 
   def age(birthday)
 	  now = Time.now.utc.to_date

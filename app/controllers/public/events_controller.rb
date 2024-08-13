@@ -1,4 +1,6 @@
 class Public::EventsController < ApplicationController
+  before_action :authenticate_user!, except: [:show]
+  before_action :is_matching_login_user, only: [:edit, :destroy]
 
   include EventsConcern
 
@@ -37,12 +39,12 @@ class Public::EventsController < ApplicationController
 
   def edit
     @grand_prize = GrandPrize.find(params[:grand_prize_id])
-    @event = @event = @grand_prize.events.find(params[:id])
+    @event = @grand_prize.events.find(params[:id])
   end
 
   def update
     @grand_prize = GrandPrize.find(params[:grand_prize_id])
-    @event = @event = @grand_prize.events.find(params[:id])
+    @event = @grand_prize.events.find(params[:id])
     if @event.update(event_params)
       flash[:notice] = "編集が完了しました"
       redirect_to grand_prize_event_path(@grand_prize, @event)
@@ -52,15 +54,31 @@ class Public::EventsController < ApplicationController
     end
   end
 
-
-
   def destroy
+    @grand_prize = GrandPrize.find(params[:grand_prize_id])
+    @event = @grand_prize.events.find(params[:id])
+    if @event.destroy
+      redirect_to grand_prize_path(@grand_prize.id)
+    else
+      redirect_to event_path(@event.id)
+    end
   end
 
   private
 
   def event_params
-    params.require(:event).permit(:child_id, :date)
+    # :character
+    params.require(:event).permit(:date)
+  end
+
+  private
+
+  def is_matching_login_user
+    event = Event.find(params[:id])
+    user_id = event.user_id
+    unless user_id == current_user.id
+      redirect_back fallback_location: grand_prizes_path
+    end
   end
 
 end
