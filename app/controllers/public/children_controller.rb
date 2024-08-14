@@ -6,7 +6,7 @@ class Public::ChildrenController < ApplicationController
       flash[:notice] = "家族情報を追加できました！"
       redirect_to my_page_path(current_user)
     else
-      flash[:alert] = "家族情報を追加できませんでした。必須情報を確認してください"
+      flash[:alert] = "家族情報を追加できませんでした。必須情報を確認してください。"
       redirect_to edit_information_path(current_user)
     end
   end

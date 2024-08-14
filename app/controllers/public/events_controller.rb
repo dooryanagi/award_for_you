@@ -67,8 +67,7 @@ class Public::EventsController < ApplicationController
   private
 
   def event_params
-    # :character
-    params.require(:event).permit(:date)
+    params.require(:event).permit(:date, :character)
   end
 
   private
