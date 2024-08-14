@@ -11,6 +11,8 @@ class Event < ApplicationRecord
   # バリデーション
   validates :image, presence: true, blob: { content_type: :image }
 
+  # アルバムは古い順
+  scope :old, -> {order(date: :asc)}
 
   # 画像サイズの変更
   def get_image(width,height)

@@ -7,7 +7,6 @@ class Public::WaitingEventsController < ApplicationController
   end
 
   def create
-
     @waiting_event = WaitingEvent.new(waiting_event_params)
     @waiting_event.user_id = current_user.id
     @waiting_event.grand_prize_id = params[:waiting_event][:grand_prize_id]
@@ -21,7 +20,7 @@ class Public::WaitingEventsController < ApplicationController
     if params[:waiting_event][:select_character] == "children"
       @child = Child.find(params[:waiting_event][:child_id])
       @waiting_event.character = @child.name
-    else
+    elsif params[:waiting_event][:select_character] == "my_self"
       @waiting_event.character = current_user.name
     end
 

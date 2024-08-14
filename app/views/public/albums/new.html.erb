@@ -47,7 +47,7 @@
 							<%= f.label "家族を選択" %>
 						</th>
 						<td colspan="2">
-							<%= f.select :child_id, options_from_collection_for_select(Child.all, :id, :name) %>
+							<%= f.select :child_id, options_from_collection_for_select(current_user.children.all, :id, :name) %>
 						</td>
 					</tr>
 					<tr>
