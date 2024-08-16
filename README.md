@@ -52,6 +52,7 @@
 ![readme_admin_top](https://github.com/user-attachments/assets/c783b484-7f8c-47a0-9cd0-39b7222936eb)
 
 ## 設計書
+- [ 要件定義書 ](https://docs.google.com/document/d/14vPO-EAp6eoIfaBjZfsSRgfDkl2t0fPv47ONiPYkROE/pub)
 - [ ULフロー図 ](https://app.diagrams.net/#G1egRZsf9goaXpPlkSF_X4x5BKg0KqZmuM#%7B%22pageId%22%3A%22vM_IINC7GvCu65bmRso6%22%7D)
 - [ ER図 ](https://app.diagrams.net/#G1GkH-bjAuObEUnXnBFJ5eA8Ljpb3CH6jq#%7B%22pageId%22%3A%22R2lEEEUBdFMjLlhIrx00%22%7D)
 - [ テーブル定義書 ](https://docs.google.com/spreadsheets/d/10KsQRCorEq2EjdCFqAJHkodJjF2AwNHJOZSbTngyhWU/edit?gid=2018117380#gid=2018117380)
