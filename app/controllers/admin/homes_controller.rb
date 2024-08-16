@@ -14,6 +14,7 @@ class Admin::HomesController < ApplicationController
     else
       @grand_prizes = GrandPrize.page(params[:page]).waiting_event_count
     end
+    @users = User.all
   end
 
 end

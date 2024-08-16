@@ -5,9 +5,6 @@
     <div class="col-4">
       <h4>
         <i class="fa-solid fa-user"></i>基本情報
-        <% unless current_user.guest_user? %>
-          <%= link_to "編集・家族情報の登録・退会", edit_information_path, class: "btn btn-outline-dark"  %>
-        <% end %>
       </h4>
 
       <table class="table w-100">
@@ -20,6 +17,13 @@
         <tr>
           <th>登録日</th>
           <td><%= current_user.created_at.strftime("%Y/%m/%d") %></td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <% unless current_user.guest_user? %>
+              <%= link_to "編集・家族情報の登録・退会", edit_information_path, class: "btn btn-outline-dark btn-block"  %>
+            <% end %>
+          </td>
         </tr>
       </table>
 
@@ -47,7 +51,7 @@
        <h4><i class="fa-solid fa-medal"></i>アワード情報</h4>
          <table class="table w-100">
           <tr>
-            <th>受賞数</th>
+            <th>受賞</th>
             <td>
               <!--アワード一覧＞ユーザが受賞したアワードを表示-->
               <% if current_user.awards.present? %>
@@ -60,7 +64,7 @@
             </td>
           </tr>
           <tr>
-            <th>贈った拍手数</th>
+            <th>贈った拍手</th>
             <td>
               <!--アワード一覧＞ユーザが拍手を贈ったアワードを表示-->
               <% if current_user.applauses.present? %>
@@ -154,4 +158,3 @@
   </div>
 </div>
 
-  

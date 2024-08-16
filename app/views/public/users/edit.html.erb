@@ -52,11 +52,12 @@
     <% end %>
   </div>
 
-  <div class="row d-flex justify-content-between">
+    <div class="row d-flex justify-content-center my-4">
+      <%= link_to "退会する", users_unsubscribe_path, class: "btn btn-dark btn-sm" %>
+    </div>
 
+  <div class="row d-flex justify-content-start">
 		<%= link_to "◀　マイページへ戻る", my_page_path, class: "btn btn-outline-dark" %>
-
-    <%= link_to "退会する", users_unsubscribe_path, class: "btn btn-outline-dark" %>
   </div>
 </div>
 
