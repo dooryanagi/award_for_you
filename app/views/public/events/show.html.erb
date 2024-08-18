@@ -24,7 +24,7 @@
 
 	<% if @event.user == current_user %>
 		<div class="row justify-content-center mt-5">
-			<%= link_to "編集する", edit_grand_prize_event_path, class: "btn btn-outline-success mx-2" %>
+			<%= link_to "編集する", edit_grand_prize_event_path, class: "btn btn-outline-success mx-2", data: {"turbolinks"=>false} %>
 			<%= link_to "削除する", grand_prize_event_path(@grand_prize, @event), method: :delete, "data-confirm" => "一覧からもマイページからも閲覧できなくなります。削除しますか？", class: "btn btn-outline-danger" %>
 		</div>
 	<% end %>
@@ -32,4 +32,4 @@
 	<div class="row justify-content-start">
 		<%= link_to "◀ 大賞へ戻る", grand_prize_path(@grand_prize), class: "btn btn-outline-dark" %>
 	</div>
-</div>		
+</div>

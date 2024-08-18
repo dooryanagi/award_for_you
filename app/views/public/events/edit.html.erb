@@ -5,13 +5,15 @@
 	<div class="row d-flex justify-content-center">
     <div class="colspan-2 col-8">
 		  <table class="table my-3">
-		    <%= form_with model: [@grand_prize, @event] do |f| %>
+		  	<%= form_with url: grand_prize_event_path, method: :patch do |f| %>
+		  	<!--%= form_with(model: [@grand_prize, @event], local: true) do |f| %>-->
+		    <!--%= form_with url: grand_prize_event_path, method: :patch do |f| %>-->
 		      <tr>
 		        <th>
 		          <%= f.label :character, "家族の変更" %>
 		        </th>
 		        <td>
-		          <%= f.select :character, options_from_collection_for_select([current_user] + current_user.children.all, :name, :name) %>
+		          <%= f.select :character, options_from_collection_for_select([current_user] + current_user.children.all, :name, :name, @event.character) %>
 		        </td>
 		      </tr>
 		      <tr>
