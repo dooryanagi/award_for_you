@@ -45,10 +45,15 @@ class Public::EventsController < ApplicationController
   def update
     @grand_prize = GrandPrize.find(params[:grand_prize_id])
     @event = @grand_prize.events.find(params[:id])
-    if @event.update(event_params)
+    p @grand_prize
+    p @event
+    # if @event.update(event_params)
+    if @event.update(date: params[:date], character: params[:character])
+      puts "Event updated successfully: #{@event.inspect}"
       flash[:notice] = "編集が完了しました"
       redirect_to grand_prize_event_path(@grand_prize, @event)
     else
+      puts "Event update failed: #{@event.errors.full_messages}"
       flash.now[:alert] = "編集できませんでした。必須項目を確認してください。"
       render :edit
     end
@@ -66,11 +71,9 @@ class Public::EventsController < ApplicationController
 
   private
 
-  def event_params
-    params.require(:event).permit(:date, :character)
-  end
-
-  private
+  # def event_params
+  #   params.require(:event).permit(:date, :character)
+  # end
 
   def is_matching_login_user
     event = Event.find(params[:id])
