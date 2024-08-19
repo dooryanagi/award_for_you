@@ -2,6 +2,8 @@ class Public::ChildrenController < ApplicationController
 
   def create
     @child = current_user.children.new(child_params)
+    p "=============="
+    p @child
     if @child.save
       flash[:notice] = "家族情報を追加できました！"
       redirect_to my_page_path(current_user)

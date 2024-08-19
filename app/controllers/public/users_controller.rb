@@ -10,15 +10,11 @@ class Public::UsersController < ApplicationController
   def edit
     @user = current_user
     @child = Child.new
-    p "=============="
-    p @user
-    p @user.errors
   end
 
   def update
     @child = Child.new
     @user = current_user
-    p @user
     if @user.update(user_params)
       flash[:notice] = "ユーザー情報の編集が完了しました"
       redirect_to my_page_path(current_user)
