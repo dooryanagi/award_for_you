@@ -1,18 +1,10 @@
 <div class="container mt-5">
   <h4><i class="fa-solid fa-pen-to-square"></i>登録情報を編集する</h4>
 
+  <div class='row d-flex justify-content-center'>
+    <%= render 'layouts/errors', obj: @user %>
+  </div>
   <div class="row d-flex justify-content-center">
-    <div class='row d-flex justify-content-center'>
-      <% if @user.name.blank? || @child&.name.blank? %>
-        <% if @user.name.blank? %>
-          <%= render 'layouts/errors', obj: @user %>
-        <% end %>
-
-        <% if @child&.name.blank? %>
-          <%= render 'layouts/errors', obj: @child %>
-        <% end %>
-      <% end %>
-    </div>
     <%= form_with model: @user, url: update_information_path do |f| %>
       <table class="table">
         <tr>
@@ -35,13 +27,25 @@
   </div>
 
   <h4><i class="fa-solid fa-baby"></i>家族情報を登録する　<i class="fa-solid fa-circle-question" data-toggle="modal" data-target="#exampleModalCenter"></i></h4>
+
+  <div class='row d-flex justify-content-center'>
+    <% if @child.nil? %>
+      <div class="alert alert-danger">
+        <p>エラー: オブジェクトが見つかりません。</p>
+      </div>
+    <% elsif @child.errors.any? %>
+      <div id="error_explanation">
+        <h4><%= @child.errors.count %>件のエラーがありました。:</h4>
+        <ul>
+          <% @child.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+	</div>
+
   <div class="row d-flex justify-content-center">
-    <div class='row d-flex justify-content-center'>
-      <!--% if @child.nil? || @child.errors.any? || @child.name.blank? %>-->
-      <!--  %= render 'layouts/errors', obj: @child %>-->
-      <!--% end %>-->
-  	  <!--%= render 'layouts/errors', obj: @child %>-->
-  	</div>
     <%= form_with model: @child, url: children_path, method: :post do |f| %>
       <table class="table">
         <tr>
