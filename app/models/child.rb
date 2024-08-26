@@ -7,21 +7,20 @@ class Child < ApplicationRecord
   validates :name, presence: true, length: {in: 2..20}
   validates :birthday, presence: true
 
-  def age(birthday)
-	  now = Time.now.utc.to_date
+	def age(birthday)
+	  now = Date.today
 	  years = now.year - birthday.year
 	  months = now.month - birthday.month
-	  if now.day < birthday.day
-	    months -= 1
-    	if months < 0
-      	years -= 1
-      	months += 12
-    	end
-  	end
-  	if years == 0
-    	"#{months}ヶ月"
+
+	  if months < 0
+	    years -= 1
+	    months += 12
+	  end
+
+	  if years == 0
+	    "#{months}ヶ月"
 	  else
-    	"#{years}歳#{months}ヶ月"
+	    "#{years}歳#{months}ヶ月"
 	  end
 	end
 
