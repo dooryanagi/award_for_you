@@ -1,10 +1,22 @@
 <% grand_prize.praises.order(created_at: :desc).limit(5).each do |praise| %>
 	<div class="row d-flex justify-content-center mt-3">
-		『<%= praise.comment %>』
-		<% if user_signed_in? && praise.user_id == current_user.id %>
-			<%= link_to grand_prize_praise_path(praise.grand_prize, praise), method: :delete, class: "btn btn-outline-danger btn-sm", remote: true do %>
-				<i class="fa-solid fa-trash-can"></i>
+		<div>
+			『<%= praise.comment %>』
+		</div>
+		<div>
+			<% if user_signed_in? && praise.user_id == current_user.id %>
+				<%= link_to grand_prize_praise_path(praise.grand_prize, praise), method: :delete, class: "btn btn-outline-danger btn-sm", remote: true, data: { confirm: "削除してよろしいですか？" } do %>
+					<i class="fa-solid fa-trash-can"></i>
+				<% end %>
 			<% end %>
-		<% end %>
+		</div>
+	</div>
+	<div class="row d-flex justify-content-center mt-3 gp-text-small">
+		<div class="mr-3">
+			by <%= praise.user.name %>
+		</div>
+		<div>
+			<i class="fa-regular fa-calendar-days"></i> <%= praise.created_at.strftime("%Y/%m/%d") %></div>
+		</div>
 	</div>
 <% end %>

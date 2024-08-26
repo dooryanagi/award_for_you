@@ -25,13 +25,13 @@
 					<th rowspan="2"><%= f.label :select_date, "日付" %>　<p data-toggle="modal" data-target="#exampleModalFirst"><i class="fa-solid fa-circle-question"></i></p></th>
 					<td>
 						<%= f.radio_button :select_date, "registration_date" %>
-						<%= f.label :select_date, "登録日" %>
+						<%= f.label :select_date, "登録日", value: "registration_date" %>
 					</td>
 				</tr>
 				<tr>
 					<td>
 						<%= f.radio_button :select_date, "selected_date" %>
-						<%= f.label :select_date, "日付を指定する" %>
+						<%= f.label :select_date, "日付を指定する", value: "selected_date" %>
 						<%= f.date_field :date %>
 					</td>
 				</tr>
@@ -39,14 +39,14 @@
 					<th rowspan="2"><%= f.label :select_character, "家族情報" %> <p data-toggle="modal" data-target="#exampleModalSecond"><i class="fa-solid fa-circle-question"></i></p></th>
 					<td>
 						<%= f.radio_button :select_character, "my_self" %>
-						<%= f.label :select_character, "#{current_user.name}さん" %>
+						<%= f.label :select_character, "#{current_user.name}さん", value: "my_self" %>
 					</td>
 				</tr>
 				<tr>
 				<% if current_user.children.present? %>
 					<td>
 						<%= f.radio_button :select_character, "children" %>
-						<%= f.label :select_character, "登録家族　" %>
+						<%= f.label :select_character, "登録家族　", value: "children" %>
 						<%= f.select :child_id, options_from_collection_for_select(Child.all, :id, :name) %>
 					</td>
 				<% end %>
