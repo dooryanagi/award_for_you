@@ -55,47 +55,50 @@
 			</div>
 	  </div>
 	</div>
+</div>
 
+<div class="container my-3">
 	<% if user_signed_in? && @grand_prize.owner_id == current_user.id %>
-		<h5><%= current_user.name %>さんはこの大賞の設立者です。</h5>
-		<% if @grand_prize.waiting_events.present? %>
-			<div class="row d-flex justify-content-between mt-3">
-				<h5>受賞待ちが<%= @grand_prize.waiting_events.count %>件あります。大賞の授与をお願いします！</h5>
-				<%= link_to "みんなに大賞を授与する", create_all_grand_prize_events_path(@grand_prize), method: :post, class: "btn btn-outline-danger" %>
-			</div>
+		<div>
+			<h5><%= current_user.name %>さんはこの大賞の設立者です。</h5>
+			<% if @grand_prize.waiting_events.present? %>
+				<div class="row d-flex justify-content-between mt-3">
+					<h5>受賞待ちが<%= @grand_prize.waiting_events.count %>件あります。大賞の授与をお願いします！</h5>
+					<%= link_to "みんなに大賞を授与する", create_all_grand_prize_events_path(@grand_prize), method: :post, class: "btn btn-outline-danger" %>
+				</div>
 
-			<div class="row my-3">
-				<table class="table">
-					<tbody>
-						<% @grand_prize.waiting_events.each do |waiting_event| %>
-						<tr>
-							<td>
-								<%= image_tag waiting_event.get_image(80,80) %>
-							</td>
-							<td>
-								<%= waiting_event.user.name %>
-							<td>
-								<%= waiting_event.comment %>
-							</td>
-							<td class="text-right">
-								<%= link_to "大賞授与", grand_prize_events_path(@grand_prize, waiting_event_id: waiting_event.id), method: :post, class: "btn btn-outline-success" %>
-							</td>
-						</tr>
-						<% end %>
-					</tbody>
-				</table>
-			</div>
+				<div class="row my-3">
+					<table class="table">
+						<tbody>
+							<% @grand_prize.waiting_events.each do |waiting_event| %>
+							<tr>
+								<td>
+									<%= image_tag waiting_event.get_image(80,80) %>
+								</td>
+								<td>
+									<%= waiting_event.user.name %>
+								<td>
+									<%= waiting_event.comment %>
+								</td>
+								<td class="text-right">
+									<%= link_to "大賞授与", grand_prize_events_path(@grand_prize, waiting_event_id: waiting_event.id), method: :post, class: "btn btn-outline-success" %>
+								</td>
+							</tr>
+							<% end %>
+						</tbody>
+					</table>
+				</div>
 
-		<% else %>
-			<div class="row">
-				<h5>受賞待ちはありません。</h5>
-			</div>
-		<% end %>
+			<% else %>
+				<div class="row">
+					<h5>受賞待ちはありません。</h5>
+				</div>
+			<% end %>
 
-		<% unless @grand_prize.waiting_events.present? || @grand_prize.events.present? %>
-			<%= link_to "大賞の編集・削除", edit_grand_prize_path, class: "btn btn-outline-dark mb-3" %>
-		<% end %>
-
+			<% unless @grand_prize.waiting_events.present? || @grand_prize.events.present? %>
+				<%= link_to "大賞の編集・削除", edit_grand_prize_path, class: "btn btn-outline-dark mb-3" %>
+			<% end %>
+		</div>
 	<% end %>
 
 	<div class="row justify-content-start">
