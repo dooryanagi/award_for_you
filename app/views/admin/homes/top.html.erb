@@ -18,6 +18,9 @@
           名称
         </th>
         <th>
+          設立者
+        </th>
+        <th>
           説明
         </th>
         <th style="width: 7%">
@@ -41,6 +44,9 @@
         </td>
         <td>
           <%= grand_prize.name %>
+        </td>
+        <td>
+          <%= @users.find_by(id: grand_prize.owner_id).name %>
         </td>
         <td>
           <%= grand_prize.introduction %>

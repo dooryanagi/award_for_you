@@ -63,7 +63,7 @@
 		<h5>授与待ち</h5>
 		<div>
 			<% if @grand_prize.waiting_events.present? %>
-				<%= link_to "全員に授与する", create_all_admin_grand_prize_events_path(@grand_prize), method: :post, class: "btn btn-success" %>
+				<%= link_to "全員に授与する", create_all_admin_grand_prize_events_path(@grand_prize), method: :post, class: "btn btn-success my-2" %>
 			<% end %>
 		</div>
 	</div>
@@ -113,7 +113,7 @@
 					<%= praise.comment %>
 				</td>
 				<td>
-					<%= link_to "取り消し", admin_grand_prize_praise_path(praise.grand_prize, praise), method: :delete, class: "btn btn-outline-danger" %>
+					<%= link_to "削除", admin_grand_prize_praise_path(praise.grand_prize, praise), method: :delete, class: "btn btn-outline-danger" %>
 				</td>
 			</tr>
 			<% end %>
@@ -122,6 +122,6 @@
 
 	<div class="row d-flex justify-content-center">
 		<%= link_to "大賞の編集", edit_admin_grand_prize_path(@grand_prize),class: "btn btn-outline-dark mx-3" %>
-		<%= link_to "大賞の削除", admin_grand_prize_path(@grand_prize),method: :delete, class: "btn btn-outline-danger" %>
+		<%= link_to "大賞の削除", admin_grand_prize_path(@grand_prize),method: :delete, data: { confirm: "関連するデータもすべて削除されますが、大賞を削除してよいですか？" }, class: "btn btn-outline-danger" %>
 	</div>
 </div>

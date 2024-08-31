@@ -1,4 +1,8 @@
-<% if obj.errors.any? %>
+<% if obj.nil? %>
+  <div class="alert alert-danger">
+    <p>エラー: オブジェクトが見つかりません。</p>
+  </div>
+<% elsif obj.errors.any? %>
   <div id="error_explanation">
     <h4><%= obj.errors.count %>件のエラーがありました。:</h4>
     <ul>

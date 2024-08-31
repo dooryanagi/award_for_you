@@ -5,26 +5,28 @@
 	<div class="row d-flex justify-content-center">
     <div class="colspan-2 col-8">
 		  <table class="table my-3">
-		    <%= form_with model: [@grand_prize, @event] do |f| %>
-	      <tr>
-	        <th>
-	          <%= f.label :child_id, "家族の変更" %>
-	        </th>
-	        <td>
-	          <%= f.select :child_id, options_from_collection_for_select(Child.all, :id, :name) %>
-	        </td>
-	      </tr>
-	      <tr>
-	        <th>
-	          <%= f.label :date, "日付" %>
-	        </th>
-	        <td>
-	          <%= f.date_field :date %>
-	        </td>
-	      </tr>
-	      <tr>
-	        <td colspan="2"><%= f.submit "変更する", class: "btn btn-outline-dark btn-block" %></td>
-        </tr>
+		  	<%= form_with url: grand_prize_event_path, method: :patch do |f| %>
+		  	<!--%= form_with(model: [@grand_prize, @event], local: true) do |f| %>-->
+		    <!--%= form_with url: grand_prize_event_path, method: :patch do |f| %>-->
+		      <tr>
+		        <th>
+		          <%= f.label :character, "家族の変更" %>
+		        </th>
+		        <td>
+		          <%= f.select :character, options_from_collection_for_select([current_user] + current_user.children.all, :name, :name, @event.character) %>
+		        </td>
+		      </tr>
+		      <tr>
+		        <th>
+		          <%= f.label :date, "日付の変更" %>
+		        </th>
+		        <td>
+		          <%= f.date_field :date %>
+		        </td>
+		      </tr>
+		      <tr>
+		        <td colspan="2"><%= f.submit "変更する", class: "btn btn-outline-dark btn-block" %></td>
+	        </tr>
         <% end %>
       </table>
     </div>

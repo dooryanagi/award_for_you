@@ -12,15 +12,19 @@
 
 	<p class="text-center my-3">
 	  <% if @event.user == current_user %>
-	    <i class="fa-solid fa-baby"></i> <%= @event.child.name %><br>
-	    <i class="fa-regular fa-calendar-days"></i> <%= @event.date.strftime("%Y/%m/%d") %><br>
+	  	<% if @event.character.present? %>
+	    	<i class="fa-solid fa-baby"></i> <%= @event.character %><br>
+	    <% end %>
+	    <% if @event.date.present? %>
+		    <i class="fa-regular fa-calendar-days"></i> <%= @event.date.strftime("%Y/%m/%d") %><br>
+		   <% end %>
 	  <% end %>
 	  by <%= @user.name %>
 	</p>
 
 	<% if @event.user == current_user %>
 		<div class="row justify-content-center mt-5">
-			<%= link_to "編集する", edit_grand_prize_event_path, class: "btn btn-outline-success mx-2" %>
+			<%= link_to "編集する", edit_grand_prize_event_path, class: "btn btn-outline-success mx-2", data: {"turbolinks"=>false} %>
 			<%= link_to "削除する", grand_prize_event_path(@grand_prize, @event), method: :delete, "data-confirm" => "一覧からもマイページからも閲覧できなくなります。削除しますか？", class: "btn btn-outline-danger" %>
 		</div>
 	<% end %>

@@ -1,6 +1,6 @@
 class Public::AwardsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show, :new]
-  before_action :is_matching_login_user, only: [:edit, :update, :destroy]
+  before_action :is_matching_login_user, only: [:edit, :destroy]
 
   def new
     @award = Award.new
@@ -16,7 +16,7 @@ class Public::AwardsController < ApplicationController
       render :new
     end
   end
-
+  
   def index
     @user = current_user
     # 本人受賞のアワード（非公開選択でも表示する）

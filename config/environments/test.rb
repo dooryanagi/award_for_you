@@ -44,7 +44,9 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :test
 
   # Print deprecation notices to the stderr.
-  config.active_support.deprecation = :stderr
+  # RSpec実施：stderr →　silence
+  # CI/CD環境
+  config.active_support.deprecation = :silence
 
   # Raise exceptions for disallowed deprecations.
   config.active_support.disallowed_deprecation = :raise

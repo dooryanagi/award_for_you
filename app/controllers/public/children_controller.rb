@@ -6,17 +6,20 @@ class Public::ChildrenController < ApplicationController
       flash[:notice] = "家族情報を追加できました！"
       redirect_to my_page_path(current_user)
     else
-      render controller: 'user', action: 'edit'
+      flash[:alert] = "家族情報を追加できませんでした。必須情報を確認してください。"
+      redirect_to edit_information_path(current_user)
     end
   end
 
-  def edit
+  def show
+    child = Child.find(params[:id])
+    render json: child
   end
 
   private
 
   def child_params
-    params.require(:child).permit(:user_id, :name, :birthday, :prof_image)
+    params.require(:child).permit(:name, :birthday)
   end
 
 

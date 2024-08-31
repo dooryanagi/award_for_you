@@ -88,8 +88,8 @@ ActiveRecord::Schema.define(version: 2024_08_01_002430) do
     t.integer "user_id", null: false
     t.integer "grand_prize_id", null: false
     t.text "comment", null: false
-    t.integer "child_id"
-    t.date "date", null: false
+    t.string "character"
+    t.date "date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -142,8 +142,8 @@ ActiveRecord::Schema.define(version: 2024_08_01_002430) do
     t.integer "user_id", null: false
     t.integer "grand_prize_id", null: false
     t.text "comment", null: false
-    t.integer "child_id"
-    t.date "date", null: false
+    t.string "character"
+    t.date "date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

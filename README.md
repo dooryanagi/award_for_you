@@ -1,7 +1,7 @@
 ![readme_logo](https://github.com/user-attachments/assets/ad4e0d94-9e2a-4937-ab85-f376cc37b060)
 
 ## サイト概要
-![readme_top](https://github.com/user-attachments/assets/e2784414-8582-4d00-8d2f-78a1ab631c2f)
+![readme_top](https://github.com/user-attachments/assets/cc764a93-2204-414e-b237-d156f56e7731)
 
 ### サイトテーマ
 育児に関わる人たちが、日々の頑張りを称えあったり、子供の成長を記録できたりする、コミュニティサイト
@@ -46,13 +46,13 @@
 
 #### 会員画面
 ![readme_award](https://github.com/user-attachments/assets/2333015d-18f0-4f77-84a5-9ccef63bd046)
-![readme_grand_prize](https://github.com/user-attachments/assets/ed670f4f-1d7e-4a8f-a4f1-48b4f66a119b)
+![readme_grand_prize](https://github.com/user-attachments/assets/00964702-c752-4aa7-b152-b1ecbc4f2183)
 
 #### 管理者画面
-![readme_admin_top](https://github.com/user-attachments/assets/d9d71bd7-3b79-4c09-998d-7bf96abc35c6)
-![readme_admin_user](https://github.com/user-attachments/assets/275fd9fd-d86a-4298-8606-f3b8472bbf22)
+![readme_admin_top](https://github.com/user-attachments/assets/c783b484-7f8c-47a0-9cd0-39b7222936eb)
 
 ## 設計書
+- [ 要件定義書 ](https://docs.google.com/document/d/14vPO-EAp6eoIfaBjZfsSRgfDkl2t0fPv47ONiPYkROE/pub)
 - [ ULフロー図 ](https://app.diagrams.net/#G1egRZsf9goaXpPlkSF_X4x5BKg0KqZmuM#%7B%22pageId%22%3A%22vM_IINC7GvCu65bmRso6%22%7D)
 - [ ER図 ](https://app.diagrams.net/#G1GkH-bjAuObEUnXnBFJ5eA8Ljpb3CH6jq#%7B%22pageId%22%3A%22R2lEEEUBdFMjLlhIrx00%22%7D)
 - [ テーブル定義書 ](https://docs.google.com/spreadsheets/d/10KsQRCorEq2EjdCFqAJHkodJjF2AwNHJOZSbTngyhWU/edit?gid=2018117380#gid=2018117380)

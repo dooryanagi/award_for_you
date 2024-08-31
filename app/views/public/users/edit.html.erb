@@ -1,27 +1,96 @@
 <div class="container mt-5">
   <h4><i class="fa-solid fa-pen-to-square"></i>登録情報を編集する</h4>
+
+  <div class='row d-flex justify-content-center'>
+    <%= render 'layouts/errors', obj: @user %>
+  </div>
   <div class="row d-flex justify-content-center">
     <%= form_with model: @user, url: update_information_path do |f| %>
-      <%= f.label :name, "ユーザー名" %>
-      <%= f.text_field :name %>
-      <%= f.label :email, "emailアドレス" %>
-      <%= f.text_field :email %>
-      <%= f.submit "変更", class: "btn btn-outline-success mb-3" %>
+      <table class="table">
+        <tr>
+          <th>
+            <%= f.label :name, "ユーザー名" %>
+          </th>
+          <td>
+            <%= f.text_field :name %>
+          </td>
+        </tr>
+        <tr>
+          <th><%= f.label :email, "emailアドレス" %></th>
+          <td><%= f.text_field :email %></td>
+        </tr>
+        <tr>
+          <td colspan="2"><%= f.submit "変更", class: "btn btn-outline-success mb-3 btn-block" %></td>
+        </tr>
+      </table>
     <% end %>
   </div>
 
-  <h4><i class="fa-solid fa-baby"></i>家族を追加登録する</h4>
+  <h4><i class="fa-solid fa-baby"></i>家族情報を登録する　<i class="fa-solid fa-circle-question" data-toggle="modal" data-target="#exampleModalCenter"></i></h4>
+
+  <div class='row d-flex justify-content-center'>
+    <% if @child.nil? %>
+      <div class="alert alert-danger">
+        <p>エラー: オブジェクトが見つかりません。</p>
+      </div>
+    <% elsif @child.errors.any? %>
+      <div id="error_explanation">
+        <h4><%= @child.errors.count %>件のエラーがありました。:</h4>
+        <ul>
+          <% @child.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+	</div>
+
   <div class="row d-flex justify-content-center">
     <%= form_with model: @child, url: children_path, method: :post do |f| %>
-      <%= f.label :name, "家族の名前" %>
-      <%= f.text_field :name %>
-      <%= f.label :birthday, "生年月日" %>
-      <%= f.date_field :birthday %>
-      <%= f.submit "追加", class: "btn btn-outline-success mb-3" %>
+      <table class="table">
+        <tr>
+          <th>
+            <%= f.label :name, "家族の名前" %>
+          </th>
+          <td>
+            <%= f.text_field :name %>
+          </td>
+        </tr>
+        <tr>
+          <th><%= f.label :birthday, "生年月日" %></th>
+          <td><%= f.date_field :birthday %></td>
+        </tr>
+        <tr>
+          <td colspan="2"><%= f.submit "追加", class: "btn btn-outline-success mb-3 btn-block" %></td>
+        </tr>
+      </table>
     <% end %>
   </div>
 
-  <div class="row d-flex justify-content-end">
-    <%= link_to "退会する", users_unsubscribe_path, class: "btn btn-outline-dark" %>
+    <div class="row d-flex justify-content-center my-4">
+      <%= link_to "退会する", users_unsubscribe_path, class: "btn btn-dark btn-sm" %>
+    </div>
+
+  <div class="row d-flex justify-content-start">
+		<%= link_to "◀　マイページへ戻る", my_page_path, class: "btn btn-outline-dark" %>
+  </div>
+</div>
+
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">家族の追加登録</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      	家族情報を登録すると、大賞にノミネートする際に、家族情報を関連付けることができます。
+      	すると家族ごとに振り返りができるようになったり、キーワードに「＃はじめて」を含む大賞の「はじめてアルバム」を作成できますので、ぜひ家族情報をご登録ください。<br>
+
+      	<i class="fa-solid fa-triangle-exclamation"></i>家族情報（名前・生年月日）は登録した本人以外には表示されません。ご安心ください！
+      </div>
+    </div>
   </div>
 </div>

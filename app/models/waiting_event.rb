@@ -3,7 +3,6 @@ class WaitingEvent < ApplicationRecord
 	# アソシエーション
 	belongs_to :user
 	belongs_to :grand_prize
-	belongs_to :child
 	has_one :notification, as: :notifiable, dependent: :destroy
 
 	# 画像を扱う
@@ -22,7 +21,6 @@ class WaitingEvent < ApplicationRecord
   after_create do
   	grand_prize = self.grand_prize
     create_notification(user_id: grand_prize.owner_id)
-		# create_notification(user_id: waiting_event.grand_prize.owner_id)
   end
 
 end

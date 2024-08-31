@@ -2,20 +2,52 @@
 	<div class="row d-flex justify-content-center">
 		<div class="colspan-2 col-8">
 
-			<h2><i class="fa-solid fa-film"></i>振り返りアルバムを作成する</h2>
+			<h2><i class="fa-solid fa-film"></i>「＃はじめて」アルバムを作成する</h2>
 
 			<div class='row d-flex justify-content-center'>
 			  <%= render 'layouts/errors', obj: @album %>
 			</div>
+		</div>
+	</div>
 
+  <div class="my-5">
+    <div class="row d-flex justify-content-center">
+      <div class="col-md-3 col-10 about-box">
+        <p class="text-center about-container"><i class="fa-solid fa-baby"></i></p>
+        <h5 class="text-center mb-3">STEP1 家族を選ぶ</h5>
+        <p>
+          マイページで家族情報を登録するとセレクトボックスに表示されます。
+          アルバムを作成したい家族を選択してください。
+        </p>
+      </div>
+      <div class="col-md-3 col-10 about-box mx-5">
+        <p class="text-center about-container"><i class="fa-regular fa-calendar-days"></i></p>
+        <h5 class="text-center mb-3">STEP2 期間を選択する</h5>
+        <p>
+          特に振り返りたい期間があれば、期間を狭めることもできます。特に指定がなければ、選んだ家族の生まれたときから今日までのアルバムが作成されます。
+        </p>
+      </div>
+      <div class="col-md-3 col-10 about-box">
+        <p class="text-center about-container"><i class="fa-solid fa-heart"></i></p>
+        <h5 class="text-center mb-3">STEP3 懐かしむ</h5>
+        <p>
+          「はじめて」の出来事を振り返りましょう！懐かしい気持ちになったり、改めて、その当時の家族を、自分自身を、称えましょう！
+        </p>
+      </div>
+    </div>
+  </div>
+
+	<div class="row d-flex justify-content-center">
+		<div class="colspan-2 col-8">
 			<%= form_with url: make_album_albums_path, method: :get do |f| %>
 				<table class="table">
 					<tr>
 						<th>
-							<%= f.label :child_id, "家族を選択" %>
+						  <!-- :child_id,-->
+							<%= f.label "家族を選択" %>
 						</th>
 						<td colspan="2">
-							<%= f.select :child_id, options_from_collection_for_select(Child.all, :id, :name) %>
+							<%= f.select :child_id, options_from_collection_for_select(current_user.children.all, :id, :name) %>
 						</td>
 					</tr>
 					<tr>
@@ -23,15 +55,15 @@
 							<%= f.label "期間" %>
 						</th>
 						<td>
-							<%= f.date_select(:start_date),default: %>
+							<%= f.date_field :start_date, value: current_user.children.find(1).birthday %>
 						</td>
 						<td>
-							～<%= f.date_select(:end_date) %>
+							～<%= f.date_field :end_date, value: Date.today %>
 						</td>
 					</tr>
 					<tr>
 						<td colspan="3">
-							<%= f.submit %>
+							<%= f.submit "作成する", class: "btn btn-outline-dark btn-block" %>
 						</td>
 					</tr>
 				</table>
@@ -40,3 +72,21 @@
 		</div>
 	</div>
 </div>
+
+<script>
+  document.querySelector("#child_id").addEventListener("change", function() {
+    var childId = this.value;
+    var request = new XMLHttpRequest();
+    request.open("GET", "/children/" + childId);
+    request.send();
+
+    request.onreadystatechange = function() {
+      if (request.readyState === XMLHttpRequest.DONE && request.status === 200) {
+        var child = JSON.parse(request.responseText);
+        var birthday = child.birthday;
+        var start_date_select = document.querySelector("#start_date");
+        start_date_select.value = birthday;
+      }
+    };
+  });
+</script>

@@ -1,5 +1,5 @@
 class Public::WaitingEventsController < ApplicationController
-  before_action :authenticate_user!, except: [:new]
+  before_action :authenticate_user!
 
   def new
     @waiting_event = WaitingEvent.new
@@ -11,9 +11,17 @@ class Public::WaitingEventsController < ApplicationController
     @waiting_event.user_id = current_user.id
     @waiting_event.grand_prize_id = params[:waiting_event][:grand_prize_id]
 
-    if params[:waiting_event][:select_member] == "children"
+    if params[:waiting_event][:select_date] == "registration_date"
+      @waiting_event.date = Date.today
+    else
+      @waiting_event.date = params[:waiting_event][:date]
+    end
+
+    if params[:waiting_event][:select_character] == "children"
       @child = Child.find(params[:waiting_event][:child_id])
-      @waiting_event.child_id = @child.id
+      @waiting_event.character = @child.name
+    elsif params[:waiting_event][:select_character] == "my_self"
+      @waiting_event.character = current_user.name
     end
 
     if @waiting_event.save
@@ -37,7 +45,7 @@ class Public::WaitingEventsController < ApplicationController
   private
 
   def waiting_event_params
-    params.require(:waiting_event).permit(:user_id, :grand_prize_id, :image, :comment, :child_id, :date)
+    params.require(:waiting_event).permit(:user_id, :grand_prize_id, :image, :comment, :date)
   end
 
 end
