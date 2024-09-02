@@ -7,10 +7,8 @@
 				<div class="gp-frame mb-3">
 					<%= image_tag @grand_prize.get_grand_prize_image(500,500) %>
 				</div>
-				<div class="row d-flex justify-content-center">
-					<div class="gp-comment text-dark">
-						<%= @grand_prize.introduction %>
-					</div>
+				<div class="row gp-comment text-dark mx-auto my-2">
+					<%= @grand_prize.introduction %>
 				</div>
 			</div>
 			<table class="table my-3">
@@ -20,6 +18,9 @@
 					<td><%= @grand_prize.keyword_3.present? ? "#" + @grand_prize.keyword_3 : "" %></td>
 				</tr>
 			</table>
+			<p class=" text-center">
+				<i class="fa-regular fa-calendar-days"></i> <%= @grand_prize.created_at.strftime("%Y/%m/%d") %>
+			</p>
 
 			<div class="mb-5">
 				<%= link_to "この大賞を受賞する", new_grand_prize_waiting_event_path(grand_prize_id: @grand_prize.id), class: "btn btn-outline-dark btn-block"%>
