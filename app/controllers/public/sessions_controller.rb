@@ -47,18 +47,18 @@ class Public::SessionsController < Devise::SessionsController
 
   private
 
-    # 会員のログインに関わる情報を確認する
-    def user_status
-      # ログインフォームに入力されたemail情報をもとにuserを見つけ、その情報を変数に格納する
-	    user = User.find_by(email: params[:user][:email])
-      return if user.nil?
-      return unless user.valid_password?(params[:user][:password])
-      if user.is_active == true
-    		create
-      else
-        flash[:alert] = "退会済みのアドレスです。新しいアドレスでの登録をお願いします。"
-    		redirect_to new_user_registration_path
-      end
+  # 会員のログインに関わる情報を確認する
+  def user_status
+    # ログインフォームに入力されたemail情報をもとにuserを見つけ、その情報を変数に格納する
+    user = User.find_by(email: params[:user][:email])
+    return if user.nil?
+    return unless user.valid_password?(params[:user][:password])
+    if user.is_active == true
+  		create
+    else
+      flash[:alert] = "退会済みのアドレスです。新しいアドレスでの登録をお願いします。"
+  		redirect_to new_user_registration_path
     end
+  end
 
 end

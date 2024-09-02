@@ -61,11 +61,11 @@
 <div class="container my-3">
 	<% if user_signed_in? && @grand_prize.owner_id == current_user.id %>
 		<div>
-			<h5><%= current_user.name %>さんはこの大賞の設立者です。</h5>
+			<h5 class="text-center my-3"><i class="fa-solid fa-trophy"></i> <%= current_user.name %>さんはこの大賞の設立者です。 <i class="fa-solid fa-trophy"></i></h5>
 			<% if @grand_prize.waiting_events.present? %>
 				<div class="row d-flex justify-content-between mt-3">
 					<h5>受賞待ちが<%= @grand_prize.waiting_events.count %>件あります。大賞の授与をお願いします！</h5>
-					<%= link_to "みんなに大賞を授与する", create_all_grand_prize_events_path(@grand_prize), method: :post, class: "btn btn-outline-danger" %>
+					<%= link_to "みんなに大賞を授与する", create_all_grand_prize_events_path(@grand_prize), method: :post, class: "btn btn-success" %>
 				</div>
 
 				<div class="row my-3">

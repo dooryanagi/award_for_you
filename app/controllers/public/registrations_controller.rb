@@ -50,7 +50,6 @@ class Public::RegistrationsController < Devise::RegistrationsController
   # If you have extra params to permit, append them to the sanitizer.
   # 会員登録に必要な情報を追加
   def configure_sign_up_params
-    # 会員ステータスは不要？退避：, :is_active
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
   end
 
