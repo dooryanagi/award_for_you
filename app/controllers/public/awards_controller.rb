@@ -19,7 +19,7 @@ class Public::AwardsController < ApplicationController
   
   def index
     @user = current_user
-    # 本人受賞のアワード（非公開選択でも表示する）
+    # 本人受賞のアワード（非公開選択も表示する）
     if params[:user_id]
       @awards = @user.awards.page(params[:page]).latest
     # 拍手したアワード一覧
